@@ -141,14 +141,14 @@ const ContentsMain = () => {
                         </button>
 
                         {/* 캐러셀 컨테이너 */}
-                        <div className="relative w-[420px] h-[320px] overflow-visible rounded-[51px]" style={{overflow: 'visible'}}>
+                        <div className="relative w-[420px] h-[320px] overflow-hidden rounded-[51px]">
                             {/* 캐러셀 트랙 */}
                             <div
                                 ref={trackRef}
                                 className="flex h-full"
                                 style={{
                                     transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4,0,0.2,1)' : 'none',
-                                    transform: `translateX(-${currentIndex * 100}%)`,
+                                    transform: `translateX(-${currentIndex * 420}px)`,
                                     overflow: 'visible',
                                     position: 'relative',
                                 }}
@@ -158,8 +158,9 @@ const ContentsMain = () => {
                                     <div
                                         key={idx}
                                         onClick={() => handleCardClick(card.id)}
-                                        className="w-full h-full flex-shrink-0 rounded-[51px] cursor-pointer relative"
+                                        className="h-full flex-shrink-0 rounded-[51px] cursor-pointer relative"
                                         style={{
+                                            width: '420px',
                                             backgroundColor: card.color,
                                             position: 'relative',
                                             overflow: 'visible',
