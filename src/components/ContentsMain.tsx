@@ -25,7 +25,7 @@ const ContentsMain = () => {
             category: '공모전',
             title: 'Design Contest',
             brand: 'Creative Hub',
-            thumbnail: '/api/placeholder/360/202',
+            thumbnail: '/api/placeholder/340/280',
             logo: '/api/placeholder/60/60',
             hashtags: '#디자인 #공모전 #창작 #아이디어',
             color: '#81bcff'
@@ -35,7 +35,7 @@ const ContentsMain = () => {
             category: '이벤트',
             title: 'Tech Meetup',
             brand: 'Innovation Space',
-            thumbnail: '/api/placeholder/360/202',
+            thumbnail: '/api/placeholder/340/280',
             logo: '/api/placeholder/60/60',
             hashtags: '#기술 #네트워킹 #세미나 #교육',
             color: '#fffc97'
@@ -45,7 +45,7 @@ const ContentsMain = () => {
             category: '디자인',
             title: 'Draph Art',
             brand: 'Creative Studio',
-            thumbnail: '/api/placeholder/360/202',
+            thumbnail: '/api/placeholder/340/280',
             logo: '/api/placeholder/60/60',
             hashtags: '#광고 #모델이미지 #상품이미지...',
             color: '#ffcab3'
@@ -119,10 +119,10 @@ const ContentsMain = () => {
                 {/* 회전카드 시스템 - 우측 */}
                 <div className="w-3/5 relative">
                     <div className="relative h-[400px] flex items-center justify-center">
-                        {/* 좌측 화살표 버튼 */}
+                        {/* 좌측 화살표 버튼 - 카드에 가깝게 */}
                         <button
                             onClick={() => rotateCards('left')}
-                            className="absolute left-0 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            className="absolute left-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -130,28 +130,30 @@ const ContentsMain = () => {
                         </button>
 
                         {/* 카드들 */}
-                        <div className="relative w-[400px] h-[300px]">
+                        <div className="relative w-[450px] h-[320px]">
                             {orderedCards.map((card, index) => (
                                 <div
                                     key={card.id}
                                     onClick={() => handleCardClick(card.id)}
-                                    className={`absolute w-[400px] h-[300px] rounded-[51px] cursor-pointer transition-all duration-600 ease-in-out hover:scale-105 ${
+                                    className={`absolute w-[420px] h-[300px] rounded-[51px] cursor-pointer transition-all duration-600 ease-in-out hover:scale-105 ${
                                         index === 0 ? 'z-10' : index === 1 ? 'z-5' : 'z-0'
                                     }`}
                                     style={{
                                         backgroundColor: card.color,
-                                        transform: `translateX(${index * 20}px) translateY(${index * 10}px)`,
+                                        transform: `translateX(${-index * 20}px) translateY(${index * 10}px)`,
                                     }}
                                 >
+                                    {/* 뱃지 - 우상단 */}
+                                    <div className="absolute top-4 right-6 bg-gray-400 text-white px-4 py-2 rounded-full z-10">
+                                        <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
+                                            {card.category}
+                                        </span>
+                                    </div>
+
                                     {/* 카드 내용 */}
                                     <div className="p-6 h-full flex flex-col">
-                                        {/* 카테고리 */}
-                                        <h3 className="text-[36px] font-medium text-black mb-4" style={{ fontFamily: 'Inter', letterSpacing: '-0.792px' }}>
-                                            {card.category}
-                                        </h3>
-
-                                        {/* 썸네일 이미지 (16:9 비율) */}
-                                        <div className="w-[320px] h-[180px] mx-auto rounded-[32px] overflow-hidden mb-4">
+                                        {/* 썸네일 이미지 (340x280px) */}
+                                        <div className="w-[340px] h-[210px] mx-auto rounded-[32px] overflow-hidden mb-4 mt-8">
                                             <div className="w-full h-full bg-gray-300 flex items-center justify-center">
                                                 <span className="text-gray-600">썸네일</span>
                                             </div>
@@ -161,16 +163,18 @@ const ContentsMain = () => {
                                         <div className="flex-1 flex flex-col justify-end">
                                             {/* 브랜드 로고 & 서비스명 */}
                                             <div className="flex items-center justify-between mb-3">
-                                                {/* 브랜드 로고 */}
-                                                <div className="flex items-center space-x-3">
-                                                    <div className="w-[50px] h-[50px] bg-[#f5f04f] rounded-full flex items-center justify-center">
-                                                        <span className="text-xs">로고</span>
+                                                {/* 브랜드 로고 - 디자인 카드만 */}
+                                                {card.category === '디자인' && (
+                                                    <div className="flex items-center space-x-3">
+                                                        <div className="w-[40px] h-[40px] bg-[#f5f04f] rounded-full flex items-center justify-center">
+                                                            <span className="text-xs">로고</span>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                )}
 
                                                 {/* 서비스명 (가운데 정렬) */}
                                                 <div className="flex-1 text-center">
-                                                    <h4 className="text-[48px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
+                                                    <h4 className="text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
                                                         {card.title}
                                                     </h4>
                                                 </div>
@@ -178,7 +182,7 @@ const ContentsMain = () => {
 
                                             {/* 해시태그 */}
                                             <div className="text-center">
-                                                <p className="text-[24px] font-medium text-black truncate" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
+                                                <p className="text-[12px] font-medium text-black truncate" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
                                                     {card.hashtags}
                                                 </p>
                                             </div>
@@ -188,10 +192,10 @@ const ContentsMain = () => {
                             ))}
                         </div>
 
-                        {/* 우측 화살표 버튼 */}
+                        {/* 우측 화살표 버튼 - 카드에 가깝게 */}
                         <button
                             onClick={() => rotateCards('right')}
-                            className="absolute right-0 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            className="absolute right-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
