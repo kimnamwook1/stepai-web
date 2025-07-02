@@ -71,7 +71,7 @@ const ContentsMain = () => {
             clearInterval(autoRotateRef.current);
         }
         autoRotateRef.current = setInterval(() => {
-            setCurrentCardIndex((prev) => (prev < cardData.length - 1 ? prev + 1 : prev));
+            setCurrentCardIndex((prev) => (prev === cardData.length - 1 ? 0 : prev + 1));
         }, 3000);
     };
 
@@ -81,9 +81,9 @@ const ContentsMain = () => {
             clearInterval(autoRotateRef.current);
         }
         if (direction === 'left') {
-            setCurrentCardIndex((prev) => (prev === 0 ? 0 : prev - 1));
+            setCurrentCardIndex((prev) => (prev === 0 ? cardData.length - 1 : prev - 1));
         } else {
-            setCurrentCardIndex((prev) => (prev === cardData.length - 1 ? cardData.length - 1 : prev + 1));
+            setCurrentCardIndex((prev) => (prev === cardData.length - 1 ? 0 : prev + 1));
         }
         setTimeout(startAutoRotate, 3000);
     };
@@ -155,14 +155,15 @@ const ContentsMain = () => {
                                             backgroundColor: card.color,
                                             position: 'relative',
                                             overflow: 'visible',
+                                            zIndex: 1,
                                         }}
                                     >
                                         {/* 뱃지 - 우상단 바깥 */}
                                         <div 
                                             className="absolute bg-gray-400 text-white px-4 py-2 rounded-full z-10"
                                             style={{
-                                                top: '-20px',
-                                                right: '-20px',
+                                                top: '-40px',
+                                                right: '-40px',
                                             }}
                                         >
                                             <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
