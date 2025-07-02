@@ -89,7 +89,7 @@ const ContentsMain = () => {
             goNext();
         }, 3000);
         return () => { if (autoRotateRef.current) clearInterval(autoRotateRef.current); };
-    }, []);
+    }, [goNext]);
 
     // 카드 클릭 핸들러
     const handleCardClick = (cardId: number) => {
@@ -146,9 +146,9 @@ const ContentsMain = () => {
                                 if (diff > 1) diff -= cardData.length;
                                 let zIndex = 0, opacity = 0, top = 0, cardScale = 0.92, cardTransform = 'scale(0.92) translateX(46px)';
                                 if (diff === 0) { zIndex = 6; opacity = 1; cardScale = 1; cardTransform = 'scale(1) translateX(0)'; top = 0; }
-                                else if (diff === 1 || diff === -2) { zIndex = 5; opacity = 1; cardScale = 0.96; cardTransform = 'scale(0.96) translateX(24px)'; top = '6px'; }
-                                else if (diff === -1 || diff === 2) { zIndex = 4; opacity = 1; cardScale = 0.92; cardTransform = 'scale(0.92) translateX(46px)'; top = '12px'; }
-                                let topValue: string | number = typeof top === 'number' ? `${top}px` : top;
+                                else if (diff === 1 || diff === -2) { zIndex = 5; opacity = 1; cardScale = 0.96; cardTransform = 'scale(0.96) translateX(24px)'; top = 6; }
+                                else if (diff === -1 || diff === 2) { zIndex = 4; opacity = 1; cardScale = 0.92; cardTransform = 'scale(0.92) translateX(46px)'; top = 12; }
+                                const topValue = typeof top === 'number' ? `${top}px` : top;
                                 const cardStyle: React.CSSProperties = {
                                     transition: 'all 0.5s cubic-bezier(0.4,0,0.2,1)',
                                     position: 'absolute',
