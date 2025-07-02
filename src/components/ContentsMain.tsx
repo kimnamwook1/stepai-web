@@ -191,7 +191,7 @@ const ContentsMain = () => {
                                         <div
                                             className="absolute bg-gray-400 text-white px-4 py-2 rounded-full z-20"
                                             style={{
-                                                top: '-32px',
+                                                top: '-2px',
                                                 left: '-32px',
                                             }}
                                         >
@@ -211,21 +211,16 @@ const ContentsMain = () => {
 
                                             {/* 하단 영역 */}
                                             <div className="flex-1 flex flex-col justify-center">
-                                                {/* 로고 */}
-                                                <div className="flex items-start mb-2" style={{ marginLeft: '23px' }}>
-                                                    <div className="w-[48px] h-[48px] bg-[#f5f04f] rounded-full flex items-center justify-center flex-shrink-0">
+                                                {/* 로고+서비스명 수평 정렬 */}
+                                                <div className="flex flex-row items-center mb-2" style={{ marginLeft: '23px' }}>
+                                                    <div className="w-[48px] h-[48px] bg-[#f5f04f] rounded-full flex items-center justify-center flex-shrink-0 mr-3">
                                                         <span className="text-xs">로고</span>
                                                     </div>
-                                                </div>
-
-                                                {/* 서비스명 */}
-                                                <div className="text-center mb-2">
                                                     <h4 className="text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
                                                         {card.title}
                                                     </h4>
                                                 </div>
-
-                                                {/* 해시태그 - 중앙정렬에서 제외, 아래쪽에 고정 */}
+                                                {/* 해시태그 - 아래쪽에 고정 */}
                                                 <div className="mt-auto" style={{ marginLeft: '23px' }}>
                                                     <p className="text-[12px] font-medium text-black" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
                                                         {card.hashtags}
