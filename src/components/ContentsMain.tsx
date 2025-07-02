@@ -101,19 +101,6 @@ const ContentsMain = () => {
         console.log(`카드 ${cardId} 클릭됨 - 상세페이지 이동 예정`);
     };
 
-    // 표시할 카드 순서 계산 (현재 인덱스 기준)
-    const getDisplayCards = () => {
-        const cards = [];
-        for (let i = 0; i < 3; i++) {
-            const cardIndex = (currentCardIndex + i) % cardData.length;
-            cards.push({
-                ...cardData[cardIndex],
-                displayIndex: i, // 0: 앞(100%), 1: 중간(90%), 2: 뒤(80%)
-            });
-        }
-        return cards;
-    };
-
     // 컴포넌트 마운트 시 자동 회전 시작
     useEffect(() => {
         startAutoRotate();
@@ -123,8 +110,6 @@ const ContentsMain = () => {
             }
         };
     }, []);
-
-    const displayCards = getDisplayCards();
 
     return (
         <section className="px-80 py-16">
@@ -149,44 +134,33 @@ const ContentsMain = () => {
 
                 {/* ScrollCard_display - 우측 */}
                 <div className="w-3/5 relative">
-                    <div className="relative h-[400px] flex items-end justify-center">
-                        {/* 좌측 화살표 버튼 - 1번 카드 기준 좌측 30px, 1번 카드와 수직 센터 */}
+                    <div className="relative h-[400px] flex items-center justify-center">
+                        {/* 좌측 화살표 버튼 */}
                         <button
                             onClick={() => rotateCards('left')}
-                            className="absolute z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
-                            style={{
-                                left: '-54px', // 카드 컨테이너 좌측에서 30px + 버튼 반지름
-                                top: '50%',
-                                transform: 'translateY(-50%)'
-                            }}
+                            className="absolute left-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
                         </button>
 
-                        {/* 카드들 */}
-                        <div className="relative" style={{ width: '500px', height: '320px' }}>
-                            {displayCards.map((card) => {
-                                const scale = card.displayIndex === 0 ? 1 : card.displayIndex === 1 ? 0.9 : 0.8;
-                                const zIndex = 30 - card.displayIndex * 10;
-                                
-                                // 간단한 겹침: 각각 20px씩만 보이도록
-                                const leftOffset = card.displayIndex === 0 ? 0 :      // 1번: 기준점
-                                                   card.displayIndex === 1 ? 20 :     // 2번: 20px 오른쪽
-                                                   card.displayIndex === 2 ? 40 :     // 3번: 40px 오른쪽  
-                                                   0;
-                                
-                                return (
+                        {/* 캐러셀 컨테이너 */}
+                        <div className="relative w-[420px] h-[320px] overflow-hidden rounded-[51px]">
+                            {/* 캐러셀 트랙 */}
+                            <div 
+                                className="flex transition-transform duration-600 ease-in-out h-full"
+                                style={{
+                                    transform: `translateX(-${currentCardIndex * 100}%)`,
+                                }}
+                            >
+                                {cardData.map((card) => (
                                     <div
-                                        key={`${card.id}-${card.displayIndex}`}
+                                        key={card.id}
                                         onClick={() => handleCardClick(card.id)}
-                                        className="absolute bottom-0 cursor-pointer transition-all duration-600 ease-in-out"
+                                        className="w-full h-full flex-shrink-0 rounded-[51px] cursor-pointer relative"
                                         style={{
-                                            transform: `scale(${scale})`,
-                                            transformOrigin: 'bottom left',
-                                            zIndex: zIndex,
-                                            left: `${leftOffset}px`
+                                            backgroundColor: card.color,
                                         }}
                                     >
                                         {/* 뱃지 - 좌상단 삐져나옴 */}
@@ -203,10 +177,7 @@ const ContentsMain = () => {
                                         </div>
 
                                         {/* 카드 본체 */}
-                                        <div 
-                                            className="w-[420px] h-[320px] rounded-[51px] p-6 flex flex-col"
-                                            style={{ backgroundColor: card.color }}
-                                        >
+                                        <div className="p-6 h-full flex flex-col">
                                             {/* 썸네일 이미지 - 10% 크게, 위로 올림 */}
                                             <div className="w-[374px] h-[231px] mx-auto rounded-[32px] overflow-hidden mb-3 -mt-2">
                                                 <div className="w-full h-full bg-gray-300 flex items-center justify-center">
@@ -239,19 +210,14 @@ const ContentsMain = () => {
                                             </div>
                                         </div>
                                     </div>
-                                );
-                            })}
+                                ))}
+                            </div>
                         </div>
 
-                        {/* 우측 화살표 버튼 - 3번 카드 기준 우측 30px, 1번 카드와 수직 센터 */}
+                        {/* 우측 화살표 버튼 */}
                         <button
                             onClick={() => rotateCards('right')}
-                            className="absolute z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
-                            style={{
-                                right: '-54px', // 카드 컨테이너 우측에서 30px + 버튼 반지름
-                                top: '50%',
-                                transform: 'translateY(-50%)'
-                            }}
+                            className="absolute right-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
