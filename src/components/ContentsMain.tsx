@@ -15,9 +15,12 @@ interface CardData {
 
 const ContentsMain = () => {
     const [inputText, setInputText] = useState('');
-    const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    // 무한루프 캐러셀: 더미 포함 인덱스
+    const [currentIndex, setCurrentIndex] = useState(1); // 1이 실제 첫 카드
+    const [isTransitioning, setIsTransitioning] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const autoRotateRef = useRef<NodeJS.Timeout | null>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
 
     // 카드 데이터 (순서: 디자인, 이벤트, 공모전)
     const cardData: CardData[] = [
@@ -52,6 +55,8 @@ const ContentsMain = () => {
             color: '#81bcff'
         }
     ];
+    // 더미 포함 배열: [2,0,1,2,0]
+    const carouselCards = [cardData[2], ...cardData, cardData[0]];
 
     // 텍스트 영역 자동 높이 조절
     const adjustTextareaHeight = () => {
@@ -60,48 +65,45 @@ const ContentsMain = () => {
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
         }
     };
+    useEffect(() => { adjustTextareaHeight(); }, [inputText]);
 
-    useEffect(() => {
-        adjustTextareaHeight();
-    }, [inputText]);
-
-    // 자동 회전 함수
-    const startAutoRotate = () => {
-        if (autoRotateRef.current) {
-            clearInterval(autoRotateRef.current);
-        }
-        autoRotateRef.current = setInterval(() => {
-            setCurrentCardIndex((prev) => (prev === cardData.length - 1 ? 0 : prev + 1));
-        }, 3000);
+    // 왼쪽(이전) 버튼 클릭 시 역방향 무한 루프
+    const goPrev = () => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentIndex((prev) => prev - 1);
     };
 
-    // 수동 회전 함수
-    const rotateCards = (direction: 'left' | 'right') => {
-        if (autoRotateRef.current) {
-            clearInterval(autoRotateRef.current);
+    // 트랜지션 끝나면 더미→실제 카드 jump (양방향)
+    const handleTransitionEnd = () => {
+        setIsTransitioning(false);
+        if (currentIndex === 0) {
+            setCurrentIndex(carouselCards.length - 2); // 맨 앞 더미 → 실제 마지막
+        } else if (currentIndex === carouselCards.length - 1) {
+            setCurrentIndex(1); // 맨 뒤 더미 → 실제 첫 카드
         }
-        if (direction === 'left') {
-            setCurrentCardIndex((prev) => (prev === 0 ? cardData.length - 1 : prev - 1));
-        } else {
-            setCurrentCardIndex((prev) => (prev === cardData.length - 1 ? 0 : prev + 1));
-        }
-        setTimeout(startAutoRotate, 3000);
+    };
+
+    // 자동 회전
+    const startAutoRotate = () => {
+        if (autoRotateRef.current) clearInterval(autoRotateRef.current);
+        autoRotateRef.current = setInterval(() => {
+            goNext();
+        }, 3000);
+    };
+    useEffect(() => { startAutoRotate(); return () => { if (autoRotateRef.current) clearInterval(autoRotateRef.current); }; }, []);
+
+    // 오른쪽(순방향) 이동만 허용
+    const goNext = () => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentIndex((prev) => prev + 1);
     };
 
     // 카드 클릭 핸들러
     const handleCardClick = (cardId: number) => {
         console.log(`카드 ${cardId} 클릭됨 - 상세페이지 이동 예정`);
     };
-
-    // 컴포넌트 마운트 시 자동 회전 시작
-    useEffect(() => {
-        startAutoRotate();
-        return () => {
-            if (autoRotateRef.current) {
-                clearInterval(autoRotateRef.current);
-            }
-        };
-    }, []);
 
     return (
         <section className="px-80 py-16">
@@ -129,8 +131,9 @@ const ContentsMain = () => {
                     <div className="relative h-[400px] flex items-center justify-center">
                         {/* 좌측 화살표 버튼 */}
                         <button
-                            onClick={() => rotateCards('left')}
+                            onClick={goPrev}
                             className="absolute left-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            disabled={isTransitioning}
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -138,17 +141,22 @@ const ContentsMain = () => {
                         </button>
 
                         {/* 캐러셀 컨테이너 */}
-                        <div className="relative w-[420px] h-[320px] overflow-hidden rounded-[51px]">
+                        <div className="relative w-[420px] h-[320px] overflow-visible rounded-[51px]" style={{overflow: 'visible'}}>
                             {/* 캐러셀 트랙 */}
-                            <div 
-                                className="flex transition-transform duration-600 ease-in-out h-full"
+                            <div
+                                ref={trackRef}
+                                className="flex h-full"
                                 style={{
-                                    transform: `translateX(-${currentCardIndex * 100}%)`,
+                                    transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4,0,0.2,1)' : 'none',
+                                    transform: `translateX(-${currentIndex * 100}%)`,
+                                    overflow: 'visible',
+                                    position: 'relative',
                                 }}
+                                onTransitionEnd={handleTransitionEnd}
                             >
-                                {cardData.map((card) => (
+                                {carouselCards.map((card, idx) => (
                                     <div
-                                        key={card.id}
+                                        key={idx}
                                         onClick={() => handleCardClick(card.id)}
                                         className="w-full h-full flex-shrink-0 rounded-[51px] cursor-pointer relative"
                                         style={{
@@ -159,11 +167,11 @@ const ContentsMain = () => {
                                         }}
                                     >
                                         {/* 뱃지 - 우상단 바깥 */}
-                                        <div 
-                                            className="absolute bg-gray-400 text-white px-4 py-2 rounded-full z-10"
+                                        <div
+                                            className="absolute bg-gray-400 text-white px-4 py-2 rounded-full z-20"
                                             style={{
-                                                top: '-40px',
-                                                right: '-40px',
+                                                top: '-32px',
+                                                right: '-32px',
                                             }}
                                         >
                                             <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
@@ -173,7 +181,7 @@ const ContentsMain = () => {
 
                                         {/* 카드 본체 */}
                                         <div className="p-6 h-full flex flex-col">
-                                            {/* 썸네일 이미지 - 10% 크게, 위로 올림 */}
+                                            {/* 썸네일 이미지 */}
                                             <div className="w-[374px] h-[231px] mx-auto rounded-[32px] overflow-hidden mb-3 -mt-2">
                                                 <div className="w-full h-full bg-gray-300 flex items-center justify-center">
                                                     <span className="text-gray-600">썸네일</span>
@@ -182,21 +190,21 @@ const ContentsMain = () => {
 
                                             {/* 하단 영역 */}
                                             <div className="flex-1 flex flex-col">
-                                                {/* 로고 - 썸네일 좌측정렬, 20% 크게 */}
+                                                {/* 로고 */}
                                                 <div className="flex items-start mb-2" style={{ marginLeft: '23px' }}>
                                                     <div className="w-[48px] h-[48px] bg-[#f5f04f] rounded-full flex items-center justify-center flex-shrink-0">
                                                         <span className="text-xs">로고</span>
                                                     </div>
                                                 </div>
 
-                                                {/* 서비스명 - 가운데 정렬 */}
+                                                {/* 서비스명 */}
                                                 <div className="text-center mb-2">
                                                     <h4 className="text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
                                                         {card.title}
                                                     </h4>
                                                 </div>
 
-                                                {/* 해시태그 - 썸네일 좌측정렬 */}
+                                                {/* 해시태그 */}
                                                 <div style={{ marginLeft: '23px' }}>
                                                     <p className="text-[12px] font-medium text-black" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
                                                         {card.hashtags}
@@ -211,8 +219,9 @@ const ContentsMain = () => {
 
                         {/* 우측 화살표 버튼 */}
                         <button
-                            onClick={() => rotateCards('right')}
+                            onClick={goNext}
                             className="absolute right-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            disabled={isTransitioning}
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
