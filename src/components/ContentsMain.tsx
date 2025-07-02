@@ -119,7 +119,7 @@ const ContentsMain = () => {
                 {/* 회전카드 시스템 - 우측 */}
                 <div className="w-3/5 relative">
                     <div className="relative h-[400px] flex items-center justify-center">
-                        {/* 좌측 화살표 버튼 - 카드에 가깝게 */}
+                        {/* 좌측 화살표 버튼 */}
                         <button
                             onClick={() => rotateCards('left')}
                             className="absolute left-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
@@ -129,70 +129,75 @@ const ContentsMain = () => {
                             </svg>
                         </button>
 
-                        {/* 카드들 */}
-                        <div className="relative w-[450px] h-[320px]">
-                            {orderedCards.map((card, index) => (
-                                <div
-                                    key={card.id}
-                                    onClick={() => handleCardClick(card.id)}
-                                    className={`absolute w-[420px] h-[300px] rounded-[51px] cursor-pointer transition-all duration-600 ease-in-out hover:scale-105 ${
-                                        index === 0 ? 'z-10' : index === 1 ? 'z-5' : 'z-0'
-                                    }`}
-                                    style={{
-                                        backgroundColor: card.color,
-                                        transform: `translateX(${-index * 20}px) translateY(${index * 10}px)`,
-                                    }}
-                                >
-                                    {/* 뱃지 - 우상단 */}
-                                    <div className="absolute top-4 right-6 bg-gray-400 text-white px-4 py-2 rounded-full z-10">
-                                        <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
-                                            {card.category}
-                                        </span>
-                                    </div>
-
-                                    {/* 카드 내용 */}
-                                    <div className="p-6 h-full flex flex-col">
-                                        {/* 썸네일 이미지 (340x280px) */}
-                                        <div className="w-[340px] h-[210px] mx-auto rounded-[32px] overflow-hidden mb-4 mt-8">
-                                            <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                                                <span className="text-gray-600">썸네일</span>
-                                            </div>
+                        {/* 캐러셀 컨테이너 */}
+                        <div className="relative w-[420px] h-[320px] overflow-hidden rounded-[51px]">
+                            {/* 캐러셀 트랙 */}
+                            <div 
+                                className="flex transition-transform duration-600 ease-in-out h-full"
+                                style={{
+                                    transform: `translateX(-${currentCardIndex * 100}%)`,
+                                }}
+                            >
+                                {cardData.map((card, index) => (
+                                    <div
+                                        key={card.id}
+                                        onClick={() => handleCardClick(card.id)}
+                                        className="w-full h-full flex-shrink-0 rounded-[51px] cursor-pointer hover:scale-105 transition-transform duration-300"
+                                        style={{
+                                            backgroundColor: card.color,
+                                        }}
+                                    >
+                                        {/* 뱃지 - 우상단 */}
+                                        <div className="absolute top-4 right-6 bg-gray-400 text-white px-4 py-2 rounded-full z-10">
+                                            <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
+                                                {card.category}
+                                            </span>
                                         </div>
 
-                                        {/* 하단 영역 */}
-                                        <div className="flex-1 flex flex-col justify-end">
-                                            {/* 브랜드 로고 & 서비스명 */}
-                                            <div className="flex items-center justify-between mb-3">
-                                                {/* 브랜드 로고 - 디자인 카드만 */}
-                                                {card.category === '디자인' && (
-                                                    <div className="flex items-center space-x-3">
-                                                        <div className="w-[40px] h-[40px] bg-[#f5f04f] rounded-full flex items-center justify-center">
-                                                            <span className="text-xs">로고</span>
-                                                        </div>
-                                                    </div>
-                                                )}
-
-                                                {/* 서비스명 (가운데 정렬) */}
-                                                <div className="flex-1 text-center">
-                                                    <h4 className="text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
-                                                        {card.title}
-                                                    </h4>
+                                        {/* 카드 내용 */}
+                                        <div className="p-6 h-full flex flex-col">
+                                            {/* 썸네일 이미지 (340x280px) */}
+                                            <div className="w-[340px] h-[210px] mx-auto rounded-[32px] overflow-hidden mb-4 mt-8">
+                                                <div className="w-full h-full bg-gray-300 flex items-center justify-center">
+                                                    <span className="text-gray-600">썸네일</span>
                                                 </div>
                                             </div>
 
-                                            {/* 해시태그 */}
-                                            <div className="text-center">
-                                                <p className="text-[12px] font-medium text-black truncate" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
-                                                    {card.hashtags}
-                                                </p>
+                                            {/* 하단 영역 */}
+                                            <div className="flex-1 flex flex-col justify-end">
+                                                {/* 브랜드 로고 & 서비스명 */}
+                                                <div className="flex items-center justify-between mb-3">
+                                                    {/* 브랜드 로고 - 디자인 카드만 */}
+                                                    {card.category === '디자인' && (
+                                                        <div className="flex items-center space-x-3">
+                                                            <div className="w-[40px] h-[40px] bg-[#f5f04f] rounded-full flex items-center justify-center">
+                                                                <span className="text-xs">로고</span>
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+                                                    {/* 서비스명 (가운데 정렬) */}
+                                                    <div className="flex-1 text-center">
+                                                        <h4 className="text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
+                                                            {card.title}
+                                                        </h4>
+                                                    </div>
+                                                </div>
+
+                                                {/* 해시태그 */}
+                                                <div className="text-center">
+                                                    <p className="text-[12px] font-medium text-black truncate" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
+                                                        {card.hashtags}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
 
-                        {/* 우측 화살표 버튼 - 카드에 가깝게 */}
+                        {/* 우측 화살표 버튼 */}
                         <button
                             onClick={() => rotateCards('right')}
                             className="absolute right-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
