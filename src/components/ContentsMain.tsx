@@ -166,11 +166,16 @@ const ContentsMain = () => {
                         </button>
 
                         {/* 카드들 */}
-                        <div className="relative flex items-end justify-center" style={{ width: '460px', height: '320px' }}>
+                        <div className="relative" style={{ width: '500px', height: '320px' }}>
                             {displayCards.map((card) => {
                                 const scale = card.displayIndex === 0 ? 1 : card.displayIndex === 1 ? 0.9 : 0.8;
                                 const zIndex = 30 - card.displayIndex * 10;
-                                const leftOffset = card.displayIndex * 20; // 각각 20px씩 우측으로
+                                
+                                // 간단한 겹침: 각각 20px씩만 보이도록
+                                const leftOffset = card.displayIndex === 0 ? 0 :      // 1번: 전체 보임
+                                                   card.displayIndex === 1 ? 380 :    // 2번: 40px 보임
+                                                   card.displayIndex === 2 ? 400 :    // 3번: 40px 보임  
+                                                   0;
                                 
                                 return (
                                     <div
@@ -179,7 +184,7 @@ const ContentsMain = () => {
                                         className="absolute bottom-0 cursor-pointer transition-all duration-600 ease-in-out"
                                         style={{
                                             transform: `scale(${scale})`,
-                                            transformOrigin: 'bottom center',
+                                            transformOrigin: 'bottom left',
                                             zIndex: zIndex,
                                             left: `${leftOffset}px`
                                         }}
