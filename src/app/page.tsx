@@ -5,9 +5,8 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Header />
       
-      {/* 헤더 높이만큼 상단 여백 추가 - 반응형 */}
-      <main className="pt-[120px] sm:pt-[150px] lg:pt-[200px]">
-        <div className="px-4 sm:px-8 lg:px-20 py-8 lg:py-16">
+      <main>
+        <div className="px-80 py-8 lg:py-16">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-black mb-6 lg:mb-8">
             환영합니다! STEPAI에 오신 것을 환영합니다.
           </h1>
@@ -18,7 +17,7 @@ export default function Home() {
         </div>
 
         {/* 테스트용 콘텐츠 - 스크롤 확인용 */}
-        <div className="px-4 sm:px-8 lg:px-20 py-8 lg:py-16 space-y-6 lg:space-y-8">
+        <div className="px-80 py-8 lg:py-16 space-y-6 lg:space-y-8">
           {Array.from({ length: 10 }, (_, index) => (
             <div key={index} className="bg-gray-100 rounded-lg p-6 lg:p-8">
               <h2 className="text-xl lg:text-2xl font-semibold mb-3 lg:mb-4">

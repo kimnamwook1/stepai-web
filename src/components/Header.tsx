@@ -40,9 +40,9 @@ const Header = () => {
     }, [openDropdown]);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
-            <div className="px-4 sm:px-8 lg:px-20 py-0">
-                <div className="flex items-center justify-between h-[120px] sm:h-[150px] lg:h-[200px]">
+        <header className="bg-white border-b border-gray-100">
+            <div className="px-80 py-0">
+                <div className="flex items-center justify-between h-[110px]">
                     {/* 좌측 네비게이션 */}
                     <div className="flex items-center space-x-4 sm:space-x-6 lg:space-x-8">
                         {/* 로고 */}
