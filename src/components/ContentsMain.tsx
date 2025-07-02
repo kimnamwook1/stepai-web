@@ -77,23 +77,11 @@ const ContentsMain = () => {
         }
     };
 
-    // 카드 배열 정렬 (현재 인덱스 기준)
-    const getOrderedCards = () => {
-        const ordered = [];
-        for (let i = 0; i < cardData.length; i++) {
-            const index = (currentCardIndex + i) % cardData.length;
-            ordered.push(cardData[index]);
-        }
-        return ordered;
-    };
-
     // 카드 클릭 핸들러 (향후 상세페이지 이동)
     const handleCardClick = (cardId: number) => {
         console.log(`카드 ${cardId} 클릭됨 - 상세페이지 이동 예정`);
         // 향후 router.push() 등으로 상세페이지 이동
     };
-
-    const orderedCards = getOrderedCards();
 
     return (
         <section className="px-80 py-16">
@@ -138,7 +126,7 @@ const ContentsMain = () => {
                                     transform: `translateX(-${currentCardIndex * 100}%)`,
                                 }}
                             >
-                                {cardData.map((card, index) => (
+                                {cardData.map((card) => (
                                     <div
                                         key={card.id}
                                         onClick={() => handleCardClick(card.id)}
