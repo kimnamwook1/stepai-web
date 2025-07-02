@@ -97,7 +97,7 @@ const ContentsMain = () => {
     };
 
     return (
-        <section className="px-80 py-16">
+        <section className="px-80 py-16 mt-[-200px]">
             <div className="flex gap-16">
                 {/* 대화창 - 좌측 */}
                 <div className="w-2/5">
