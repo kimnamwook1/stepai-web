@@ -155,7 +155,7 @@ const ContentsMain = () => {
                             onClick={() => rotateCards('left')}
                             className="absolute z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                             style={{
-                                left: 'calc(50% - 210px - 30px - 24px)', // 1번 카드 중심에서 카드 절반 폭만큼 왼쪽 - 30px - 버튼 절반
+                                left: '-54px', // 카드 컨테이너 좌측에서 30px + 버튼 반지름
                                 top: '50%',
                                 transform: 'translateY(-50%)'
                             }}
@@ -166,20 +166,22 @@ const ContentsMain = () => {
                         </button>
 
                         {/* 카드들 */}
-                        <div className="relative flex items-end justify-center gap-5">
+                        <div className="relative flex items-end justify-center" style={{ width: '460px', height: '320px' }}>
                             {displayCards.map((card) => {
                                 const scale = card.displayIndex === 0 ? 1 : card.displayIndex === 1 ? 0.9 : 0.8;
                                 const zIndex = 30 - card.displayIndex * 10;
+                                const leftOffset = card.displayIndex * 20; // 각각 20px씩 우측으로
                                 
                                 return (
                                     <div
                                         key={`${card.id}-${card.displayIndex}`}
                                         onClick={() => handleCardClick(card.id)}
-                                        className="relative cursor-pointer transition-all duration-600 ease-in-out"
+                                        className="absolute bottom-0 cursor-pointer transition-all duration-600 ease-in-out"
                                         style={{
                                             transform: `scale(${scale})`,
                                             transformOrigin: 'bottom center',
                                             zIndex: zIndex,
+                                            left: `${leftOffset}px`
                                         }}
                                     >
                                         {/* 뱃지 - 좌상단 삐져나옴 */}
@@ -241,7 +243,7 @@ const ContentsMain = () => {
                             onClick={() => rotateCards('right')}
                             className="absolute z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                             style={{
-                                right: 'calc(50% - 420px - 30px - 24px)', // 3번 카드 끝에서 30px + 버튼 절반
+                                right: '-54px', // 카드 컨테이너 우측에서 30px + 버튼 반지름
                                 top: '50%',
                                 transform: 'translateY(-50%)'
                             }}
