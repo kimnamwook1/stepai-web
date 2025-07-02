@@ -15,14 +15,11 @@ interface CardData {
 
 const ContentsMain = () => {
     const [inputText, setInputText] = useState('');
-    // 무한루프 캐러셀: 더미 포함 인덱스
-    const [currentIndex, setCurrentIndex] = useState(1); // 1이 실제 첫 카드
+    const [currentIndex, setCurrentIndex] = useState(0); // 0~2
     const [isTransitioning, setIsTransitioning] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const autoRotateRef = useRef<NodeJS.Timeout | null>(null);
-    const trackRef = useRef<HTMLDivElement>(null);
 
-    // 카드 데이터 (순서: 디자인, 이벤트, 공모전)
     const cardData: CardData[] = [
         {
             id: 0,
@@ -55,8 +52,6 @@ const ContentsMain = () => {
             color: '#81bcff'
         }
     ];
-    // 더미 포함 배열: [2,0,1,2,0]
-    const carouselCards = [cardData[2], ...cardData, cardData[0]];
 
     // 텍스트 영역 자동 높이 조절
     const adjustTextareaHeight = () => {
@@ -67,38 +62,34 @@ const ContentsMain = () => {
     };
     useEffect(() => { adjustTextareaHeight(); }, [inputText]);
 
-    // 왼쪽(이전) 버튼 클릭 시 역방향 무한 루프
+    // 무한루프 인덱스 계산
+    const getIndex = (idx: number) => (idx + cardData.length) % cardData.length;
+
+    // 애니메이션 중 중복 클릭 방지
+    const goNext = () => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentIndex((prev) => getIndex(prev + 1));
+    };
     const goPrev = () => {
         if (isTransitioning) return;
         setIsTransitioning(true);
-        setCurrentIndex((prev) => prev - 1);
+        setCurrentIndex((prev) => getIndex(prev - 1));
     };
+    useEffect(() => {
+        if (!isTransitioning) return;
+        const timer = setTimeout(() => setIsTransitioning(false), 500);
+        return () => clearTimeout(timer);
+    }, [isTransitioning]);
 
-    // 트랜지션 끝나면 더미→실제 카드 jump (양방향)
-    const handleTransitionEnd = () => {
-        setIsTransitioning(false);
-        if (currentIndex === 0) {
-            setCurrentIndex(carouselCards.length - 2); // 맨 앞 더미 → 실제 마지막
-        } else if (currentIndex === carouselCards.length - 1) {
-            setCurrentIndex(1); // 맨 뒤 더미 → 실제 첫 카드
-        }
-    };
-
-    // 자동 회전
-    const startAutoRotate = () => {
+    // 자동 슬라이드
+    useEffect(() => {
         if (autoRotateRef.current) clearInterval(autoRotateRef.current);
         autoRotateRef.current = setInterval(() => {
             goNext();
         }, 3000);
-    };
-    useEffect(() => { startAutoRotate(); return () => { if (autoRotateRef.current) clearInterval(autoRotateRef.current); }; }, []);
-
-    // 오른쪽(순방향) 이동만 허용
-    const goNext = () => {
-        if (isTransitioning) return;
-        setIsTransitioning(true);
-        setCurrentIndex((prev) => prev + 1);
-    };
+        return () => { if (autoRotateRef.current) clearInterval(autoRotateRef.current); };
+    }, []);
 
     // 카드 클릭 핸들러
     const handleCardClick = (cardId: number) => {
@@ -140,31 +131,60 @@ const ContentsMain = () => {
                             </svg>
                         </button>
 
-                        {/* 캐러셀 컨테이너 */}
-                        <div className="relative w-[420px] h-[320px] overflow-hidden rounded-[51px]">
-                            {/* 캐러셀 트랙 */}
-                            <div
-                                ref={trackRef}
-                                className="flex h-full"
-                                style={{
-                                    transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4,0,0.2,1)' : 'none',
-                                    transform: `translateX(-${currentIndex * 420}px)`,
-                                    overflow: 'visible',
-                                    position: 'relative',
-                                }}
-                                onTransitionEnd={handleTransitionEnd}
-                            >
-                                {carouselCards.map((card, idx) => (
+                        {/* 캐러셀 카드 3장 겹침 */}
+                        <div className="relative w-[420px] h-[320px]">
+                            {cardData.map((card, idx) => {
+                                // 상대 위치 계산
+                                let diff = idx - currentIndex;
+                                if (diff < -1) diff += cardData.length;
+                                if (diff > 1) diff -= cardData.length;
+                                let style: React.CSSProperties = {
+                                    transition: 'all 0.5s cubic-bezier(0.4,0,0.2,1)',
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    opacity: 0,
+                                    zIndex: 0,
+                                    transform: 'scale(0.92) translateX(46px)',
+                                };
+                                if (diff === 0) {
+                                    // 가운데(활성)
+                                    style = {
+                                        ...style,
+                                        zIndex: 6,
+                                        opacity: 1,
+                                        transform: 'scale(1) translateX(0)',
+                                        top: 0,
+                                    };
+                                } else if (diff === 1 || diff === -2) {
+                                    // 오른쪽(다음)
+                                    style = {
+                                        ...style,
+                                        zIndex: 5,
+                                        opacity: 1,
+                                        transform: 'scale(0.96) translateX(24px)',
+                                        top: '6px',
+                                    };
+                                } else if (diff === -1 || diff === 2) {
+                                    // 왼쪽(이전)
+                                    style = {
+                                        ...style,
+                                        zIndex: 4,
+                                        opacity: 1,
+                                        transform: 'scale(0.92) translateX(46px)',
+                                        top: '12px',
+                                    };
+                                }
+                                return (
                                     <div
-                                        key={idx}
+                                        key={card.id}
                                         onClick={() => handleCardClick(card.id)}
-                                        className="h-full flex-shrink-0 rounded-[51px] cursor-pointer relative"
+                                        className="overflow-visible rounded-[51px] cursor-pointer"
                                         style={{
-                                            width: '420px',
+                                            ...style,
                                             backgroundColor: card.color,
-                                            position: 'relative',
-                                            overflow: 'visible',
-                                            zIndex: 1,
                                         }}
                                     >
                                         {/* 뱃지 - 우상단 바깥 */}
@@ -214,8 +234,8 @@ const ContentsMain = () => {
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
+                                );
+                            })}
                         </div>
 
                         {/* 우측 화살표 버튼 */}
