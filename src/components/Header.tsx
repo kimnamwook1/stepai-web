@@ -57,7 +57,9 @@ const Header = () => {
                                     <button
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            item.hasDropdown && toggleDropdown(item.id);
+                                            if (item.hasDropdown) {
+                                                toggleDropdown(item.id);
+                                            }
                                         }}
                                         className="flex items-center space-x-1 text-black font-medium hover:text-gray-600 transition-colors duration-300 text-sm lg:text-base"
                                     >
@@ -130,7 +132,9 @@ const Header = () => {
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        item.hasDropdown && toggleDropdown(item.id);
+                                        if (item.hasDropdown) {
+                                            toggleDropdown(item.id);
+                                        }
                                     }}
                                     className="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg text-black font-medium hover:bg-gray-200 transition-colors duration-300 text-sm"
                                 >
