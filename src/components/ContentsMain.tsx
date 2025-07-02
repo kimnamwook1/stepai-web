@@ -97,8 +97,8 @@ const ContentsMain = () => {
     };
 
     return (
-        <section className="px-80 py-16 mt-[-200px]">
-            <div className="flex gap-16">
+        <section className="px-80 py-16 mt-[-50px]">
+            <div className="flex gap-16 items-end">
                 {/* 대화창 - 좌측 */}
                 <div className="w-2/5">
                     <div className="bg-[#d9d9d9] rounded-[30px] p-8 border border-black">
@@ -123,7 +123,8 @@ const ContentsMain = () => {
                         {/* 좌측 화살표 버튼 */}
                         <button
                             onClick={goPrev}
-                            className="absolute left-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            className="absolute z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            style={{ left: currentIndex === 0 ? '-30px' : '8px' }}
                             disabled={isTransitioning}
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -236,7 +237,8 @@ const ContentsMain = () => {
                         {/* 우측 화살표 버튼 */}
                         <button
                             onClick={goNext}
-                            className="absolute right-8 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            className="absolute z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            style={{ right: currentIndex === cardData.length - 1 ? '-30px' : '8px' }}
                             disabled={isTransitioning}
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
