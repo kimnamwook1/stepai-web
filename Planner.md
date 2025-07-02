@@ -130,5 +130,4 @@
     - 카드에 overflow: visible, position: relative 적용, 뱃지는 position: absolute, top/right 음수값 사용
 - 캐러셀은 크몽 스타일(3장, absolute, z-index/opacity/scale/translate로 겹침, 무한루프, 애니메이션)로 리팩토링한다.
 - 왼쪽(이전) 버튼은 비활성화(숨김) 처리한다.
-- 뱃지는 카드 우상단에서 -32px 바깥 pill형으로 항상 보이도록 구조/overflow/z-index를 재정비한다.
-- 대화창을 빨간 박스처럼 키우고(고정 width/height, 하단 정렬), 캐러셀 좌우 버튼은 카드 기준이 아니라 캐러셀 컨테이너 기준으로 고정 위치에 배치(카드 회전과 무관하게 항상 같은 위치)에 리팩토링한다. 
+- 뱃지는 카드 우상단에서 -32px 바깥 pill형으로 항상 보이도록 구조/overflow/z-index를 재정비한다. 
