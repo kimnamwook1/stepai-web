@@ -100,15 +100,15 @@ const ContentsMain = () => {
         <section className="px-80 py-16 mt-[-50px]">
             <div className="flex gap-16 items-end">
                 {/* 대화창 - 좌측 */}
-                <div className="w-2/5">
-                    <div className="bg-[#d9d9d9] rounded-[30px] p-8 border border-black">
-                        <div className="relative">
+                <div className="flex-none" style={{ width: 420, height: 320 }}>
+                    <div className="bg-[#d9d9d9] rounded-[30px] p-8 border border-black w-full h-full flex flex-col justify-end">
+                        <div className="relative flex-1 flex flex-col justify-end">
                             <textarea
                                 ref={textareaRef}
                                 value={inputText}
                                 onChange={(e) => setInputText(e.target.value)}
                                 placeholder="어떤 AI가 필요하세요?"
-                                className="w-full bg-transparent text-black placeholder-[#8f8f8f] text-2xl font-semibold leading-[1.5] resize-none outline-none min-h-[60px]"
+                                className="w-full bg-transparent text-black placeholder-[#8f8f8f] text-2xl font-semibold leading-[1.5] resize-none outline-none min-h-[60px] flex-1"
                                 style={{ overflow: 'hidden' }}
                             />
                             {/* 밑줄 */}
@@ -116,22 +116,20 @@ const ContentsMain = () => {
                         </div>
                     </div>
                 </div>
-
                 {/* ScrollCard_display - 우측 */}
                 <div className="w-3/5 relative">
                     <div className="relative h-[400px] flex items-center justify-center">
-                        {/* 좌측 화살표 버튼 */}
+                        {/* 좌측 화살표 버튼 - 캐러셀 컨테이너 기준 고정 */}
                         <button
                             onClick={goPrev}
                             className="absolute z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
-                            style={{ left: currentIndex === 0 ? '-30px' : '8px' }}
+                            style={{ left: '-60px', top: '50%', transform: 'translateY(-50%)' }}
                             disabled={isTransitioning}
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
                         </button>
-
                         {/* 캐러셀 카드 3장 겹침 */}
                         <div className="relative w-[420px] h-[320px]">
                             {cardData.map((card, idx) => {
@@ -233,12 +231,11 @@ const ContentsMain = () => {
                                 );
                             })}
                         </div>
-
-                        {/* 우측 화살표 버튼 */}
+                        {/* 우측 화살표 버튼 - 캐러셀 컨테이너 기준 고정 */}
                         <button
                             onClick={goNext}
                             className="absolute z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
-                            style={{ right: currentIndex === cardData.length - 1 ? '-30px' : '8px' }}
+                            style={{ right: '-60px', top: '50%', transform: 'translateY(-50%)' }}
                             disabled={isTransitioning}
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
