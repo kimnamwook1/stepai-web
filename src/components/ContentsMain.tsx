@@ -172,9 +172,9 @@ const ContentsMain = () => {
                                 const zIndex = 30 - card.displayIndex * 10;
                                 
                                 // 간단한 겹침: 각각 20px씩만 보이도록
-                                const leftOffset = card.displayIndex === 0 ? 0 :      // 1번: 전체 보임
-                                                   card.displayIndex === 1 ? 400 :    // 2번: 20px 보임
-                                                   card.displayIndex === 2 ? 410 :    // 3번: 10px 보임  
+                                const leftOffset = card.displayIndex === 0 ? 0 :      // 1번: 기준점
+                                                   card.displayIndex === 1 ? 20 :     // 2번: 20px 오른쪽
+                                                   card.displayIndex === 2 ? 40 :     // 3번: 40px 오른쪽  
                                                    0;
                                 
                                 return (
