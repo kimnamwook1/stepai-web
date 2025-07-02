@@ -187,12 +187,12 @@ const ContentsMain = () => {
                                             backgroundColor: card.color,
                                         }}
                                     >
-                                        {/* 뱃지 - 우상단 바깥 */}
+                                        {/* 뱃지 - 좌상단 바깥 */}
                                         <div
                                             className="absolute bg-gray-400 text-white px-4 py-2 rounded-full z-20"
                                             style={{
                                                 top: '-32px',
-                                                right: '-32px',
+                                                left: '-32px',
                                             }}
                                         >
                                             <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
@@ -203,14 +203,14 @@ const ContentsMain = () => {
                                         {/* 카드 본체 */}
                                         <div className="p-6 h-full flex flex-col">
                                             {/* 썸네일 이미지 */}
-                                            <div className="w-[374px] h-[231px] mx-auto rounded-[32px] overflow-hidden mb-3 -mt-2">
+                                            <div className="w-[374px] h-[280px] mx-auto rounded-[32px] overflow-hidden mb-3 -mt-2">
                                                 <div className="w-full h-full bg-gray-300 flex items-center justify-center">
                                                     <span className="text-gray-600">썸네일</span>
                                                 </div>
                                             </div>
 
                                             {/* 하단 영역 */}
-                                            <div className="flex-1 flex flex-col">
+                                            <div className="flex-1 flex flex-col justify-center">
                                                 {/* 로고 */}
                                                 <div className="flex items-start mb-2" style={{ marginLeft: '23px' }}>
                                                     <div className="w-[48px] h-[48px] bg-[#f5f04f] rounded-full flex items-center justify-center flex-shrink-0">
@@ -225,8 +225,8 @@ const ContentsMain = () => {
                                                     </h4>
                                                 </div>
 
-                                                {/* 해시태그 */}
-                                                <div style={{ marginLeft: '23px' }}>
+                                                {/* 해시태그 - 중앙정렬에서 제외, 아래쪽에 고정 */}
+                                                <div className="mt-auto" style={{ marginLeft: '23px' }}>
                                                     <p className="text-[12px] font-medium text-black" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
                                                         {card.hashtags}
                                                     </p>
