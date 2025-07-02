@@ -71,28 +71,20 @@ const ContentsMain = () => {
             clearInterval(autoRotateRef.current);
         }
         autoRotateRef.current = setInterval(() => {
-            setCurrentCardIndex((prev) => (prev + 1) % cardData.length);
+            setCurrentCardIndex((prev) => (prev < cardData.length - 1 ? prev + 1 : prev));
         }, 3000);
     };
 
     // 수동 회전 함수
     const rotateCards = (direction: 'left' | 'right') => {
-        // 자동 회전 멈추고 다시 시작
         if (autoRotateRef.current) {
             clearInterval(autoRotateRef.current);
         }
-        
         if (direction === 'left') {
-            setCurrentCardIndex((prev) => 
-                prev === 0 ? cardData.length - 1 : prev - 1
-            );
+            setCurrentCardIndex((prev) => (prev === 0 ? 0 : prev - 1));
         } else {
-            setCurrentCardIndex((prev) => 
-                prev === cardData.length - 1 ? 0 : prev + 1
-            );
+            setCurrentCardIndex((prev) => (prev === cardData.length - 1 ? cardData.length - 1 : prev + 1));
         }
-        
-        // 3초 후 자동 회전 재시작
         setTimeout(startAutoRotate, 3000);
     };
 
@@ -161,14 +153,16 @@ const ContentsMain = () => {
                                         className="w-full h-full flex-shrink-0 rounded-[51px] cursor-pointer relative"
                                         style={{
                                             backgroundColor: card.color,
+                                            position: 'relative',
+                                            overflow: 'visible',
                                         }}
                                     >
-                                        {/* 뱃지 - 좌상단 삐져나옴 */}
+                                        {/* 뱃지 - 우상단 바깥 */}
                                         <div 
                                             className="absolute bg-gray-400 text-white px-4 py-2 rounded-full z-10"
                                             style={{
-                                                top: '-8px',
-                                                left: '-8px'
+                                                top: '-20px',
+                                                right: '-20px',
                                             }}
                                         >
                                             <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
