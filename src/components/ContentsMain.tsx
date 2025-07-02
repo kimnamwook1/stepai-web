@@ -130,7 +130,7 @@ const ContentsMain = () => {
                                     <div
                                         key={card.id}
                                         onClick={() => handleCardClick(card.id)}
-                                        className="w-full h-full flex-shrink-0 rounded-[51px] cursor-pointer hover:scale-105 transition-transform duration-300"
+                                        className="w-full h-full flex-shrink-0 rounded-[51px] cursor-pointer"
                                         style={{
                                             backgroundColor: card.color,
                                         }}
