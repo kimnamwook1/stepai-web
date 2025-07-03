@@ -20,7 +20,7 @@ const SECTION_HEIGHT = 480;
 const SIDE_PADDING = 320;
 const BOTTOM_PADDING = 32;
 
-const TopTrendsSection: React.FC = () => {
+const Body_TopTrends: React.FC = () => {
     const [startIdx, setStartIdx] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -157,4 +157,4 @@ const TopTrendsSection: React.FC = () => {
     );
 };
 
-export default TopTrendsSection;
+export default Body_TopTrends;

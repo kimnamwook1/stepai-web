@@ -1,0 +1,1772 @@
+<body class="jkJoin jkJoin_company" style="">
+        <!-- JK-18970 지라 요청 임시 숨김
+        <div class="section-start">
+            <div class="inner">
+                <img src="https://i.jobkorea.kr/content/images/join/company/img_company_top.png?20231011" alt="">
+            </div>
+        </div>
+        -->
+    <div id="wrap">
+        
+<div id="header">
+    <h1><a href="https://www.jobkorea.co.kr"><img src="https://i.jobkorea.kr/content/images/member/gnb/h_logo_jobkorea.png" alt="JOBKOREA x albamon"></a></h1>
+    <div class="joinTop">
+        <h2>
+            <span class="slogun_1">JOBKOREA x albamon</span>
+        </h2>
+    </div>
+
+    <h3 class="skip">글로벌 메뉴</h3>
+    <ul class="gnb f_clear">
+        <li><a href="https://www.jobkorea.co.kr">홈</a></li>
+        <li><a href="/help/">고객센터</a></li>
+    </ul>
+
+    <h3 class="skip">회원 형태별 가입</h3>
+    <ul class="snb f_clear">
+        <li class="person "><a href="https://www.jobkorea.co.kr/Join/M_Regist?OEM_No=1&amp;Org_OEM_No=1">개인회원</a></li>
+        <li class="corp on"><a href="https://www.jobkorea.co.kr/Join/GI_Regist?OEM_No=1&amp;Org_OEM_No=1">기업회원</a></li>
+    </ul>
+</div>
+        
+
+<div id="container" class="mbrRegist">
+
+    
+
+    <h3 class="skip">기업 회원가입 정보</h3>
+    <fieldset>
+        <legend>기업 회원가입</legend>
+        <form action="/Join/GI_Regist" method="POST" id="form" name="form" enctype="multipart/form-data">
+                <input type="hidden" id="Mem_Type" value="GI" autocomplete="off" aria-autocomplete="none">
+<input data-val="true" data-val-required="CertifyType 필드가 필요합니다." id="CertifyType" name="CertifyType" type="hidden" value="phone" autocomplete="off" aria-autocomplete="none"><input id="CertifyCode" name="CertifyCode" type="hidden" value="" autocomplete="off" aria-autocomplete="none"><input id="CertifyReCall" name="CertifyReCall" type="hidden" value="" autocomplete="off" aria-autocomplete="none"><input id="DI_Code" name="DI_Code" type="hidden" value="" autocomplete="off" aria-autocomplete="none"><input id="getCertifynum" name="getCertifynum" type="hidden" value="" autocomplete="off" aria-autocomplete="none"><input id="ReSubmit" name="ReSubmit" type="hidden" value="" autocomplete="off" aria-autocomplete="none"><input id="Mobile_Encrypt" name="Mobile_Encrypt" type="hidden" value="" autocomplete="off" aria-autocomplete="none"><input data-val="true" data-val-number="OEM_No 필드는 숫자여야 합니다." data-val-required="OEM_No 필드가 필요합니다." id="OEM_No" name="OEM_No" type="hidden" value="1" autocomplete="off" aria-autocomplete="none"><input id="CorpAuthStat" name="CorpAuthStat" type="hidden" value="" autocomplete="off" aria-autocomplete="none"><input id="Mem_HPhone" name="Mem_HPhone" type="hidden" value="" autocomplete="off" aria-autocomplete="none"><input data-val="true" data-val-maxlength="필드 Mem_Ident은(는) 최대 길이가 '8'인 문자열 또는 배열 형식이어야 합니다." data-val-maxlength-max="8" id="Mem_Ident" name="Mem_Ident" type="hidden" value="" autocomplete="off" aria-autocomplete="none">                <!-- 기업 정보 -->
+                <div class="row row_group">
+                    <h4>기업정보</h4>
+                    <div class="headingGuide"><i>*</i>필수정보</div>
+
+                    <!-- 기업회원 탭 메뉴 -->
+                    
+
+<div class="tabs tabsGiCateogry" role="tablist">
+        <a href="https://www.jobkorea.co.kr/Join/GI_Regist?OEM_No=1&amp;Org_OEM_No=1" class="tab tabGi active">기업회원</a>
+        <a href="https://www.jobkorea.co.kr/Join/HR_Regist?OEM_No=98&amp;Org_OEM_No=1" class="tab tabGi ">서치펌회원</a>
+</div>
+
+                    <div class="row mbr_name mbr_co_type">
+                        <div class="col_1">
+                            <label class="mbr_name" for="Corp_Type">기업형태<i class="icon required" aria-hidden="hidde">*</i></label>
+                        </div>
+                        <div class="col_2">
+                            <div class="select_wrap dev-corp-type">
+                                <select id="Corp_Type" name="Corp_Type">
+                                    <option value=""></option>
+                                        <option value="3">대기업</option>
+                                        <option value="4">대기업 계열사·자회사</option>
+                                        <option value="1">중소기업(300명이하)</option>
+                                        <option value="2">중견기업(300명이상)</option>
+                                        <option value="5">벤처기업</option>
+                                        <option value="6">외국계(외국 투자기업)</option>
+                                        <option value="8">외국계(외국 법인기업)</option>
+                                        <option value="7">국내 공공기관·공기업</option>
+                                        <option value="9">비영리단체·협회·교육재단</option>
+                                        <option value="10">외국 기관·비영리기구·단체</option>
+                                </select>
+                            </div>
+                            <div class="notice_msg" style="display:none;"></div>
+                        </div>
+                    </div>
+                    <div class="rows">
+                        <div class="row mbr_name mbr_foreign_type mbr_foreign_type1 devNationView" style="display:none">
+                            <div class="col_1">
+                                <label for="Contn_Code" class="mbr_name">대륙선택<i class="icon required" aria-hidden="hidde">*</i></label>
+                            </div>
+                            <div class="col_2">
+                                <div class="select_wrap dev-land">
+                                    <select id="Contn_Code" name="Contn_Code">
+                                        <option value=""></option>
+                                            <option value="R">아시아</option>
+                                            <option value="U">유럽</option>
+                                            <option value="S">북아메리카</option>
+                                            <option value="T">남아메리카</option>
+                                            <option value="W">아프리카</option>
+                                            <option value="V">오세아니아</option>
+                                    </select>
+                                </div>
+                                <div class="notice_msg"></div>
+                            </div>
+                        </div>
+                        <div class="row mbr_name mbr_foreign_type mbr_foreign_type2 devNationView" style="display:none">
+                            <div class="col_1">
+                                <label for="Nation_Code" class="mbr_name">국가선택<i class="icon required" aria-hidden="hidde">*</i></label>
+                            </div>
+                            <div class="col_2">
+                                <div class="select_wrap dev-nation">
+                                    <select id="Nation_Code" name="Nation_Code">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="notice_msg"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row company_num">
+                        <div class="col_1">
+                            <label for="Corp_RegNum">사업자등록번호<i class="icon required" aria-hidden="hidde">*</i></label>
+                        </div>
+                        <div class="col_2">
+                            <input type="text" name="Corp_RegNum" id="Corp_RegNum" class="mbr_name dev-corp-num" maxlength="12" value="" autocomplete="off" aria-autocomplete="none">
+                            <div class="notice_msg" id="notice_msg_regnum"></div>
+                        </div>
+                    </div>
+                    <div class="row business_license" style="display:none;">
+                        <div class="col_1">
+                            <div class="label">
+                                <p class="fileLabel">사업자등록증 첨부<i class="icon required" aria-hidden="hidde" style="display:none;">*</i></p>
+                                <button type="button" class="fileDeleteButton">
+                                    <span>첨부파일 삭제</span>
+                                </button>
+                            </div>
+                            <label for="Corp_RegFile" class="regFileLabel">파일첨부</label>
+                        </div>
+                        <div class="col_2">
+                            <input type="file" name="Corp_RegFile" id="Corp_RegFile" value="" accept=".gif, .jpeg, .png, .jpg, .pdf" autocomplete="off" aria-autocomplete="none">
+                            <div class="notice_msg" id="notice_msg_corp_regfile"></div>
+                        </div>
+                        <div class="attach-file-help" style="display:none;">
+                            <p><strong>국내에 사업자가 있는(사업자 번호 보유) 경우 다른 기업형태를 선택해 주세요.</strong></p>
+                            <p>외국계 기업은 해당 국가 사업자 등록증에 해당 하는 서류를(고유번호증 등) 첨부 가능합니다.</p>
+                            <p>첨부된 문서 확인 후, 가입이 승인되면 서비스를 이용하실 수 있습니다.</p>
+                        </div>
+                    </div>
+                    <div class="rows">
+                        <div class="row company_name">
+                            <div class="col_1">
+                                <label class="mbr_name" for="Corp_Name">회사명<i class="icon required" aria-hidden="hidde">*</i></label>
+                            </div>
+                            <div class="col_2">
+                                <input class="mbr_name dev-corp-name" data-val="true" data-val-maxlength="필드 Corp_Name은(는) 최대 길이가 '50'인 문자열 또는 배열 형식이어야 합니다." data-val-maxlength-max="50" data-val-required="Corp_Name 필드가 필요합니다." id="Corp_Name" maxlength="50" name="Corp_Name" type="text" value="" autocomplete="off" aria-autocomplete="none">
+                                <div class="notice_msg" id="notice_msg_corp_name"></div>
+                            </div>
+                        </div>
+                        <div class="row company_bossname">
+                            <div class="col_1">
+                                <label class="mbr_name" for="Boss_Name">대표자명<i class="icon required" aria-hidden="hidde">*</i></label>
+                            </div>
+                            <div class="col_2">
+                                <input class="mbr_name dev-ceo-name" data-val="true" data-val-maxlength="필드 Boss_Name은(는) 최대 길이가 '20'인 문자열 또는 배열 형식이어야 합니다." data-val-maxlength-max="20" data-val-required="Boss_Name 필드가 필요합니다." id="Boss_Name" maxlength="20" name="Boss_Name" type="text" value="" autocomplete="off" aria-autocomplete="none">
+                                <div class="notice_msg" id="notice_msg_ceo_name"></div>
+                            </div>
+                        </div>
+                        <p class="company_customer-center">회사명, 대표자명 수정이 필요한 경우, 가입 후 고객센터 (1588-9350) 로 문의 해 주세요.</p>
+                    </div>
+                    <div class="row mbr_zipcode">
+
+                        <a href="https://www.jobkorea.co.kr/Address/Index?callback=join.corp.cb_address" onclick="window.open(this.href, 'popupAddress', 'left=0, top=0, width=550,height=300, scrollbar=no, statusbar=no, resize=no'); return false;" class="input is-label input-profile-addr">
+                            <div class="label">회사주소<i class="icon required" aria-hidden="hidde">*</i></div>
+                            <div class="value"></div>
+                            <i class="icon icon-search" aria-hidden="true"></i>
+                            <div class="notice_msg" id="msg_addr"></div>
+                        </a>
+                        <input type="hidden" id="Zip_Code" name="Zip_Code" autocomplete="off" aria-autocomplete="none">
+                        <input type="hidden" id="Add_Addr" name="Add_Addr" autocomplete="off" aria-autocomplete="none">
+                        <input type="hidden" id="Addr_Type" name="Addr_Type" autocomplete="off" aria-autocomplete="none">
+                        <input type="hidden" id="Addr_Text" name="Addr_Text" autocomplete="off" aria-autocomplete="none">
+                        <input type="hidden" id="Addr_Text1" name="Addr_Text1" autocomplete="off" aria-autocomplete="none">
+                        <input type="hidden" name="X_Position" autocomplete="off" aria-autocomplete="none">
+                        <input type="hidden" name="Y_Position" autocomplete="off" aria-autocomplete="none">
+                    </div>
+
+                    <div class="row mbr_zipcode" style="display:none;">
+                        <div class="col_1">
+                            <label for="Corp_Addr">회사주소<i class="icon required" aria-hidden="hidde">*</i></label>
+                        </div>
+                        <div class="col_2">
+                            <input id="Addr_Foreign" name="Addr_Foreign" type="text" value="" maxlength="150" autocomplete="off" aria-autocomplete="none">
+                            <div class="notice_msg" id="msg_addr"></div>
+                        </div>
+                    </div>
+                    <div class="row mbr_agree mbr_agree_hh">
+                        <input type="checkbox" name="CoDG_Agree" id="lbl_join_agree" class="skip" autocomplete="off" aria-autocomplete="none">
+                        <label for="lbl_join_agree">파견·도급·채용대행 기업입니다.</label>
+                    </div>
+                </div>
+                <!--[DEV - 20230522] 기업회원 - 기업인증 - 사업자등록증명원 -->
+                <div class="row row_group mbr_info company_cert">
+                    <h4>기업인증</h4>
+                    <div class="row certificate_num">
+                        <div class="col_1">
+                            <label for="CRTFCT_Issue_No">사업자등록증명원 발급번호</label>
+                        </div>
+                        <button type="button" class="button layer-popup-button devCorpCertInfo">사업자등록번호 입력가이드</button>
+                        <div class="layer-popup devCorpCertInfoPopup">
+                            <div class="layer-popup-dim"></div>
+                            <div class="layer-popup-content">
+                                <button type="button" class="layer-popup-close devCorpCertInfoCls">
+                                    <span class="skip">닫기</span>
+                                </button>
+                                <p class="layer-popup-title">사업자등록증명원 발급번호란?</p>
+                                <p class="layer-popup-text">사업자등록증명원 <em class="point-color">최상단 좌측 문서 고유 발급번호</em>입니다.</p>
+                                <div class="layer-popup-table">
+                                    <table class="layer-table">
+                                        <colgroup>
+                                            <col class="col1">
+                                            <col class="col2">
+                                        </colgroup>
+                                        <tbody><tr>
+                                            <td class="cell-title">발급번호</td>
+                                            <td class="cell-item" rowspan="2"><strong>사업자등록증명</strong><br>(부가가치세 면세사업자)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cell-value">0000-000-0000-000</td>
+                                        </tr>
+                                    </tbody></table>
+                                </div>
+                                <p class="layer-popup-text">기업인증을 위해서는 신청일 기준 90일 이내 발급한<br>사업자등록증명원의 발급번호가 필요합니다.</p>
+                                <a href="https://www.gov.kr/mw/AA020InfoCappView.do?HighCtgCD=A09002&amp;CappBizCD=12100000016&amp;tp_seq=01" target="_blank" class="layer-popup-link">사업자등록증명원 발급하기</a>
+                            </div>
+                        </div>
+                        <div class="col_2">
+                            <input type="text" name="CRTFCT_Issue_No" id="CRTFCT_Issue_No" class="mbr_name dev-corp-cert CRTFCT_Issue_No" maxlength="20" value="" autocomplete="off" aria-autocomplete="none">
+                            <input type="hidden" id="CRTFCT_Issue_No1" name="CRTFCT_Issue_No1" class="CRTFCT_Issue_No" value="" autocomplete="off" aria-autocomplete="none">
+                            <input type="hidden" id="CRTFCT_Issue_No2" name="CRTFCT_Issue_No2" class="CRTFCT_Issue_No" value="" autocomplete="off" aria-autocomplete="none">
+                            <input type="hidden" id="CRTFCT_Issue_No3" name="CRTFCT_Issue_No3" class="CRTFCT_Issue_No" value="" autocomplete="off" aria-autocomplete="none">
+                            <input type="hidden" id="CRTFCT_Issue_No4" name="CRTFCT_Issue_No4" class="CRTFCT_Issue_No" value="" autocomplete="off" aria-autocomplete="none">
+                            <div class="notice_msg" id="notice_msg_regnum"></div>
+                        </div>
+                    </div>
+                    <p class="company_customer-center"><em>발급일 90일 이내</em> 이내 사업자등록증명원의 발급번호만 가능합니다.</p>
+                </div>
+                <!-- 인사담당자 정보 -->
+                <div class="row_group line_bottom mbr_info">
+                    <h4>인사담당자 정보</h4>
+                    <div class="headingButtons">
+                        <a href="http://globalemployer.jobkorea.co.kr/" target="_blank" class="button">Overseas Corporate Help</a>
+                    </div>
+                    <!-- 인사담당자 정보 -->
+                    <!-- 인증 -->
+<div class="certification">
+    <div class="col colHp">
+        <button type="button" class="devCertifyPhone devCertifyBtn" data-certify-type="phone">
+            <div class="header">본인 인증</div>
+            <div class="description">본인 인증 시 제공되는 정보는 인증 이외 용도로 이용 또는 저장되지 않습니다.</div>
+        </button>
+    </div>
+    <div class="col colIpin">
+        <button type="button" class="devCertifyIpin devCertifyBtn" data-certify-type="ipin">
+            <div class="header">아이핀 인증</div>
+            <div class="description">NICE평가정보(주)를 통해 본인임을 확인받을 수 있는 서비스입니다.</div>            
+        </button>
+        <a href="https://www.jobkorea.co.kr/Text/pop_ipin_help.asp" onclick="window.open(this.href, 'ipin_help', 'width=668, height=740, toolbar=no,location=no,directories=no,status=no,scrollbars=yes,menubar=no'); return false;">아이핀이란?</a>
+    </div>
+</div>
+                    <!-- 기본정보 -->
+<div class="rows">
+    <div class="row mbr_id">
+        <div class="col_1">
+            <label for="U_ID">아이디<i class="icon required" aria-hidden="hidde">*</i></label>
+        </div>
+        <div class="col_2">
+            <input data-val="true" id="U_ID" maxlength="16" name="U_ID" class="dev-id" type="text" value="" autocomplete="off" aria-autocomplete="none">
+            <div class="notice_msg" id="notice_msg_id"></div>
+        </div>
+    </div>
+    <div class="row mbr_passwd">
+        <div class="col_1">
+            <label for="U_PWD">비밀번호<i class="icon required" aria-hidden="hidde">*</i></label>
+        </div>
+        <div class="col_2">
+            <input id="U_PWD" class="dev-password" maxlength="16" name="U_PWD" type="password" style="ime-mode:disabled;" value="" autocomplete="off" aria-autocomplete="none">
+            <button type="button" class="btnHelp devPwdHelpBtn" title="안전한 비밀번호 작성법">?</button>
+            <div class="lyHelp">
+                <dl>
+                    <dt>안전한 비밀번호 작성법</dt>
+                    <dd>
+                        <ol>
+                            <li>8~16자의 영문 대소문, 숫자, 특수기호만 사용가능 (공백입력 불가)</li>
+                            (사용 가능한 특수문자는 ! "# $ % &amp; ( ) * + , - . / : ; ? @ [ ] ^ _ { } ~ 입니다.)
+                            <li>3자 이상 연속 영문/숫자 조합은 사용불가 (AAA. 111)</li>
+                            <li>아이디, 반복되는 영문/숫자 조합은 사용불가 (1234, ABCD)</li>
+                            <li>키보드의 연속 패턴은 사용하지 마세요. (ASDF) </li>
+                            <li>비밀번호는 주기적으로 변경하여 안전하게 관리하기</li>
+                        </ol>
+                    </dd>
+                </dl>
+            </div>
+            <div class="notice_msg" id="notice_msg_pwd"><p class="failure"></p></div>
+        </div>
+        <div class="col_3">
+            <button type="button" class="mbrBtnAuth dev-password-dp"><span>표시</span></button>
+        </div>
+    </div>
+</div>
+<div class="row mbr_name">
+    <div class="col_1">
+        <label class="mbr_name" for="Mem_Name">가입자명<i class="icon required" aria-hidden="hidde">*</i></label>
+    </div>
+    <div class="col_2">
+        <input class="mbr_name dev-name" id="Mem_Name" maxlength="12" name="Mem_Name" type="text" value="" autocomplete="off" aria-autocomplete="none">
+        <div class="notice_msg" id="notice_msg_name"></div>
+    </div>
+</div>
+<div class="row mbr_phone">
+    <div class="col_1">
+        <label class="mbr_phone" for="Corp_Phone">전화번호<i class="icon required" aria-hidden="hidde">*</i></label>
+    </div>
+    <div class="col_2">
+        <input class="mbr_phone dev-phone" data-val="true" id="Corp_Phone" maxlength="13" name="Corp_Phone" title="전화번호" type="text" value="" autocomplete="off" aria-autocomplete="none">
+        <div class="notice_msg" id="notice_msg_phone"><p class="failure">필수 정보입니다.</p></div>
+        <input type="hidden" id="Corp_Phone1" name="Corp_Phone1" value="" autocomplete="off" aria-autocomplete="none">
+        <input type="hidden" id="Corp_Phone2" name="Corp_Phone2" value="" autocomplete="off" aria-autocomplete="none">
+        <input type="hidden" id="Corp_Phone3" name="Corp_Phone3" value="" autocomplete="off" aria-autocomplete="none">
+        <input type="hidden" id="Corp_Phone_Etc" name="Corp_Phone_Etc" value="" autocomplete="off" aria-autocomplete="none">
+    </div>
+</div>
+<div class="row mbr_email">
+    <div class="col_1">
+        <label for="Email_ID" class="mbr_email_id">이메일<i class="icon required" aria-hidden="hidde">*</i></label>
+    </div>
+    <div class="col_2">
+        <input type="text" id="email" name="email" class="mbr_email_id dev-mail" size="8" maxlength="100" value="" autocomplete="off" aria-autocomplete="none">
+        <div class="notice_msg" id="notice_msg_mail"></div>
+        <input type="hidden" id="Email_ID" name="Email_ID" autocomplete="off" aria-autocomplete="none">
+        <input type="hidden" id="Email_Addr" name="Email_Addr" autocomplete="off" aria-autocomplete="none">
+    </div>
+</div>
+                </div>
+                <h4 class="skip">사이트 이용 정보</h4>
+                <!-- 개인정보 유효기간 선택 -->
+
+<h4 class="skip">약관 동의</h4>
+<div class="row_group line_all policy">
+    <div class="row policy_check_all">
+        <input type="checkbox" id="lb_chk_all" class="mbrCheckOff" autocomplete="off" aria-autocomplete="none">
+        <label for="lb_chk_all" class="chk_all"><span class="txt">필수동의 항목 및 개인정보 수집 및 이용 동의(선택), 광고성 정보 수신 <br>동의(선택)에 모두 동의합니다.</span></label>
+    </div>
+
+    <div class="row policy_check_service required">
+        <input type="checkbox" id="lb_chk_service" name="Service_Agree" class="mbrCheckOn devAgreeCheck" value="1" autocomplete="off" aria-autocomplete="none">
+        <label for="lb_chk_service" class="chk_service"><strong>[필수]</strong> 이용약관 동의 <a href="#DevPolicyService" class="mbrBtnPolicy devPolicyService">내용보기</a></label>
+        <div id="DevPolicyService" class="policyTplBox" style="display: none;">
+            <div class="pvsSec pvsCntTp">
+    <ol>
+        <li>
+            <dl>
+                <dt><a name="gg01" id="gg01"></a><strong>제 1 조 (목적) </strong></dt>
+                <dd>본 약관은 잡코리아 유한책임회사(이하 "회사")가 운영하는 "서비스"를 이용함에 있어 "회사"와 회원간의 이용 조건 및 제반 절차, 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 한다.</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg02" id="gg02"></a><strong>제 2 조 (용어의 정의) </strong></dt>
+                <dd>
+                    <p>이 약관에서 사용하는 용어의 정의는 아래와 같다.</p>
+                    <ol>
+                        <li>
+                            ① "사이트"라  함은 회사가 서비스를 "회원"에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 설정한 가상의 영업장 또는 회사가 운영하는 웹사이트, 모바일웹, 앱 등의 서비스를 제공하는 모든 매체를 통칭하며, 통합된 하나의 회원 계정(아이디 및 비밀번호)을 이용하여 서비스를 제공받을 수 있는 아래의 사이트를 말한다.
+                            <ul>
+                                <li>- www.jobkorea.co.kr </li>
+                                <li>- www.albamon.com </li>
+                                <li>- m.jobkorea.co.kr</li>
+                                <li>- m.albamon.com</li>
+                            </ul>
+                        </li>
+                        <li>② "서비스"라 함은 회사가 운영하는 사이트를 통해  기업(단체, 사업자, 교육기관)이 직원채용을 목적으로 등록하는 자료를 DB화하여 각각의 목적에 맞게 분류 가공, 집계하여 정보를 제공하는 서비스와 사이트에서 제공하는 모든 부대 서비스를 말한다.</li>
+                        <li>③ "회원"이라 함은 기업의 필요한 인재를 고용할 것을 목적으로 약관에 동의하고 아이디를 부여받아 회사의 서비스를 이용하는 자를 말하며, 아웃소싱(도급), 인재파견, 채용대행 기업을 포함한다. 또한, 회원은 각 사업자 별로 아이디를 부여 받아 회사의 서비스를 이용하여야 한다.</li>
+                        <li>④ "아이디"라  함은 회원가입시 회원의 식별과 회원의 서비스 이용을 위하여 회원이 선정하고 "회사"가 부여하는 문자와 숫자의 조합을 말한다. </li>
+                        <li>⑤ "비밀번호"라 함은 위 제4항에 따라 회원이 회원가입시 아이디를 설정하면서 아이디를 부여받은 자와 동일인임을 확인하고 "회원"의 권익을 보호하기 위하여 "회원"이 선정한 문자와 숫자의 조합을 말한다.</li>
+                        <li>⑥ "비회원"이라 함은 회원가입절차를 거치지 않고 "회사"가 제공하는 서비스를 이용하거나 하려는 자를 말한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg03" id="gg03"></a><strong>제 3 조 (약관의 명시와 개정) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"는 이 약관의 내용과 상호, 영업소 소재지, 대표자의 성명, 사업자등록번호, 연락처 등을 이용자가 알 수 있도록 초기 화면에 게시하거나 기타의 방법으로 이용자에게 공지해야 한다. </li>
+                        <li>② "회사"는 약관의 규제에 관한 법률, 전기통신기본법, 전기통신사업법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 관련법을 위반하지 않는 범위에서 이 약관을 개정할 수 있다. </li>
+                        <li>③ "회사"가 약관을 개정할 경우 적용일자 및 개정사유를  명시하여 현행약관과 함께 그 개정약관의 적용일자 7일 전부터 적용일자 전일까지 공지한다. 단 "회원"의 권리, 의무에 중대한 영향을 주는 변경의 경우에는 적용일자 30일 전부터  공지하도록 한다. </li>
+                        <li>④ "회원"은  변경된 약관에 대해 거부할 권리가 있다. "회원"은 변경된 약관이 공지된 지 15일 이내에 거부의사를 표명할 수 있다. "회원"이  거부하는 경우 본 서비스 제공자인 "회사"는 15일의 기간을 정하여 "회원"에게 사전 통지 후 당해 "회원"과의  계약을 해지할 수 있다. 만약, "회원"이  거부의사를 표시하지 않거나, 전항에 따라 시행일 이후에 "서비스"를 이용하는 경우에는 동의한 것으로 간주한다. </li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg04" id="gg04"></a><strong>제 4 조 (약관의 해석) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① 이 약관에서 규정하지 않은 사항에 관해서는 약관의 규제에 관한 법률, 전기통신기본법, 전기통신사업법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등의 관계법령에 따른다.</li>
+                        <li>② 각 사이트  및 서비스 이용약관이 있는 경우에는 서비스 이용약관이 우선한다.</li>
+                        <li>③ "회원"이 "회사"와 개별 계약을 체결하여 서비스를 이용할 경우에는 개별 계약이 우선한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg05" id="gg05"></a><strong>제 5 조 (이용계약의 성립) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"의 서비스 이용계약(이하 "이용계약")은 서비스를 이용하고자 하는 자가 본 약관과 개인정보처리방침을 읽고 "동의" 또는 "확인" 버튼을 누른 경우 본 약관에 동의한 것으로 간주한다.</li>
+                        <li>② 서비스 이용계약 체결에 필요한 경우 "회사"는 전문기관을 통한 실명확인 및 본인인증을 요청할 수 있다. "회원"은 본인인증에 필요한 이름, 생년월일, 연락처 등을 제공하여야 한다, 또한 서비스 이용을 위해 회사명과 사업자등록번호를 제공하여야 하며 "회사"는 기업인증을 위해 사업자정보를 확인할 수 있는 증명서(사업자등록증)를 별도로 요구할 수 있다. 회사명과 사업자등록번호를 허위로 등록한 경우, 휴·폐업 사업자등록번호로 등록한 경우에 "회원"은 일체의 권리를 주장할 수 없다.</li>
+                        <li>③ 회사는 회원 약관에 동의한 "회원"에 웹상의 안내 및 전자메일로 통지함으로써 서비스 이용계약의 성립을 확인한다.</li>
+                        <li>④ 사업자등록번호가 없는 기관이나 단체는 "회사"가 정한 별도의 절차에 따라 이용계약을 할 수 있다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg06" id="gg06"></a><strong>제 6 조 (이용신청의 승낙과 제한) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"는 전조의 규정에 의한 이용신청 고객에 대하여  업무수행상 또는 기술상 지장이 없는 경우에는 원칙적으로 접수순서에 따라 서비스 이용을 승낙한다. </li>
+                        <li>
+                            ② "회사"는 아래 사항에 해당하는 경우에 대해서는 서비스 이용신청을 승낙하지 아니한다.
+                            <ol>
+                                <li>1. 실제 회사명과 사업자등록번호가 아니거나 타사의 정보를 이용하여 신청한 경우 </li>
+                                <li>2. 이용계약 신청서의 내용을 허위로 기재하거나 "회사"가 제시하는 내용을 기재하지 않은 경우</li>
+                                <li>3. 이용자의 귀책사유로 인하여 승인이 불가능하거나 기타 규정한 제반 사항을 위반하며 신청하는 경우</li>
+                            </ol>
+                        </li>
+                        <li>
+                            ③ "회사"는 아래 사항에 해당하는 경우에는 그 신청에  대하여 승낙제한 사유가 해소될 때까지 승낙을 유보할 수 있다.
+                            <ol>
+                                <li>1.  "회사"가  설비의 여유가 없는 경우 </li>
+                                <li>2.  "회사"의  기술상 지장이 있는 경우 </li>
+                                <li>3. 기타 "회사"의 귀책사유로 이용승낙이 곤란한 경우</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg07" id="gg07"></a><strong>제 7 조 (서비스의 내용) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>
+                            ① "회사"는 제2조  2항의 서비스를  제공할 수 있으며 그 내용은 다음 각 호와 같다.
+                            <ol>
+                                <li>1. 채용정보 등록서비스 </li>
+                                <li>2. 온라인 채용관리 서비스 </li>
+                                <li>3. 구인/구직과 관련된 제반 서비스 </li>
+                                <li>4. 이력서 열람 서비스 </li>
+                                <li>5. 기업정보 제공 서비스 </li>
+                                <li>6. 이용자간의  교류와 소통과 관련된 서비스 </li>
+                                <li>7. 자료 거래에  관련된 서비스 </li>
+                                <li>8. 기타 "회사"가 추가 개발하거나 제휴계약 등을 통해 "회원"에게 제공하는 일체의 서비스 </li>
+                            </ol>
+                        </li><li>② "회사"는 필요한 경우 서비스의 내용을 추가 또는  변경할 수 있다. 단, 이 경우 "회사"는 추가 또는 변경내용을 "회원"에게 공지해야  한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg08" id="gg08"></a><strong>제 8 조 ("회원"정보, 채용공고 등록, 채용의뢰, 이력서검색) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회원"은 채용공고 등록 시 기업정보를 정확히 기재하여야 한다.</li>
+                        <li>② "회원"은 아웃소싱(도급), 인재파견 또는 채용대행 공고를 등록하는 경우 구직을 희망하는 개인회원이 자사의 직접 고용 목적으로 등록한 채용공고와 오인·혼동 되지 않도록 하여야 한다.</li>
+                        <li>
+                            ③ "회원"은 직업안정법 제34조 및 동법 시행령 제 34조 거짓구인광고의 범위에 위반되지 않도록 채용공고를 작성하여 등록해야 하며 그 내용은 다음과 같다.
+                            <ol>
+                                <li>1. 구인을 가장하여 물품판매, 수강생 모집, 직업소개, 부업알선, 자금모집 등을 행하는 광고</li>
+                                <li>2. 거짓 구인을 목적으로 구인자의 신원(업체명 또는 성명)을 표시하지 아니하는 광고</li>
+                                <li>3. 구인자가 제시한 직종, 고용형태, 근로조건 등이 응모할 때의 그것과 현저히 다른 광고 </li>
+                                <li>4. 기타 광고의 중요내용이 사실과 다른 광고 </li>
+                            </ol>
+                        </li><li>④ "회원"은 관련 법률에 의거하여 근로자의 모집 및 채용에 있어서 남녀, 연령을 차별하여서는 아니되며 15세 미만 채용 모집을 할 수 없다. 단, 제6조 제2항 제3호에 경우는 예외로 한다.</li>
+                        <li>⑤ 제 3항, 제 4항을 위반한 경우  이에 대한 책임은 전적으로 "회원"에게 있다. </li>
+                        <li>⑥ "회사"는 "회원"이 등록한 기업정보 및 채용공고를 "회사"가 정한 방법에 의해 노출할 수 있다. </li>
+                        <li>⑦ "회원" 중 아웃 소싱(도급), 인재파견, 채용대행 기업은 "회사"에 채용파트너관 서비스를 신청하여 자사의 HR상품을 홍보할 수 있으며, 일반 기업 "회원"은 채용파트너관에 업로드 된 HR상품 및 사업분야를 선택하여 상담의뢰를 신청할 수 있다. 단, 채용파트너관 서비스 이용 시 수집되는 개인정보는 본 서비스 이용 이외의 목적으로 사용할 수 없으며, 각 개인의 동의 없이 개인정보를 기업의 영업·마케팅의 용도로 사용하거나 제3자에게 제공 시 개인정보보호법, 정보통신망이용촉진 및 정보보호 등에 관한 법률에 의거하여 법적 책임을 질 수 있다.</li>
+                        <li>⑧ "회원"은 직원 채용의 목적으로 유·무료로 개인회원이  등록한 이력서를 검색할 수 있으며 "회원"은 "회사"가 제시하는 별도의 커뮤니케이션을 통하여 개인회원에게 연락을 취할 수 있다. 단, 이력서 연락처의 열람 및 연락의 목적은 직원채용활동에 국한되어야 하며, 기업의 영업·마케팅·제3자 제공 시에는 개인정보보호법, 직업안정법, 정보통신망이용촉진 및 정보보호 등에 관한 법률에 의거하여 법적 책임을 질 수 있다.</li>
+                        <li>⑨ "회원"이 제2조 제 3항에 따라 자사의 직접 고용을 목적으로 하지 않는 헤드헌팅 채용공고를 등록할 경우 "회사"는 해당 공고를 삭제할 수 있으며 "기업회원"의 자격을 "서치펌회원"으로 전환시킬 수 있다. (jobkorea.co.kr 에서만 적용)</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg9" id="gg9"></a><strong>제 9 조 (제휴를 통한 서비스) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"는 제휴 관계를 체결한 여타 인터넷 웹사이트 및 채용박람회, 기관 또는 신문, 잡지 등의 온, 오프라인 매체(이하 ‘타 사이트 및 매체’)를 통해 "회원"이 등록한 기업정보와 채용공고가 열람될 수 있도록 서비스를 제공할 수 있다. 기업정보는 기업의 로고와 이미지를 포함한다.</li>
+                        <li>② "회사"는 제1항의 열람을 ‘타 사이트 및 매체’에 기업정보와 채용공고의 일부를 노출시키고, 상세내역은 "회사"의 URL로 연결하여 열람하도록 하거나 회원이 등록한 기업정보와 채용공고를 ‘타 사이트 및 매체’에 제공 및 게시하여 열람하게 할 수 있다.</li>
+                        <li>③ "회사"는 전 항과 같이 열람 서비스를 제공 시 "회사"와 제휴 관계에 있는 ‘타 사이트 및 매체’를 본 조 제4항의 전체 리스트에 등록하는 방법으로 “회원”에게 고지한다.</li>
+                        <li>④ "회사"는 제휴 관계에 있는 ‘타 사이트 및 매체’의 <a href="javascript:openPrMediaPopup();" class="popup-link">[전체 리스트]</a> 를 ‘회원’이 열람할 수 있도록 한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg10" id="gg10"></a><strong>제 10 조 (서비스의 요금) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회원" 가입과 채용공고  등록비용은 무료이다. 다만 개인회원 또는 사이트에 방문한 회원에게 자신의 정보를 보다 효과적으로 노출시키기 위한 유료옵션과 즉시등록 서비스, 유료 이력서 검색 및 기타 서비스를 이용하기 위한 별도의 서비스는 유료로 제공될 수 있다. </li>
+                        <li>② "회사"는 유료서비스를 제공할 경우 사이트에 요금에  대해서 공지를 하여야 한다. </li>
+                        <li>③ "회사"는 유료서비스 이용금액을 서비스의 종류 및  기간에 따라 "회사"가 예고 없이 변경할  수 있다. 다만, 변경 이전에 적용 또는 계약한 금액은 소급하여 적용하지 아니한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg11" id="gg11"></a><strong>제 11 조 (서비스 요금의 환불) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① “회사”는 다음 각 호에 해당하는 경우 이용요금을 환불한다. 단, 각 당사자의 귀책사유에 따라 환불 조건이 달라질 수 있다.</li>
+                        <ol>
+                            <li>1. 유료서비스 이용이 개시되지 않은 경우</li>
+                            <li>2. 네트워크 또는 시스템 장애로 서비스 이용이 불가능한 경우</li>
+                            <li>3. 유료서비스 신청 후 “회원”의 사정에 의해 서비스가 취소될 경우</li>
+                        </ol>
+                        <li>② “회사”가 본 약관 제20조에 따라 가입해지/서비스중지/자료삭제를 취한 경우, “회사”는 “회원”에게 이용요금을 환불하지 않으며, 별도로 “회원”에게 손해배상을 청구할 수 있다.</li>
+                        <li>③ 이용료를 환불받고자 하는 회원은 고객센터로 환불을 요청해야 한다.</li>
+                        <li>④ “회사”는 환불 요건에 부합하는 것으로 판단될 경우, 각 서비스 환불 안내에 따라 유료이용 계약 당시 상품의 정가 기준으로 서비스 제공된 기간에 해당하는 요금을 차감한 잔액을 환불한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg12" id="gg12"></a><strong>제 12 조 (충전금 규정) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① 충전금은 "회사"가 정한 결제수단을 이용하여 미리 입금해 둔 금액으로, "회사"의 유료서비스 결제 시 사용할 수 있다.</li>
+                        <li>② 서비스 운영정책에 따라 충전금을 구매할 수 있는 수단, 충전금으로 결제할 수 있는 유료서비스 등은 달라질 수 있으며, 이에 대한 사항은 서비스 화면에 게시하거나 공지한다. </li>
+                        <li>③ "회원"은 "회사"에 잔여 충전금의 환불을 요청할 수 있으며, "회사"는 "회원"에게 환불에 필요한 서류를 요청할 수 있다. 환불 시 환불수수료를 공제하고 환불할 수 있으며, 충전금 충전방법에 따라 금융비용이 환불수수료를 초과하여 발생할 경우 이는 "회원"의 부담으로 한다. </li>
+                        <li>④ 잔여 충전금 중 충전일로부터 5년이 초과할 때까지 이용하지 않은 금액은 상사소멸시효에 따라 소멸된다.</li>
+                        <li>⑤ 회원탈퇴 시 보유중인 충전금은 환불을 요청할 수 있으며, 이와 같은 절차없이 회원탈퇴한 경우 충전금은 전액 자동소멸되어 복구되지 않는다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg13" id="gg13"></a><strong>제 13 조 (서비스 이용시간) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"는 특별한 사유가 없는 한 연중무휴, 1일 24시간 서비스를 제공한다.  다만, "회사"는 서비스의  종류나 성질에 따라 제공하는 서비스 중 일부에 대해서는 별도로 이용시간을 정할 수 있으며, 이 경우 "회사"는 그 이용시간을 사전에 "회원"에게 공지 또는  통지하여야 한다. </li>
+                        <li>② "회사"는 자료의 가공과 갱신을 위한 시스템 작업시간, 장애해결을 위한 보수작업 시간, 정기 PM작업, 시스템 교체작업, 회선  장애 등이 발생한 경우 일시적으로 서비스를 중단할 수 있으며 계획된 작업의 경우 공지란에 서비스 중단 시간과 작업 내용을 알려야 한다. 다만, "회사"가 사전에 통지할 수 없는 부득이한 사유가 있는 경우 사후에 통지할 수 있다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg14" id="gg14"></a><strong>제 14 조 (서비스 제공의 중지) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>
+                            ① "회사"는 다음 각 호에 해당하는 경우 서비스의  제공을 중지할 수 있다.
+                            <ol>
+                                <li>1. 설비의 보수 등 "회사"의 필요에 의해 사전에 "회원"들에게 통지한 경우 </li>
+                                <li>2. 기간통신사업자가 전기통신서비스 제공을 중지하는 경우 </li>
+                                <li>3. 기타 불가항력적인 사유에 의해 서비스 제공이 객관적으로 불가능한 경우 </li>
+                            </ol>
+                        </li>
+                        <li>② 전항의 경우, "회사"는 기간의 정함이 있는 유료서비스 이용자들에게는  그 이용기간을 연장하는 등의 방법으로 손실을 보상하여야 한다.</li>
+                        <li>③ "회원"인 개인사업자와 법인사업자의  휴·폐업 여부가 회사가 정한 별도의 절차에 따라 확인된 경우 유료 이력서 검색서비스(건수별 인재검색)의 경우 적립된 건수는 모두 소멸된다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg15" id="gg15"></a><strong>제 15 조 (정보의 제공 및 광고의 게재) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"는 "회원"에게 서비스 이용에 필요가 있다고  인정되거나 서비스 개선 및 회원대상의 서비스 소개 등의 목적으로 하는 각종 정보에 대해서 전자우편이나 서신우편을 이용한 방법으로 제공할 수 있다. </li>
+                        <li>② "회사"는 제공하는 서비스와 관련되는 정보 또는 광고를 서비스 화면, 홈페이지, 전자우편 등에 게재할 수 있으며, 광고가 게재된 전자우편을 수신한 "회원"은 수신거절을 "회사"에게 할 수 있다.</li>
+                        <li>③ "회사"는 서비스상에 게재되어 있거나 본 서비스를  통한 광고주의 판촉활동에 "회원"이 참여하거나 교신 또는 거래를 함으로써 발생하는 모든 손실과 손해에 대해 책임을 지지 않는다. </li>
+                        <li>④ 본 서비스의 "회원"은 서비스  이용 시 노출되는 광고게재에 대해 동의 하는 것으로 간주한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg16" id="gg16"></a><strong>제 16 조 (자료내용의 책임과 "회사"의 정보 수정 권한) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① 자료내용은 "회원"이 등록한  기업정보 및 채용공고와 사이트에 게시한 게시물을 말한다. </li>
+                        <li>② "회원"은 자료 내용 및 게시물을  사실에 근거하여 성실하게 작성해야 하며, 만일 자료의 내용이 사실이 아니거나 부정확하게 작성되어 발생하는  모든 책임은 "회원"에게 있다. "회사"는 "회원"이 작성한 게시물 등의 정확성 및 진실성을 보증하지 아니하며, 게시물에 대한 일체의 책임을 부담하지 아니한다.</li>
+                        <li>③ 모든 자료내용의 관리와 작성은  "회원" 본인이 하는 것이 원칙이나 사정상 위탁 또는 대행관리를 하더라도 자료내용의 책임은 "회원"에게 있으며 "회원"은 주기적으로 자신의 자료를 확인하여  항상 정확하게 관리가 되도록 노력해야 한다. </li>
+                        <li>④ "회사"는 "회원"이 등록한 자료 내용에 오자, 탈자 또는 사회적 통념에 어긋나는 문구와 내용이 있을 경우 이를 언제든지 수정할 수 있다.</li>
+                        <li>⑤ "회원"이 등록한 자료로 인해 타인(또는 타법인)으로부터 허위사실 및 명예훼손 등으로 삭제 요청이 접수된 경우 "회사"는 "회원"에게 사전 통지 없이 본 자료를 삭제할 수 있으며 삭제 후 메일 등의 방법으로 통지할 수 있다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg17" id="gg17"></a><strong>제 17 조 (자료 내용의 활용 및 취급) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회원"이 입력한 정보는 취업 및 관련 동향의 통계 자료로 활용될 수 있으며 그 자료는 매체를 통한 언론 배포 또는 제휴사에게 제공될 수 있다.</li>
+                        <li>② "사이트"에서 정당한 절차를 거쳐 열람한 개인회원의 이력서 정보는 해당 "회원"의 인사자료이며 이에 대한 관리 권한은 해당 "회원"의 정책에 의한다.</li>
+                        <li>③ "회사"는 "사이트"의 온라인 입사지원 시스템을  통해 지원한 개인회원의 이력서 열람 여부 및 "회원"이 제공한 채용정보에 입사지원한 구직자들의 각종 통계데이터를 개인회원에게 제공할 수 있다 . </li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg18" id="gg18"></a><strong>제 18 조 ("회사"의 의무) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"는 본 약관에서 정한 바에 따라 계속적, 안정적으로 서비스를 제공할 수 있도록 최선의 노력을 다해야 한다. </li>
+                        <li>② "회사"는 서비스와 관련한 "회원"의 불만사항이 접수되는  경우 이를 즉시 처리하여야 하며, 즉시 처리가 곤란한 경우에는 그 사유와 처리일정을 서비스 화면 또는  기타 방법을 통해 동 "회원"에게 통지하여야 한다. </li>
+                        <li>③ "회사"는 유료 결제와 관련한 결제 사항 정보를 1년 이상 보존한다. 다만 회원 자격이 없는 회원은 예외로 한다. </li>
+                        <li>④ 천재지변 등 예측하지 못한  일이 발생하거나 시스템의 장애가 발생하여 서비스가 중단될 경우 이에 대한 손해에 대해서는 "회사"가 책임을 지지 않는다. 다만 자료의 복구나 정상적인 서비스  지원이 되도록 최선을 다할 의무를 진다. </li>
+                        <li>⑤ "회원"의 자료를 본 서비스  이외의 목적으로 제3자에게 제공하거나 열람시킬 경우 반드시 "회원"의 동의를 얻어야 한다. </li>
+                        <li>⑥ "회원"이 "사이트"에 등록한 기업정보, 채용공고 내용은 사이트를 방문하는 일반 대중에게 공개함을 원칙으로 한다. 단, 회사가 운영하는 공식 SNS채널(페이스북, 인스타그램, 카카오스토리, 트위터, 블로그 등)에 한해 채용공고 내용을 업로드하여 일반 대중에게 공개할 수 있다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg19" id="gg19"></a><strong>제 19 조 ("회원"의 의무) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회원"은 관계법령과 본 약관의  규정 및 기타 "회사"가 통지하는 사항을  준수하여야 하며, 기타 "회사"의 업무에 방해되는 행위를 해서는 안 된다. </li>
+                        <li>② "회원"이 신청한 유료서비스는  등록 또는 신청과 동시에 "회사"와 채권, 채무 관계가 발생하며, "회원"은 이에 대한 요금을 지정한 기일 내에  납부하여야 한다. </li>
+                        <li>③ "회원"이 결제 수단으로 신용카드를  사용할 경우 비밀번호 등 정보 유실 방지는 "회원" 스스로 관리해야 한다. 단, "사이트"의 결함에 따른 정보유실의 발생에 대한 책임은 회원의 의무에 해당하지 아니한다.</li>
+                        <li>④ "회원"은 서비스를 이용하여  얻은 정보를 "회사"의 사전동의 없이 복사, 복제, 번역, 출판, 방송 기타의 방법으로 사용하거나 이를 타인에게 제공할 수 없다. </li>
+                        <li>
+                            ⑤ "회원"은 본 서비스를 건전한 직원채용 이외의 목적으로  사용해서는 안되며 이용 중 다음 각 호의행위를 해서는 안 된다.
+                            <ol>
+                                <li>1. 다른 회원의 아이디를 부정 사용하는 행위 </li>
+                                <li>2. 범죄행위를 목적으로 하거나 기타 범죄행위와 관련된 행위 </li>
+                                <li>3. 타인의 명예를 훼손하거나 모욕하는 행위 </li>
+                                <li>4. 타인의 지적재산권 등의 권리를 침해하는 행위 </li>
+                                <li>5. 해킹행위 또는 바이러스의 유포 행위 </li>
+                                <li>6. 타인의 의사에 반하여 광고성 정보 등 일정한 내용을 계속적으로 전송하는 행위 </li>
+                                <li>7. 서비스의 안정적인 운영에 지장을 주거나 줄 우려가 있다고 판단되는 행위 </li>
+                                <li>8. 사이트의 정보 및 서비스를 이용한 영리 행위 </li>
+                                <li>9. 그밖에 선량한 풍속, 기타 사회질서를 해하거나 관계법령에 위반하는 행위</li>
+                            </ol>
+                        </li>
+                        <li>⑥ "회원"은 "사이트"를 통해 열람한 이력서 정보를 "회사" 및 당사자의 허락없이 재배포할 수 없으며 본 정보에 대한 출력 및 복사 등의 관리 책임은 전적으로 "회원"에게 있다. </li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg20" id="gg20"></a><strong>제 20 조 ("회원"의 가입해지/서비스중지/자료삭제) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회원"은 언제든지 회원탈퇴 또는 채용공고 등록을 해지하기 위해 고객센터 또는 회원탈퇴 메뉴 등을 통하여 이용계약 해지 신청을 할 수 있으며, "회사"는 관련법 등이 정하는 바에 따라 이를 처리한다. 이때 회사는 잔존 채무를 확인하여 "회원"이 "회사"에 지급해야 하는 비용 또는 기타 채무가 남은 경우 이를 정산할 때까지 회원 탈퇴를 제한할 수 있다.</li>
+                        <li>
+                            ② 다음의 사항에 해당하는 경우 "회사"는 사전 동의없이 가입해지나 서비스 중지, 채용공고 삭제 조치를 취할 수 있다.
+                            <ol>
+                                <li>1. 회원의 의무를 성실하게 이행하지 않았을 때 </li>
+                                <li>2. 규정한 유료서비스 이용 요금을 납부하지 않았을 때 </li>
+                                <li>3. 불순한 의도로 유료서비스를 반복적으로 결제/취소할  때 </li>
+                                <li>4. 본 서비스 목적에 맞지 않는 분야에 정보를 활용하여 사회적 물의가 발생한  때 </li>
+                                <li>5. 회원이 등록한 정보의 내용이 사실과 다르거나 조작되었을 때 </li>
+                                <li>6. 사업자등록증에 나타난 정보와 기업회원 가입시의 정보가 일치하지 않을 때 </li>
+                                <li>7. 타 기업의  사업자등록번호나 상호를 도용하여 허위로 기업정보를 등록하거나 휴·폐업 사업자등록번호로 기업정보를 등록했을 때 </li>
+                                <li>8. 지사, 지점, 영업소 등의 경우 구체적인 지사, 지점, 영업소 명칭을 사용하지 않고 기업명을 등록했거나 지사, 지점, 영업소의 사업자등록번호가 별도 있음에도 불구하고 본사의 사업자등록번호로 기업회원 가입을 했을 때 </li>
+                                <li>9. 회사명, 담당자 성명, 사무실 연락처 등 구인업체의 중요 정보를 정확하게 기입하지 않았을 때 </li>
+                                <li>10. 기업회원 가입 또는 채용공고 등록시 본 서비스에서 안내하는 방법으로 가입하지  않았거나 등록하지 않았을 때 </li>
+                                <li>11. 동일 회원ID로 마감일이 지나지  않은 사실상의 동일 내용의 채용공고를 중복 등록했을 때 </li>
+                                <li>12. 동일  사업자가 마감일이 지나지 않은 사실상의 동일내용의 채용공고를 다수 ID를 사용하여 중복등록 했을 때 </li>
+                                <li>13. 허위 구인공고를 등록했을 때 </li>
+                                <li>14. 작성자가 제시한 직종, 업무내용, 근로조건 등이 실제와 현저히 다를 때 </li>
+                                <li>15. 채용공고의 모집요강만으로 업무에 대한 내용이 명확하지 않을 때 </li>
+                                <li>
+                                    16. 모집요강에 적합한 업직종 분류를 지정하지 않았을 때 <br>
+                                    (특히, 교육기관이나 이벤트업체  또는 영업대행 기관의 경우 영업, 마케팅, 텔레마케팅, 상담 인력을 모집하고자 할 경우 반드시 텔레마케팅 또는 고객상담, 교육/강사/학원 등 반드시 직접 관련되는 해당 업종, 직종 분류만 지정해야 한다.)
+                                </li>
+                                <li>17. 헤드헌팅과 같이 인력중개를 주 목적으로 사업을 수행하는 업체인 경우 (jobkorea.co.kr 에서만 적용)</li>
+                                <li>18. 채용공고를 등록한 회원의 정보와 실제 채용공고 상 모집하는 기업의 정보가 다른 경우</li>
+                                <li>19. 아웃소싱(도급), 인재파견, 채용대행 공고임에도 불구하고 자사 공고인 것처럼 혼란을 야기하는 공고를 등록 한 때</li>
+                                <li>20. 다단계 식의 모집 내용을 등록했을 때</li>
+                                <li>21. 구인을 가장하여 유학알선, 물품판매, 자금  모금 등을 행하는 내용을 등록했을 때 </li>
+                                <li>22. 회원모집 형태의 광고 또는 카드회원 모집(수당제  광고) 내용을 등록했을 때 </li>
+                                <li>23. 추천인 모집 광고, 재택 쇼핑몰  분양 광고, 직업소개, 부업알선 광고를 등록했을 때 </li>
+                                <li>24. 취업수수료 등 취업 관련 비용을 필요로 하는 채용공고를 등록했을 때 (운송, 물류, 지입, 인력용역 등) </li>
+                                <li>25. 불건전한 내용의 유흥업소 채용공고를 등록했을 때 </li>
+                                <li>26. 구직자의 피해사례 (채용공고를 통해 구직자가 입사 과정에서 피해가 발생한 경우 또는 재직중 "기업회원"이 관계법령을 위반하여 피해가 발생한 경우 등)가 접수된 채용공고 </li>
+                                <li>27. 임금체불로 근로감독원에 진정서가 접수되거나, 관계 당국에 고소·고발되어 있는 기업 (단, 기업의 임금체불이 해소가 입증되면 확인 후에 서비스 이용 가능) </li>
+                                <li>28. 본 서비스와 관련하여 회사 또는 제3자의 명예를 훼손하였을 때</li>
+                                <li>29. 동업자 모집, 프랜차이즈 모집, 점포개설, 창업, 사이트 홍보 등 직원 채용이 아닌 공고를 등록했을 때</li>
+                                <li>30. 기타 관계법규에 위배되는 행위를 한 경우</li>
+                            </ol>
+                        </li>
+                        <li>③ "회원"이 유료서비스를 이용하는  중 "회사"의 책임에 의해 정상적인 서비스가  제공되지 않을 경우 "회원"은 본 서비스의 해지를 요청할 수 있으며 "회사"는 기간의 정함이 있는 유료서비스의 경우에는 해지일까지 이용일수를 1일 기준금액으로 계산하여 이용금액을 공제후 환급하고, 이용건수의 정함이 있는 유료서비스의 경우에는 기 사용분을 1건 기준금액으로 계산하여 이용금액을 공제후 환급한다. 단, 허위·불량공고의 경우 게재시 지불된 광고료는 일체 반환되지 않는다. </li>
+                        <li>④ "회원"인 개인사업자와 법인사업자의 휴·폐업 여부가 회사가 정한 별도의 절차에 따라 확인된 경우 유료 이력서 검색서비스(건수별 인재검색)의 경우 적립된 건수는 모두 소멸된다. </li>
+                        <li>⑤ "회사"는 회원 가입이 해지된 경우 해당 회원 정보를 모두 삭제하여야 하며,  상법, 전자상거래등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가  있는 경우 관계법령에서 정한 일정한 기간 동안 회원정보를 보관한다.</li>
+                        <li>⑥ "회사"는 성희롱,&nbsp;욕설,&nbsp;위협,&nbsp;사실과 다른 주장,&nbsp;무리한 요구, 폭언,&nbsp;협박,&nbsp;공포심 또는 불안감 유발,&nbsp;허위사실의 유포,&nbsp;기타 위계나 위력,&nbsp;서비스의 고의적 악용 등의 방법으로 서비스의 운영을 방해하거나 고객 응대 근로자의 정신적 충격을 유발하는 "회원"에게 고객센터 전화 안내 서비스를 제공하지 않을 수 있다.&nbsp;해당 "회원"은 헬프데스크 메일이나 1:1&nbsp;문의 프로세스를 이용할 수 있으며,&nbsp;해당 프로세스에 따라 전화 안내 제한에 대한 이의신청을 할 수 있다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg21" id="gg21"></a><strong>제 21 조 (허위 구인광고 경고) </strong></dt>
+                <dd>
+                    <p>허위 구인광고로 인해 발생된  문제에 따른 법적인 책임은 모두 작성자에게 있으며, 구인광고 게재시에 지불된 광고료는 일체 반환되지  않는다. 허위 구인광고 또는 허위 구인 조건을 제시한 자는 직업 안정법 제 47조에 의해 5년 이하의 징역 또는 2천만원 이하의 벌금형을 받게 된다.</p>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg22" id="gg22"></a><strong>제 22 조 (손해배상) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"가 이 약관의 규정을 위반한 행위로 "회원"에게 손해를 입히거나 기타 "회사"가 제공하는 모든 서비스와 관련하여 "회사"의 책임 있는 사유로 인해 "회원"에게 손해가 발생한 경우 "회사"는 그 손해를 배상하여야 한다. </li>
+                        <li>② "회사"는 책임 있는 사유로 제공한 정보가 사실과  달라 "회원"이 손해를 입었을 경우에 "회사"는 그 손해를 배상하여야 한다. </li>
+                        <li>③ "회원"이 이 약관의 규정을 위반한 행위로 "회사" 및 제3자에게 손해를 입히거나 "회원"의 책임 있는 사유에 의해 "회사" 및 제3자에게 손해를 입힌 경우에는 "회원"은 그 손해를 배상하여야  한다.</li>
+                        <li>④ 타 회원(개인회원, 기업회원, 서치펌회원 모두 포함)의 귀책사유로 "회원"의 손해가 발생한 경우 "회사"는 이에 대한 배상 책임이 없다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg23" id="gg23"></a><strong>제 23 조 (양도 금지) </strong></dt>
+                <dd>
+                    <p>"회원"의 서비스 받을 권리는 제3자에게 양도, 대여, 증여 등으로 사용할 수 없다.</p>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg24" id="gg24"></a><strong>제 24 조 (이용요금 오류의 조정) </strong></dt>
+                <dd>
+                    <p>"회사"는 이용요금과 관련하여 오류가 있는 경우에 "회원"의 요청, 또는 "회사"의 사전 통지에 의하여 다음에 해당하는 조치를 취한다. </p>
+                    <ol>
+                        <li>1. 과다납입한 요금에 대하여는 그 금액을 반환한다. 다만, "회원"이 동의할 경우 다음 달에  청구할 요금에서 해당 금액만큼을 감하여 청구한다. </li>
+                        <li>2. 요금을 반환받아야 할 "회원"이 요금체납이 있는 경우에는 반환해야 할 요금에서 이를 우선 공제하고 반환한다. </li>
+                        <li>3. "회사"는 과소청구액에 대해서는 익월에 합산청구한다.
+                    </li></ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg25" id="gg25"></a><strong>제 25 조 ("회원"의 개인정보보호) </strong></dt>
+                <dd>"회사"는 "회원"의 개인정보보호를 위하여 노력해야 한다. "회원"의 개인정보보호에 관해서는 정보통신망이용촉진 및 정보보호 등에 관한 법률, 개인정보보호법에 따르고, "사이트"에 "개인정보처리방침"을 고지한다.</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg26" id="gg26"></a><strong>제 26 조 (신용정보의 제공 활용 동의) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"가 회원가입과 관련하여 취득한 "회원"의 신용정보를 타인에게 제공하거나 활용하고자 할 때에는 신용정보의 이용 및 보호에 관한 법률 제23조의 규정에 따라 사전에 그 사유 및 해당기관 또는 업체명 등을 밝히고 해당 "회원"의 동의를 얻어야 한다. </li>
+                        <li>② 본 서비스와 관련하여 "회사"가 "회원"으로부터 신용정보의 이용 및 보호에 관한 법률에 따라 타인에게 제공 활용에 동의를 얻은 경우 "회원"은 "회사"가 신용정보 사업자 또는 신용정보 집중기관에 정보를 제공하여 "회원"의 신용을 판단하기 위한 자료로 활용하거나, 공공기관에서 정책자료로 활용되도록 정보를 제공하는 데 동의한 것으로 간주한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt><a name="gg27" id="gg27"></a><strong>제 27 조 (분쟁의 해결) </strong></dt>
+                <dd>
+                    <ol>
+                        <li>① "회사"와 "회원"은 서비스와 관련하여 발생한 분쟁을  원만하게 해결하기 위하여 필요한 모든 노력을 하여야 한다. </li>
+                        <li>② 전항의 노력에도 불구하고, 동 분쟁에 관한 소송은 "회사"의 주소지 관할법원으로 한다.</li>
+                    </ol>
+                </dd>
+            </dl>
+        </li>
+        <li class="etc">
+            <dl>
+                <dt><strong>부칙</strong></dt>
+                <dd>
+                    <ul>
+                        <li>- 이 약관은 2025년 2월 13일부터 시행한다.</li>
+                    </ul>
+                </dd>
+            </dl>
+        </li>
+    </ol>
+</div>
+        </div>
+    </div>
+
+    <div class="row policy_check_privacy required">
+        <input type="checkbox" id="lb_chk_privacy" name="Priacy_Agree" class="mbrCheckOn devAgreeCheck" value="1" autocomplete="off" aria-autocomplete="none">
+        <label for="lb_chk_privacy" class="chk_privacy"><strong>[필수]</strong> 개인정보 수집 및 이용 동의 <a href="#DevPolicyPrivacy" class="mbrBtnPolicy devPolicyService">내용보기</a></label>
+        <div id="DevPolicyPrivacy" class="policyTplBox" style="display: none;">
+            <div class="pvsSec pvsTpList">
+    <!-- 7.0 변경 -->
+    <p>
+        잡코리아 및 알바몬 서비스 이용을 위해 아래와 같이 개인정보를 수집 및 이용합니다. <br>
+        동의를 거부할 권리가 있으며, 동의 거부 시 잡코리아 및 알바몬 회원서비스 이용이 불가합니다.
+    </p>
+
+    <table class="policy-table">
+        <colgroup>
+            <col width="33%">
+            <col width="33%">
+            <col width="*">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>목적</th>
+                <th>항목</th>
+                <th>보유 및 이용기간</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    본인여부 확인, 각종 맞춤형 서비스 제공, 취업활동증명서 서비스, 서비스 개선 및 신규 서비스 개발을 위한 통계 활용, 계약이행 및 약관변경 등의 고지를 위한 연락, 본인의사확인 및 민원 등의 고객불만처리
+                </td>
+                <td>
+                    가입자명, 본인인증정보 또는 중복가입확인정보(DI), 아이디, 비밀번호, 전화번호, 이메일
+                </td>
+                <td>
+                    <font style="text-decoration:underline;font-size:14px;">회원 탈퇴 시 즉시 파기</font>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- //7.0 변경 -->
+</div>
+        </div>
+    </div>
+
+        <div class="row policy_check_privacy required">
+            <input type="checkbox" id="lb_chk_sms" name="SMS_Agreee" class="mbrCheckOn devAgreeCheck" value="1" autocomplete="off" aria-autocomplete="none">
+            <label for="lb_chk_sms" class="chk_sms"><strong>[필수]</strong> 문자서비스 이용약관 동의 <a href="#DevPolicySMS" class="mbrBtnPolicy devPolicyService">내용보기</a></label>
+            <div id="DevPolicySMS" class="policyTplBox" style="display: none;">
+                <div class="pvsSec pvsTpList">
+    <h2 class="pvsHeading2"><strong>제1조(목적)</strong></h2>
+    <p class="depth_01">
+        본 약관은 잡코리아 유한책임회사(이하 "회사")가 운영하는 웹사이트 및 모바일 어플리케이션(이하 "사이트")에서 제공하는 문자메시지 발송 서비스(이하 "서비스")를 이용함에 있어 이용자의 권리/의무 및 책임사항, 기타 필요사항을 규정함을 목적으로 한다.
+    </p>
+    <h2 class="pvsHeading2"><strong>제2조(정의)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 서비스 : 회사가 사이트에서 유료 또는 무료로 제공하는 SMS, LMS 등 문자메시지 발송 기능
+        </li>
+        <li>
+            2. 이용자 : 회사가 제공하는 서비스를 이용하고자 절차에 의거 신청한 사이트의 기업회원
+        </li>
+        <li>
+            3. 이용신청 : 회사가 정한 별도의 기준과 절차에 따라 서비스 이용을 신청하는 것
+        </li>
+        <li>
+            4. 이용정지 : 회사가 정한 일정한 요건에 따라 일정기간 동안 서비스 이용을 보류 조치하는 것
+        </li>
+        <li>
+            5. 해지 : 이용자가 서비스 이용신청 후 사용중 이를 해약하는 것
+        </li>
+        <li>
+            6. 스팸메시지 : 수신자의 의사에 반하여 정보통신망을 통해 일방적으로 전송 또는 게시되는 영리목적의 광고성 정보
+        </li>
+        <li>
+            7. 문자피싱메시지 : 전자금융사기를 목적으로 전송 또는 게시되는 정보
+        </li>
+        <li>
+            8. 스미싱메시지 : 메시지 내용 중 인터넷 주소를 클릭하면 악성코드가 설치되어 수신자가 모르는 사이에 금전적 피해 또는 개인ㆍ금융정보 탈취 피해를 야기하는 메시지
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제3조(약관의 게시와 개정)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 회사는 이 약관의 내용을 이용자가 쉽게 알 수 있도록 서비스 약관 메뉴에 게시한다.
+        </li>
+        <li>
+            2. 회사는 "약관규제에관한법률", “개인정보보호법” "정보통신망이용촉진및정보보호등에관한법률(이하 "정보통신망법")", "전자상거래 등에서의 소비자 보호에 관한 법률", "전기통신사업법" 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수 있다.
+        </li>
+        <li>
+            3. 회사가 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 제1항의 방식에 따라 그 개정약관의 적용일자 7일 전부터 적용일자 전까지 공지한다.<br>
+            다만, 이용자의 권리 또는 의무에 관한 중요한 규정의 변경은 최소한 30일 전에 공지하고 일정기간 서비스내 공지사항, 전자우편, 로그인시 동의창 등의 전자적 수단을 통해 따로 명확히 통지하도록 한다.
+        </li>
+        <li>
+            4. 회사가 전항에 따라 개정약관을 공지 또는 통지하면서 이용자에게 약관 변경 적용일까지 거부의사를 표시하지 않으면 동의한 것으로 본다는 뜻을 명확하게 공지 또는 통지하였음에도 이용자가 명시적으로 거부의 의사표시를 하지 아니한 경우 약관의 규제에 관한 법률 제12조 제1호 단서에 따라 이용자가 개정약관에 동의한 것으로 본다.
+        </li>
+        <li>
+            5. 이용자가 개정약관의 적용에 동의하지 않을 경우 회사는 개정약관의 내용을 해당 이용자에게 적용할 수 없으며, 이 경우 이용자는 이용신청을 해지할 수 있다. 다만, 기존 약관을 적용할 수 없는 특별한 사정이 있는 경우에는 회사는 이용신청을 해지할 수 있다.
+        </li>
+        <li>
+            6. 이용자는 약관의 변경에 대하여 주의의무를 다하여야 하며 약관 미준수로 인한 이용자의 피해는 회사가 책임지지 않는다.
+        </li>
+        <li>
+            7. 이 약관이 이용자에게 적용되는 기간은 이용자의 서비스 신청일부터 해지일 까지를 원칙으로 하되, 단, 채권 또는 채무관계가 있을 경우에는 채권, 채무의 완료일 까지로 한다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제4조(서비스 이용 신청)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 이용자는 회사가 정한 별도의 기준과 절차에 따라 약관에 동의하여 서비스 이용 신청을 완료하고 회사가 이를 승낙함으로써 서비스 이용이 가능하다.
+        </li>
+        <li>
+            2. 회사는 제 1항과 같이 서비스 이용을 신청한 이용자 중 다음 각호에 해당하는 신청에 대하여는 승낙을 하지 않거나 사후에 이용 신청을 해지할 수 있다.
+            <p class="depth_02">
+                ① 이용자가 이 약관에 의하여 이전에 회원자격을 상실한 적이 있는 경우, 다만 회사의 이용자 재가입 승낙을 얻은 경우에는 예외로 한다.
+            </p>
+            <p class="depth_02">
+                ② 등록 내용에 허위, 기재누락, 오기가 있는 경우
+            </p>
+            <p class="depth_02">
+                ③ 실명이 아니거나 타인의 명의를 이용한 경우
+            </p>
+            <p class="depth_02">
+                ④ 이용자가 서비스의 정상적인 제공을 저해하거나 다른 이용자의 서비스 이용에 지장을 줄 것으로 예상되는 경우
+            </p>
+            <p class="depth_02">
+                ⑤ 회사의 업무상 또는 기술상 문제로 인해 가입승낙을 유보하는 경우
+            </p>
+            <p class="depth_02">
+                ⑥ 이용자가 서비스를 이용하여 법령에 위반되는 행위를 하거나 이와 유사한 행위를 하는 경우
+            </p>
+        </li>
+        <li>
+            3.	회사는 제1항에 따른 신청에 있어서 이용자의 종류에 따라 전문기관을 통한 실명확인 및 본인인증을 요청할 수 있다.
+        </li>
+        <li>
+            4.	서비스 이용 신청의 성립시기는 회사의 승낙이 이용자에게 도달한 시점으로 한다.
+        </li>
+        <li>
+            5.	회사는 이용자에 대해 회사정책에 따라 등급별로 구분하여 이용시간, 이용횟수, 서비스 메뉴 등을 세분하여 이용에 차등을 둘 수 있다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제5조(이용자의 아이디 및 비밀번호의 관리에 대한 의무)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 이용자의 아이디와 비밀번호에 관한 관리책임은 이용자에게 있으며 이를 제3자가 이용하도록 하여서는 안 된다.
+        </li>
+        <li>
+            2. 기타 본 약관에서 정하지 아니하는 아이디 및 비밀번호 관리에 대한 이용자의 의무는 사이트의 기업회원 약관에 따른다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제6조(개인정보보호 수집 및 보호 의무)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 회사는 "정보통신망법", "개인정보보호법", "전기통신사업법" 등 관계 법령이 정하는 바에 따라 이용자의 개인정보를 보호하기 위해 노력한다.
+        </li>
+        <li>
+            2. 회사는 개인정보의 보호 및 사용에 대해서는 관련 법령 및 회사의 개인정보처리방침에 그 수집범위 및 목적을 사전 고지한다. 단, 회사에서 제공하는 공식 사이트 이외의 링크된 사이트에서는 회사의 개인정보처리방침이 적용되지 않는다
+        </li>
+        <li>
+            3.	기타 본 약관에서 정하지 아니하는 개인정보보호 관련 사항은 사이트의 개인정보 처리방침 등 정책에 따른다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제7조(이용자에 대한 통지)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 회사가 이용자에 대한 서비스 관련 내용의 통지를 하는 경우, 사이트의 기업회원 약관에 의거 사이트 가입 신청시 등록한 이메일, 휴대전화 문자메세지 또는 어플리케이션 푸쉬 알림 중 수신에 동의한 수단을 활용하여 각종 고지나 통지를 이행할 수 있다.
+        </li>
+        <li>
+            2. 회사는 불특정다수 회원에 대한 통지의 경우 1주일이상 서비스에 게시함으로써 개별 통지에 갈음할 수 있다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제8조(서비스 제공의 의무)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 회사는 "정보통신망법", "개인정보보호법", "전기통신사업법" 등 관련법과 이 약관이 금지하는 행위를 하지 않으며 이용자에게 제공하는 서비스를 안정적으로 제공하기 위하여 최선을 다해야
+        </li>
+        <li>
+            2. 회사는 안정적인 서비스를 지속적으로 제공하기 위하여 설비에 장애가 생기거나 멸실 되었을 때 지체 없이 수리 또는 복구를 한다. 다만, 천재지변이나 비상사태 등 부득이한 경우에는 서비스를 일시 중단하거나 영구 중지할 수 있다.
+        </li>
+        <li>
+            3. 회사는 이용자가 서비스 이용 신청 혹은 발신번호 등록 시 타인의 명의를 도용한 부정가입을 방지하기 위해 본인인증 서비스 사업자가 제공하는 인증방법을 통해 본인확인 인증서비스를 제공ㆍ운영한다.
+        </li>
+        <li>
+            4. 회사는 서비스 제공과 관련 취득한 이용자의 개인정보를 본인의 동의 없이 타인에게 누설하거나 배포할 수 없으며 서비스 관련 업무 이외의 목적으로 사용할 수 없습니다. 다만 관계법령에 의한 관계기관으로부터의 요청 등 법률의 규정에 따른 적법한 절차에 의한 경우는 그러하지 않는다.
+        </li>
+        <li>
+            5. 회사는 이용자가 안전하게 인터넷 서비스를 이용할 수 있도록 이용자의 개인정보보호를 위한 보안 시스템과 개인정보보호 책임자를 갖추어야 한다.
+        </li>
+        <li>
+            6. 회사는 이용자의 사전 동의 없이 이용자가 원하지 않는 영리목적의 광고성 전자우편을 발송하지 않는다.
+        </li>
+        <li>
+            7. 회사는 이용계약의 체결, 계약사항의 변경 및 해지 등 이용자와의 계약관련 절차 및 내용 등에 있어 이용자에 편의를 제공하도록 노력한다.
+        </li>
+        <li>
+            8. 회사의 서비스 이용시에 회사의 귀책사유 없는 이용자의 시스템 장애 발생, 각종 카페, 블로그, 클럽 등 게시판의 개인정보유출에 대한 피해 등은 회사가 책임을 지지 않는다.
+        </li>
+        <li>
+            9. 회사의 사이트는 서비스의 본질적인 부분이 아닌 경우 사전예고 없이 모양과 기능이 수정될 수 있다.
+        </li>
+        <li>
+            10.	회사는 서비스 제공목적에 맞는 서비스 이용 여부를 확인하기 위하여 상시적으로 모니터링을 실시한다.
+        </li>
+        <li>
+            11.	회사는 "정보통신망법", "개인정보보호법", "전기통신사업법"에 등 관련 법 따라 스팸메시지ㆍ문자피싱메시지ㆍ스미싱메시지, 사기, 협박, 음란성, 범죄를 목적으로 하거나 교사 또는 방조하는 내용의 정보, 발신번호조작 등으로 인지되는 문자메시지에 대해서 차단 및 제한할 수 있다.
+        </li>
+        <li>
+            12.	회사는 서비스 제공이 불가능한 경우 다음과 같이 처리한다.
+            <p class="depth_02">
+                ① 서비스 제공이 불가능한 경우 : 천재지변, 시스템(통신) 장애 및 점검, 서비스 양도 및 폐지(휴지) 등
+            </p>
+            <p class="depth_02">
+                ② 천재지변 등을 제외한 서비스 제공이 불가능한 경우 이용자(고객)에게 사전 공지(안내)를 한다.
+            </p>
+            <p class="depth_02">
+                ③ 천재지변 등을 제외한 서비스 제공이 불가능한 경우 이용자(회원)에게 사전 공지(안내) 없이 서비스를 중단 하였을 시, 그로 인해 피해가 발생한 이용자(회원)에게 피해에 따른 손해를 확인 후 보상할 수 있다.
+            </p>
+            <p class="depth_02">
+                ④ 회사는 사업의 전부 및 일부를 휴지 또는 폐지 하고자 할 때에는 그 휴지 또는 폐지 예정일의 30일전까지 그 내용을 이용자(고객)에게 이메일, 홈페이지 등을 이용하여 공지한다.
+            </p>
+        </li>
+        <li>
+            13.	회사는 이용자가 불법스팸을 전송한 사실을 확인한 경우 한국인터넷진흥원 불법스팸대응센터에 관련 자료를 첨부하여 신고할 수 있다.
+        </li>
+        <li>
+            14.	회사는 한국인터넷진흥원으로부터 스팸신고가 접수된 경우 서비스 제공목적에 맞는 서비스 이용 여부를 확인하기 위하여 다량의 문자전송여부 및 서비스 변경이력을 확인할 수 있다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제9조(불만사항 접수 및 처리 의무)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            회사는 이용자의 불만사항 접수 및 처리절차를 다음과 같이 처리한다.
+            <p class="depth_02">
+                ① 불만사항 접수는 일반전화, 게시판, 이메일에 의한 방법으로 접수 받는다.
+            </p>
+            <p class="depth_02">
+                ② 불만사항 처리는 접수 방법에 따라 운영자가 직접 전화, 답변하여 처리하는 것을 원칙으로 하고, 불만형태별로 처리기간을 정하여 그 기간 내에 처리한다.
+                </p><table class="policy-table">
+                    <tbody><tr>
+                        <th>불만형태</th>
+                        <th>유형</th>
+                        <th>원인</th>
+                        <th>처리절차</th>
+                        <th>처리기간</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">서비스 관련</td>
+                        <td>통신 장애</td>
+                        <td>회사의 귀책사유</td>
+                        <td>대고객 사과 및 품질개선</td>
+                        <td>3일 이내</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">시스템 장애</td>
+                        <td>회사의 귀책사유</td>
+                        <td>대고객 사과 및 품질개선</td>
+                        <td>3일 이내</td>
+                    </tr>
+                    <tr>
+                        <td>이용자(회원)의 귀책사유</td>
+                        <td>대고객 설명</td>
+                        <td>1일 이내</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">요금 관련</td>
+                        <td rowspan="3">청구요금 이의</td>
+                        <td rowspan="2">회사의 귀책사유</td>
+                        <td>과금전 : 정정 과금 처리</td>
+                        <td>3일 이내</td>
+                    </tr>
+                    <tr>
+                        <td>과금후 : 환불 처리</td>
+                        <td>7일 이내</td>
+                    </tr>
+                    <tr>
+                        <td>이용자의 귀책사유</td>
+                        <td>대고객 설명</td>
+                        <td>1일 이내</td>
+                    </tr>
+                </tbody></table>
+            <p></p>
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제10조(발신번호 변작방지 의무)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            회사는 발신번호의 변작방지를 위해 다음과 같은 조치를 취한다.
+            <p class="depth_02">
+                ① 번호인증을 통한 발신번호 사전등록서비스를 제공/운영
+            </p>
+            <p class="depth_02">
+                ② 회사에서 제공하는 통일된 발신번호로 발신
+            </p>
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제11조(이용자의 금지행위 의무)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 이용자는 현행 법령, 회사가 제공하는 서비스에 정한 약관, 이용안내 및 서비스와 관련하여 공지한 주의사항, 회사가 통지하는 사항, 기타 서비스 이용에 관한 규정을 준수하여야 하며, 기타 회사의 업무에 방해되는 행위를 해서는 안된다.
+            <p class="depth_02">
+                ① 정보통신망법(제50조)에 따라 광고문자 표기 의무사항을 위반해서는 안된다.
+            </p>
+            <p class="depth_02">
+                ② 이용자가 본인 명의가 아닌 타인의 전화번호를 부정하게 사용하는 경우에 서비스를 중지시키고, 필요시 회원 탈퇴 및 접속IP를 차단한다.
+            </p>
+        </li>
+        <li>
+            2. 이용자는 서비스를 이용하여 얻은 정보를 회사의 사전 승낙 없이 복사, 복제, 변경, 번역, 출판, 발송 및 기타의 방법으로 사용하거나 이를 타인에게 제공할 수 없다.
+        </li>
+        <li>
+            3. 이용자는 서비스를 이용함에 있어서 공공질서 또는 미풍양속을 해치는 행위, 또는 다음 각 호에 해당하는 행위를 해서는 안되며, 위반시 회사는 이용자의 서비스이용을 정지하고 일방적으로 서비스 이용 신청을 해지할 수 있다.
+            <p class="depth_02">
+                ① 다른 이용자의 이용 아이디를 부정 사용하는 행위
+            </p>
+            <p class="depth_02">
+                ② 해킹 행위 또는 컴퓨터 바이러스의 유포 행위
+            </p>
+            <p class="depth_02">
+                ③ 타인의 의사에 반하여 광고성정보 등 유사한 내용을 지속적으로 전송하는 행위
+            </p>
+            <p class="depth_02">
+                ④ 회사와 타인의 지적 재산권 등을 침해하는 행위(불법 복제물 복제·전송 등을 포함)
+            </p>
+            <p class="depth_02">
+                ⑤ 범죄행위를 목적으로 하거나 범죄행위를 교사하거나, 반국가적 범죄의 수행 등을 목적으로 하는 행위
+            </p>
+            <p class="depth_02">
+                ⑥ 서비스의 안전적인 운영에 지장을 주거나 줄 우려가 있다고 판단되는 행위(신청 또는 변경 시 허위내용을 등록하는 행위 포함)
+            </p>
+            <p class="depth_02">
+                ⑦ 원하지 않는 메시지를 타인에게 보내는 행위
+            </p>
+            <p class="depth_02">
+                ⑧ 회사와 타인의 명예를 손상시키거나 모욕하는 행위 또는 일체의 업무를 방해하는 행위
+            </p>
+            <p class="depth_02">
+                ⑨ 외설 또는 폭력적인 메시지, 팩스, 음성, 메일, 기타 공서양속에 반하는 정보를 서비스에 공개 또는 게시, 전송하는 행위 등 선량한 풍속 또는 기타 사회질서를 해하거나 관계법령에 위반하는 행위
+            </p>
+            <p class="depth_02">
+                ⑩ 회사의 동의 없이 영리를 목적으로 서비스를 사용하는 행위 및 제3자에게 임의로 서비스를 임대하는 행위
+            </p>
+        </li>
+        <li>
+            4. 이용자는 스팸메시지ㆍ문자피싱메시지 전송 등 불법행위를 하거나 전기통신사업법 등 관련 법령을 준수하지 않아 발생하는 모든 민ㆍ형사상의 책임을 부담한다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제12조(서비스의 변경)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 회사는 상당한 이유가 있는 경우에 운영상, 기술상의 필요에 따라 제공하고 있는 전부 또는 일부 서비스를 변경할 수 있다.
+        </li>
+        <li>
+            2. 서비스의 내용, 이용방법, 이용시간에 대하여 변경이 있는 경우에는 변경사유, 변경될 서비스의 내용 및 제공일자 등을 그 변경 전에 해당 서비스 초기화면에 게시하여야 한다.
+        </li>
+        <li>
+            3. 회사는 무료로 제공되는 서비스의 일부 또는 전부를 회사의 정책 및 운영의 필요상 수정, 중단, 변경할 수 있으며 이에 대하여 관련법에 특별한 규정이 없는 한 이용자에게 별도의 보상을 하지 않다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제13조(서비스 이용의 제한 및 정지)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 회사는 원활한 서비스 제공을 위하여 이 약관을 위반하거나 서비스의 정상적인 운영을 방해하는 경우 서비스 이용을 제한하거나 정지할 수 있다.
+        </li>
+        <li>
+            2. 회사는 1항에도 불구하고 주민등록법을 위반한 명의도용 및 결제도용, 저작권법을 위반한 불법프로그램의 제공 및 운영방해, 정보통신망법을 위반한 스팸메시지 및 불법통신, 해킹, 악성프로그램의 배포, 접속권한 초과행위 등과 같이 관련법을 위반한 경우에는 즉시 영구이용정지를 할 수 있다. 본 항에 따른 서비스 이용정지 시 서비스 내의 금액, 혜택 및 권리 등도 모두 소멸되며 회사는 이에 대해 별도로 보상하지 않는다.
+        </li>
+        <li>
+            3. 회사는 다음 각호에 해당하는 경우 해당 역무의 제공을 거부하는 조치를 할 수 있으며, 이용자에게 통지한다. 단, 회사가 긴급하게 이용을 정지할 필요가 있다고 인정하는 경우나, 이용자의 귀책사유로 인해 통지할 수 없는 경우에는 통지를 생략할 수 있다.
+            <p class="depth_02">
+                ① 이용자가 정보통신망법 제50조 또는 제50조의 8을 위반하여 불법스팸 발송을 하는 경우
+            </p>
+            <p class="depth_02">
+                ② 방송통신위원회ㆍ한국인터넷진흥원ㆍ과학기술정보통신부 등 관계기관이 불법스팸메시지ㆍ문자피싱메시지 등 불법행위의 전송사실을 확인하여 이용정지를 요청하는 경우
+            </p>
+            <p class="depth_02">
+                ③ 광고성 정보의 전송 또는 수신으로 역무의 제공으로 장애가 일어나거나 일어날 우려가 있는 경우
+            </p>
+            <p class="depth_02">
+                ④ 이용자가 발송한 문자 또는 팩스메시지 광고성 정보 메시지의 수신을 원하지 아니하는 경우
+            </p>
+            <p class="depth_02">
+                ⑤ 제10조(발신번호 변작방지 의무)를 위반하여 발신번호를 변작하는 등 거짓으로 표시한 경우
+            </p>
+            <p class="depth_02">
+                ⑥ 과학기술정보통신부ㆍ한국인터넷진흥원 등 관련 기관이 발신번호 변작 등을 확인하여 이용 정지를 요청하는 경우
+            </p>
+            <p class="depth_02">
+                ⑦ 유료서비스를 사용한 이용자가 요금 등을 납입할 의무를 이행하지 아니한 경우
+            </p>
+            <p class="depth_02">
+                ⑧ 제11조(이용자의 금지행위 의무)를 이행하지 아니한 경우
+            </p>
+            <p class="depth_02">
+                ⑨ 정보통신윤리위원회의 시정요구가 있거나, 불법선거 운동과 관련하여 선거관리위원회의 유권해석을 받은 경우 또는 수사기관이나 법원의 결정 또는 명령 등으로 회사의 이용자에 대한 서비스 제공이 관련 법령상 제한되는 경우
+            </p>
+            <p class="depth_02">
+                ⑩ 이용자는 사전에 명시적으로 광고 수신동의를 얻은 자에게만 광고 메시지를 전송할 수 있으며, 오후9시 부터 다음날 오전8시까지는 별도의 사전 동의를 받아야 함에도 이를 어긴 경우
+            </p>
+            <p class="depth_02">
+                ⑪ 기타 회사가 사회통념상 합리적인 관점에서 이용자로 부적당하다고 판단한 경우
+            </p>
+        </li>
+        <li>
+            4. 이용자가 3항에 해당되어 타 서비스에 악용될 우려가 있다는 객관적 정황이 있는 경우에는 그 다른 서비스도 이용정지 할 수 있다. 특히 3항 5호 및 6호에 해당하는 경우 회사는 이용자의 서비스를 영구정지 조치할 수 있으며, 원인이 해소되는 경우 해제할 수 있다.
+        </li>
+        <li>
+            5. 제3항의 이용정지 경우 사회적 공익을 저해할 목적이나 범죄적 목적으로 서비스를 이용하고 있다고 판단되는 경우 이용자에게 회사는 사전통보 없이 서비스를 즉시 중단할 수 있으며 그에 따른 데이터도 복구를 전제로 하지 않고 삭제할 수 있다.
+        </li>
+        <li>
+            6. 회사는 이용정지 등의 원인이 된 사유가 완전히 해소되기 전까지는 이용정지등 조치를 해제하지 아니 할 수 있으며, 그 이용정지등의 사유가 해소된 것이 확인된 경우에는 이용정지조치를 즉시 해제한다.
+        </li>
+        <li>
+            7. 회사는 회사에서 정하는 스미싱 등 스팸방지를 위해 특정 단어가 포함된 문자 메시지에 대해 발송을 제한 할 수 있다.
+        </li>
+        <li>
+            8. 회사는 이용자에게 강제적인 서비스 신청 해지 사유가 발생할 경우 최소한 30일 이상의 기간을 정하여 소명할 기회를 부여한다. 단 해당 기간 동안 회사는 이용자에게 서비스를 중지할 수 있다.
+        </li>
+        <li>
+            9. 회사는 스팸메시지ㆍ피싱문자 전송을 방지하기 위해서 문자 팩스의 일일발송량을 제한할 수 있으며 자체 모니터링을 강화할 수 있다.
+        </li>
+        <li>
+            10.	2회 이상 동일한 이용정지 사유가 발생하는 이용자에게는 회사는 이용자에게 사전통보 없이 서비스를 즉시 중단할 수 있으며, 제8항의 소명기회 부여를 생략하고 이용자에게 이용정지사유 2회 이상 발생으로 인한 사유임을 알려 서비스 해지 조치를 할 수 있다. 이 경우 해당 거래 관련 자료는 관련 법령에 따라 필요한 기간 동안 보관한다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제14조(문자 발송량의 제한)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1.	회사는 스팸메시지ㆍ피싱문자 전송을 방지하기 위해서 문자 팩스의 일일발송량을 제한할 수 있으며 자체 모니터링을 강화할 수 있다.
+        </li>
+        <li>
+            2.	회사는 이용자가 제출하는 증빙서류 등을 통해 불법스팸 전송이 아님을 확인할 수 있는 경우 초과전송이 가능하다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제15조(서비스 이용 신청 해지)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 이용자가 서비스 이용 신청 해지를 하고자 할 때에는 본인이 직접 서비스 이용 해지를 신청하거나 전자우편, 전화 등의 방법을 통하여 회사에 신청하여야 한다.
+        </li>
+        <li>
+            2. 회사는 1항의 규정에 의하여 해지 신청이 접수되면 즉시 이용 신청을 해지한다. 단, 별도의 채무나 채권 관계가 있을 경우에는 그러하지 아니한다.
+        </li>
+        <li>
+            3. 서비스 해지 후로부터 5년간 고객의 자료를 보호할 의무를 가진다. 단, 서비스해지 후 보관된 개인정보 및 기타 서비스자료는 관련법규에 의하여 보존 의무가 없는 것으로 판명이 되면 즉시 삭제처리 된다.
+        </li>
+        <li>
+            4. 회사는 이용자가 다음 중 하나에 해당하는 것이 객관적으로 명백하거나 관련 증거가 확보된 경우 별도의 소명기회 부여 없이 당해 서비스 신청을 해지할 수 있다.
+            <p class="depth_02">
+                ① 타인의 명의로 신청하였거나 신청시 제출한 자료 및 정보가 허위 또는 누락되었음이 확인된 경우
+            </p>
+            <p class="depth_02">
+                ② 회사의 서비스 제공목적 외의 용도로 서비스를 이용하거나, 전기통신사업법 제30조에 위반하여 제3자에게 서비스를 이용하도록 제공한 경우
+            </p>
+            <p class="depth_02">
+                ③ 방송통신위원회 또는 한국인터넷진흥원 또는 기타 유관기관이 불법스팸 전송과 관련하여 서비스 이용 해지를 요청하는 경우
+            </p>
+            <p class="depth_02">
+                ④ 회사가 제공하는 서비스를 이용하여 불법스팸을 전송한 사실이 확인된 경우
+            </p>
+            <p class="depth_02">
+                ⑤ 불특정 다수를 대상으로 메시지(SMS, LMS, MMS 포함), 음성(영상)통화 등의 방법을 통해 무차별적인 스팸을 전송한 사실이 확인된 경우
+            </p>
+            <p class="depth_02">
+                ⑥ 서비스를 이용하여 수신자를 기망하여 회신을 유도하는 행위를 하는 경우
+            </p>
+            <p class="depth_02">
+                ⑦ 제14조의 규정에 의하여 이용정지를 당한 이후 1년 이내에 이용정지 사유가 재발한 경우
+            </p>
+            <p class="depth_02">
+                ⑧ 발신자 정보를 변작하여 영리목적의 광고성 정보를 전송하였거나, 또는 발신자 정보를 변작하여 위해를 입힐 목적으로 문자메시지를 전송한 사실이 확인된 경우
+            </p>
+            <p class="depth_02">
+                ⑨ 이용자가 전송한 광고성 정보에 대해 회사가 한국인터넷진흥원 등에 불법스팸 유무확인을 요청하여 불법스팸임이 확인된 경우
+            </p>
+        </li>
+        <li>
+            5. 회사는 불법스팸을 전송하였다고 확인된 이용자가 이용중인 다른 서비스가 불법스팸에 악용되고 있거나 악용될 우려가 있다는 객관적 정황이 있는 경우에는 그 다른 서비스도 해지 할 수 있다.
+        </li>
+        <li>
+            6. 회사는 제4항의 규정에 의하여 서비스 신청을 해지하는 경우, 그 사실을 당해 이용자에게 통지한다. 단, 회사가 긴급하게 서비스 이용을 해지 할 필요가 있다고 인정하는 경우나, 이용자의 귀책사유로 인해 통지할 수 없는 경우에는 통지를 생략할 수 있다.
+        </li>
+    </ol>
+    <h2 class="pvsHeading2"><strong>제16조(서비스 요금 및 환불)</strong></h2>
+    <ol class="depth_01">
+        <li>
+            1. 유료서비스 이용과 관련하여 이용자가 납부하여야 할 요금은 이용료 사이트에 게재한 바에 따른다.
+        </li>
+        <li>
+            2. 환불에 관한 규정은 기업서비스 이용약관 제11조(서비스 요금의 환불)에 따른다.
+        </li>
+    </ol>
+</div>
+            </div>
+        </div>
+        <div class="row policy_check_privacyOptional optional">
+            <input type="checkbox" id="lb_chk_privacyOptional" name="PriacyOptional_Agree" class="mbrCheckOn devAgreeCheck" value="31" autocomplete="off" aria-autocomplete="none">
+            <label for="lb_chk_privacyOptional" class="chk_privacyOptional">[선택] 개인정보 수집 및 이용 동의 <a href="#DevPolicyPrivacyOptional" class="mbrBtnPolicy devPolicyService">내용보기</a></label>
+            <div id="DevPolicyPrivacyOptional" class="policyTplBox" style="display: none;">
+                <div class="pvsSec pvsTpList">
+    <h2 class="pvsHeading2"><strong>1. 수집 이용 목적</strong></h2>
+    <p class="depth_01">
+        <u>
+            상품•서비스 영업, 홍보, 마케팅, 쿠폰 발송을 목적으로 잡코리아, 알바몬에서 활용
+        </u>
+    </p>
+    <h2 class="pvsHeading2"><strong>2. 수집하는 개인정보 항목</strong></h2>
+    <p class="depth_01">
+        전화번호, 이메일, 푸시토큰, 서비스 이용 기록
+    </p>
+    <h2 class="pvsHeading2"><strong>3. 개인정보 보유 및 이용기간</strong></h2>
+    <p class="depth_01">
+        <u>회원탈퇴 시 즉시 파기</u>
+    </p>
+    <h2 class="pvsHeading2"><strong>4. 수신동의 거부 및 철회방법 안내</strong></h2>
+    <p class="depth_01">
+        본 동의는 거부하실 수 있습니다. 다만 거부 시 동의를 통해 제공 가능한 각종 혜택, 이벤트 안내를 받아보실 수 없습니다.
+        더 이상 상품•서비스 영업, 홍보, 마케팅, 쿠폰 발송을 원하시지 않는 경우 회원정보수정 페이지에서 수신여부를 변경하실 수 있습니다.
+    </p>
+</div>
+            </div>
+        </div>
+        <div class="row policy_check_privacyOptional optional">
+            <input type="checkbox" id="lb_chk_ad_info" name="Email_Agree" class="mbrCheckOn devAgreeCheck" autocomplete="off" aria-autocomplete="none">
+            <label for="lb_chk_ad_info" class="chk_privacyOptional">[선택] 광고성 정보 수신 동의 <a href="#DevPolicyPrivacyOptional" class="mbrBtnPolicy devPolicyService">내용보기</a></label>
+            <div id="DevPolicyPrivacyOptional" class="policyTplBox" style="display: none;">
+                <div class="pvsSec pvsTpList">
+    <h2 class="pvsHeading2">
+        회원이 수집 및 이용에 동의한 개인정보를 잡코리아, 알바몬에서 활용하는 것에 동의하며, 해당 개인정보를 활용하여 전화 또는 전자적 전송매체(이
+
+        메일/SMS 등 다양한 전송매체)를 통해 서비스에 대한 개인 맞춤형 광고 정보(뉴스레터, 소식 및 광고메일, 휴대폰 알림), 상품•서비스 영업, 홍보, 마
+
+        케팅 정보를 전송할 수 있습니다.
+        <br><br>
+        광고성 정보 수신 동의를 철회하고자 할 경우에는 광고성 동의 수신 설정 페이지에서 수신여부를 변경하실 수 있습니다.
+    </h2>
+</div>
+            </div>
+        </div>
+
+
+    <div class="notice_msg" id="notice_msg_agree" style="display:none;"><p class="failure">잡코리아 이용약관과 개인정보 수집 및 이용(필수)에 모두 동의해주세요.</p></div>
+</div>                <!-- 개인정보 유효기간 선택 -->
+                <div class="row_group line_none regist_complete" style="position:relative;">
+                    <div class="row">
+                        <button type="button" class="mbrBtnRegist dev-submit">가입하기</button>
+                    </div>
+                </div>
+
+        </form>
+    </fieldset>
+    <div class="familysite">
+    <h3 class="skip">Family site</h3>
+    <p class="text"><strong>통합 ID 하나로</strong> 잡코리아, 알바몬 모든 서비스 이용 가능합니다</p>
+</div>
+
+</div>
+    </div>
+
+        <div id="footer">
+            <div class="copyright">
+                © <strong><a href="https://www.jobkorea.co.kr" target="_blank">JOBKOREA</a></strong> LLC. All rights reserved.
+            </div>
+        </div>
+
+    
+
+<div style="position:absolute; left:-5000px; overflow:hidden; display:none;">
+	
+
+
+
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+	<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WL56D3L"
+			height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+	<!-- End Adobe Marketing Cloud Tag Management code -->
+</div>
+<div style="position:absolute; left:-5000px; overflow:hidden; display:none;">
+    
+
+    <script>
+        /* usage */
+        (function ($) {
+            $(window).load(function () {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-75522609-1', 'jobkorea.co.kr', { 'allowLinker': true, 'name': 'trackerOne2' });
+                ga('require', 'linker');
+                ga('linker:autoLink', ['jobbusan.co.kr']);
+                ga('trackerOne2.send', 'pageview');
+
+            });
+        })(jQuery);
+    </script>
+    <script type="text/javascript">
+    <!--
+    function loadScriptFn(url, callback) {
+        var scriptEle=document.createElement('script');
+        scriptEle.type='text/javascript';
+        var loaded=false;
+        scriptEle.onreadystatechange=function() {
+            // 서버에서 읽어올 경우 loaded, 캐쉬에서 가져올 경우 complete 이기에 둘 모두 처리
+            if (this.readyState == 'loaded' || this.readyState == 'complete') {
+                if (loaded) return;
+                loaded = true;
+                callback();
+            }
+        }
+        scriptEle.onload=function() {
+            callback();
+        };
+        scriptEle.src=url;
+        document.getElementsByTagName('head')[0].appendChild(scriptEle);
+    }
+
+    //-->
+    </script>
+</div>
+
+
+<!-- Facebook Pixel Code -->
+<script>
+    (function ($) {
+        $(window).load(function () {
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return; n = f.fbq = function () {
+                    n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                }; if (!f._fbq) f._fbq = n;
+                n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+                t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('set', 'autoConfig', 'false', '1166416616740867');
+            fbq('init', '1166416616740867'); // Insert your pixel ID here.
+            fbq('track', 'PageView');
+
+        });
+    })(jQuery);
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1166416616740867&ev=PageView&noscript=1" />
+</noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+<!-- 공통 호출 하단 스크립트 : 모든페이지 하단 설치 -->
+<!-- PlayD TERA Log Script v1.2 -->
+<script>
+    window.onload = function () {
+        var _nSA = (function (_g, _s, _p, _d, _i, _h) {
+            if (_i.wgc != _g) {
+                _i.wgc = _g; _i.wrd = (new Date().getTime());
+                var _sc = _d.createElement('script'); _sc.src = _p + '//sas.nsm-corp.com/' + _s + 'gc=' + _g + '&rd=' + _i.wrd;
+                var _sm = _d.getElementsByTagName('script')[0]; _sm.parentNode.insertBefore(_sc, _sm);
+            } return _i;
+        })('TR10148105490', 'sa-w.js?', location.protocol, document, window._nSA || {}, location.hostname);
+    }
+</script>
+<!-- LogAnalytics Script Install -->
+
+
+
+<script type="text/javascript">
+    "use strict"
+    var kakaoPixelTag = {
+        key: "397545586629917514",
+        url: "//t1.daumcdn.net/adfit/static/kp.js",
+        load: function () {
+            var self = this;
+
+            self.method().lazyload(self.method().loadPixel);
+        },
+        method : function () {
+            var self = this;
+            return {
+                lazyload: function (callback) {
+                    var scriptEle = document.createElement('script');
+                    scriptEle.type = 'text/javascript';
+                    var loaded = false;
+                    scriptEle.onreadystatechange = function () {
+                        // 서버에서 읽어올 경우 loaded, 캐쉬에서 가져올 경우 complete 이기에 둘 모두 처리
+                        if (this.readyState == 'loaded' || this.readyState == 'complete') {
+                            if (loaded) return;
+                            loaded = true;
+                            if (typeof callback === 'function') {
+                                callback();
+                            }
+                        }
+                    }
+                    scriptEle.onload = function () {
+                        if (typeof callback === 'function') {
+                            callback();
+                        }
+                    };
+                    scriptEle.src = self.url;
+                    document.getElementsByTagName('head')[0].appendChild(scriptEle);
+                },
+                loadPixel: function () {
+                    self.method().pageView();
+                },
+                check: function () {
+                    if (typeof kakaoPixel === 'undefined') {
+                        console.log("kakaoPixel is not defined")
+                        return false;
+                    } else {
+                        return true;
+                    }
+                },
+                pageView: function () {
+                    if (self.method().check()) {
+                        self.method().console('pageView');
+                        kakaoPixel(self.key).pageView();
+                    }
+                },
+                completeRegistration: function () {
+                    if (self.method().check()) {
+                        self.method().console('completeRegistration');
+                        kakaoPixel(self.key).completeRegistration();
+                    }
+                },
+                participation: function () {
+                    if (self.method().check()) {
+                        self.method().console('participation');
+                        kakaoPixel(self.key).participation();
+                    }
+                },
+                purchase: function () {
+                    if (self.method().check()) {
+                        self.method().console('purchase');
+                        kakaoPixel(self.key).purchase();
+                    }
+                },
+                addToWishList: function () {
+                    if (self.method().check()) {
+                        self.method().console('addToWishList');
+                        kakaoPixel(self.key).addToWishList();
+                    }
+                },
+                addToCart: function () {
+                    if (self.method().check()) {
+                        self.method().console('addToCart');
+                        kakaoPixel(self.key).addToCart();
+                    }
+                },
+                console: function (eventStr) {
+                    //console.log('%c KakaoPixel %c load %c ' + eventStr, 'background: #4C5667;font-size: 12px;color: #FFF;padding: 6px;', 'background: #3474E8;font-size: 12px;color: #FFF;padding: 6px;', 'background: #027a00;font-size: 12px;color: #FFF;padding: 6px;');
+                }
+            }
+        }
+    };
+
+
+    if (window.addEventListener) {
+        window.addEventListener('load', function () {
+            if (kakaoPixelTag !== 'undefined') {
+                kakaoPixelTag.load();
+            }
+        });
+    }
+</script>
+
+
+
+<script>
+var jkcriteoEvt = {
+    el : $(document),
+    Criteo_Event : 'viewPage',
+    CriteoMail: '',
+    gno : '',
+    gnolist: [],
+    isload : false,
+    load: function () {
+        var self = this;
+        if (self.isload) {
+            self.event();
+        } else {
+            self.method().lazyloadScriptFn('//dynamic.criteo.com/js/ld/ld.js?a=87221', function () {
+                self.isload = true;
+                self.event();
+            });
+        }
+    },
+
+    event: function () {
+        var self = this;
+        //console.log(self.Criteo_Event);
+        if (self.Criteo_Event == "viewHome") {
+            self.method().viewhome();
+        } else if (self.Criteo_Event == "trackTransaction") {
+            self.method().trackTransaction();
+        } else if (self.Criteo_Event == "viewList") {
+                        self.method().criteo_viewlist();
+
+        } else if (self.Criteo_Event == "viewPage") {
+            self.method().viewPage();
+        } else if (self.Criteo_Event == "viewItem") {
+            self.method().viewItem();
+        }
+    },
+    method: function () {
+        var self = this;
+
+        return {
+
+            lazyloadScriptFn : function(url, callback) {
+                var scriptEle = document.createElement('script');
+                scriptEle.type = 'text/javascript';
+                var loaded = false;
+                scriptEle.onreadystatechange = function () {
+                    // 서버에서 읽어올 경우 loaded, 캐쉬에서 가져올 경우 complete 이기에 둘 모두 처리
+                    if (this.readyState == 'loaded' || this.readyState == 'complete') {
+                        if (loaded) return;
+                        loaded = true;
+                        callback();
+                    }
+                }
+                scriptEle.onload = function () {
+                    callback();
+                };
+                scriptEle.src = url;
+                document.getElementsByTagName('head')[0].appendChild(scriptEle);
+            },
+
+            joblistevt: function (className) {
+                if (self.el.find(className).length == 0) {
+                    return;
+                }
+                var _len = self.el.find(className).length < 3 ? self.el.find(className).length : 3;
+                self.gnolist = self.el.find(className).slice(0, _len).map(function () { return $(this).data('gno'); }).get();
+                self.method().criteo_viewlist(self.Criteo_Event);
+            },
+
+            criteo_viewlist: function (pagetype) {
+                window.criteo_q = window.criteo_q || [];
+                if (self.gnolist.length > 0) {
+                    //console.log("%c criteo %c viewList " + self.gnolist + " gnoCount : " + self.gnolist.length, "background:orange; color: #FFF;font-size: 12px; padding:6px;", "background:green; color: #FFF;font-size: 12px; padding:6px;");
+                    window.criteo_q.push(
+                        { event: "setAccount", account: 87221 },
+                        { event: "setSiteType", type: "d" },
+                        { event: "viewList", item: self.gnolist }
+                    );
+                    self.gnolist = [];
+                }
+            },
+
+            viewhome: function () {
+                //console.log("%c criteo %c load Event = viewhome", "background:orange; color: #FFF;font-size: 12px; padding:6px;", "background:green; color: #FFF;font-size: 12px; padding:6px;");
+                window.criteo_q = window.criteo_q || [];
+                window.criteo_q.push(
+                    { event: "setAccount", account: 87221 },
+                    { event: "setSiteType", type: "d" },
+                    { event: "viewhome" }
+                );
+            },
+
+            trackTransaction: function () {
+
+                if (self.gno != '') {
+                    //console.log("%c criteo %c load Event = trackTransaction", "background:orange; color: #FFF;font-size: 12px; padding:6px;", "background:green; color: #FFF;font-size: 12px; padding:6px;");
+                    window.criteo_q = window.criteo_q || [];
+                    window.criteo_q.push(
+                        { event: "setAccount", account: 87221 },
+                        { event: "setSiteType", type: "d" },
+                        {
+                            event: "trackTransaction", id: '1751524595', deduplication: 1,
+                            item: [{ id: self.gno, price: 1, quantity: 1 }]
+                        }
+                    );
+                    self.gno = '';
+                }
+            },
+
+            viewPage: function () {
+                //console.log("%c criteo %c load Event = viewPage", "background:orange; color: #FFF;font-size: 12px; padding:6px;", "background:green; color: #FFF;font-size: 12px; padding:6px;");
+                window.criteo_q = window.criteo_q || [];
+                window.criteo_q.push(
+                    { event: "setAccount", account: 87221 },
+                    { event: "setSiteType", type: "d" },
+                    { event: "viewPage" }
+                );
+            },
+
+            viewItem: function () {
+                //console.log("%c criteo %c load Event = viewItem", "background:orange; color: #FFF;font-size: 12px; padding:6px;", "background:green; color: #FFF;font-size: 12px; padding:6px;");
+                if (self.gno != "") {
+                    //console.log("%c criteo %c viewList " + self.gno, "background:orange; color: #FFF;font-size: 12px; padding:6px;", "background:green; color: #FFF;font-size: 12px; padding:6px;");
+                    window.criteo_q = window.criteo_q || [];
+                    window.criteo_q.push(
+                        { event: "setAccount", account: 87221 },
+                        { event: "setSiteType", type: "d" },
+                        { event: "viewItem", item: self.gno  }
+                    );
+                    self.gno = ''
+                }
+            }
+
+        }
+    }
+    }
+    if (window.addEventListener) {
+        window.addEventListener('load', function () {
+            if (typeof jkcriteoEvt !== 'undefined') {
+                jkcriteoEvt.load();
+            }
+        });
+    }
+    var criteo_viewlist = function (criteo_gnos, pagetype) {
+        //console.log("%c criteo %c load Event = viewlist 2", "background:orange; color: #FFF;font-size: 12px; padding:6px;", "background:green; color: #FFF;font-size: 12px; padding:6px;");
+        //console.log("criteo_viewlist : " + criteo_gnos + "/" + pagetype);
+        window.criteo_q = window.criteo_q || [];
+        window.criteo_q.push(
+                { event: "setAccount", account: 87221 },
+                { event: "setSiteType", type: "d" },
+                { event: "viewList", item: [criteo_gnos] }
+        );
+    }
+</script>
+
+
+
+
+    
+
+<iframe height="0" width="0" style="display: none; visibility: hidden;"></iframe><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><div id="aswift_0_host" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"><iframe id="aswift_0" name="aswift_0" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-2252464458280030&amp;output=html&amp;adk=1812271804&amp;adf=3025194257&amp;abgtt=1&amp;lmt=1751524294&amp;plat=9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1081344%2C32%3A32%2C41%3A32%2C42%3A32&amp;plas=740x1024_l%7C740x1024_r&amp;format=0x0&amp;url=https%3A%2F%2Fwww.jobkorea.co.kr%2FJoin%2FGI_Regist&amp;pra=5&amp;wgl=1&amp;aihb=0&amp;asro=0&amp;aifxl=29_18~30_19&amp;aiapm=0.1542&amp;aiapmd=0.15&amp;aiapmi=0.16&amp;aiapmid=0.16&amp;aiact=0.5423&amp;aiactd=0.7&amp;aicct=0.7&amp;aicctd=0.7&amp;ailct=0.523051879517762&amp;ailctd=0.7&amp;aimart=4&amp;aimartd=8&amp;uach=WyJXaW5kb3dzIiwiMTkuMC4wIiwieDg2IiwiIiwiMTM4LjAuNzIwNC45NyIsbnVsbCwwLG51bGwsIjY0IixbWyJOb3QpQTtCcmFuZCIsIjguMC4wLjAiXSxbIkNocm9taXVtIiwiMTM4LjAuNzIwNC45NyJdLFsiR29vZ2xlIENocm9tZSIsIjEzOC4wLjcyMDQuOTciXV0sMF0.&amp;dt=1751524294635&amp;bpp=2&amp;bdt=227&amp;idt=116&amp;shv=r20250630&amp;mjsv=m202506260101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;nras=1&amp;correlator=755776241826&amp;frm=20&amp;pv=2&amp;u_tz=540&amp;u_his=1&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1032&amp;u_aw=1920&amp;u_cd=24&amp;u_sd=0.8&amp;dmc=8&amp;adx=-12245933&amp;ady=-12245933&amp;biw=2381&amp;bih=1138&amp;scr_x=0&amp;scr_y=0&amp;eid=95360549%2C95353387%2C95362655%2C95363435%2C95365225%2C95344788%2C95359265%2C95365116&amp;oid=2&amp;pvsid=4179950141409469&amp;tmod=1263378338&amp;uas=0&amp;nvt=1&amp;fsapi=1&amp;ref=https%3A%2F%2Fwww.jobkorea.co.kr%2FLogin%2FLogin_ToT.asp%3FrDBName%3DGI%26re_url%3D%252fYocruit%252fMng%252fGI_Reg&amp;fc=1920&amp;brdim=-1920%2C0%2C-1920%2C0%2C1920%2C0%2C1920%2C1032%2C2400%2C1138&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=32768&amp;bc=31&amp;bz=0.8&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=1&amp;uci=a!1&amp;fsb=1&amp;dtd=138" data-google-container-id="a!1" tabindex="0" title="Advertisement" aria-label="Advertisement" data-load-complete="true"></iframe></div></ins><webhighlights-element-registry elements-count="42"></webhighlights-element-registry><div id="webhighlights-notificationshldjnlbobkdkghfidgoecgmklcemanhm"></div><style id="web-highlights-global-style-variables">:root { --wh-slate-50: #f8fafc;--wh-slate-100: #f1f5f9;--wh-slate-200: #e2e8f0;--wh-slate-300: #cbd5e1;--wh-slate-400: #94a3b8;--wh-slate-500: #64748b;--wh-slate-600: #475569;--wh-slate-700: #334155;--wh-slate-800: #1e293b;--wh-slate-900: #0f172a;--wh-slate-950: #020617;--wh-primary-50: rgb(188, 220, 205);--wh-primary-100: rgb(154, 208, 185);--wh-primary-200: rgb(120, 197, 164);--wh-primary-300: rgb(86, 186, 144);--wh-primary-400: rgb(53, 176, 125);--wh-primary-500: rgb(0, 179, 122);--wh-primary-600: hsl(161, 100%, 33%);--wh-primary-700: hsl(161, 100%, 31%);--wh-primary-800: hsl(161, 100%, 29%);--wh-primary-900: hsl(161, 100%, 25%);--wh-primary-950: hsl(161, 100%, 20%);--wh-secondary-50: hsl(218, 22%, 30%);--wh-secondary-100: hsl(218, 22%, 27%);--wh-secondary-200: hsl(218, 22%, 25%);--wh-secondary-300: hsl(218, 22%, 22%);--wh-secondary-400: hsl(218, 22%, 20%);--wh-secondary-500: hsl(218, 22%, 18%);--wh-secondary-600: hsl(218, 22%, 16%);--wh-secondary-700: hsl(218, 22%, 14%);--wh-secondary-800: hsl(218, 22%, 12%);--wh-secondary-900: hsl(218, 22%, 8%);--wh-secondary-950: hsl(218, 22%, 6%);--wh-gray-50: #f9fafb;--wh-gray-100: #f3f4f6;--wh-gray-200: #e5e7eb;--wh-gray-300: #d1d5db;--wh-gray-400: #9ca3af;--wh-gray-500: #6b7280;--wh-gray-600: #4b5563;--wh-gray-700: #374151;--wh-gray-800: #1f2937;--wh-gray-900: #111827;--wh-gray-950: #030712;--wh-zinc-50: #fafafa;--wh-zinc-100: #f4f4f5;--wh-zinc-200: #e4e4e7;--wh-zinc-300: #d4d4d8;--wh-zinc-400: #a1a1aa;--wh-zinc-500: #71717a;--wh-zinc-600: #52525b;--wh-zinc-700: #3f3f46;--wh-zinc-800: #27272a;--wh-zinc-900: #18181b;--wh-zinc-950: #09090b;--wh-neutral-50: #fafafa;--wh-neutral-100: #f5f5f5;--wh-neutral-200: #e5e5e5;--wh-neutral-300: #d4d4d4;--wh-neutral-400: #a3a3a3;--wh-neutral-500: #737373;--wh-neutral-600: #525252;--wh-neutral-700: #404040;--wh-neutral-800: #262626;--wh-neutral-900: #171717;--wh-neutral-950: #0a0a0a;--wh-stone-50: #fafaf9;--wh-stone-100: #f5f5f4;--wh-stone-200: #e7e5e4;--wh-stone-300: #d6d3d1;--wh-stone-400: #a8a29e;--wh-stone-500: #78716c;--wh-stone-600: #57534e;--wh-stone-700: #44403c;--wh-stone-800: #292524;--wh-stone-900: #1c1917;--wh-stone-950: #0c0a09;--wh-red-50: #fef2f2;--wh-red-100: #fee2e2;--wh-red-200: #fecaca;--wh-red-300: #fca5a5;--wh-red-400: #f87171;--wh-red-500: #ef4444;--wh-red-600: #dc2626;--wh-red-700: #b91c1c;--wh-red-800: #991b1b;--wh-red-900: #7f1d1d;--wh-red-950: #450a0a;--wh-orange-50: #fff7ed;--wh-orange-100: #ffedd5;--wh-orange-200: #fed7aa;--wh-orange-300: #fdba74;--wh-orange-400: #fb923c;--wh-orange-500: #f97316;--wh-orange-600: #ea580c;--wh-orange-700: #c2410c;--wh-orange-800: #9a3412;--wh-orange-900: #7c2d12;--wh-orange-950: #431407;--wh-amber-50: #fffbeb;--wh-amber-100: #fef3c7;--wh-amber-200: #fde68a;--wh-amber-300: #fcd34d;--wh-amber-400: #fbbf24;--wh-amber-500: #f59e0b;--wh-amber-600: #d97706;--wh-amber-700: #b45309;--wh-amber-800: #92400e;--wh-amber-900: #78350f;--wh-amber-950: #451a03;--wh-yellow-50: #fefce8;--wh-yellow-100: #fef9c3;--wh-yellow-200: #fef08a;--wh-yellow-300: #fde047;--wh-yellow-400: #facc15;--wh-yellow-500: #eab308;--wh-yellow-600: #ca8a04;--wh-yellow-700: #a16207;--wh-yellow-800: #854d0e;--wh-yellow-900: #713f12;--wh-yellow-950: #422006;--wh-lime-50: #f7fee7;--wh-lime-100: #ecfccb;--wh-lime-200: #d9f99d;--wh-lime-300: #bef264;--wh-lime-400: #a3e635;--wh-lime-500: #84cc16;--wh-lime-600: #65a30d;--wh-lime-700: #4d7c0f;--wh-lime-800: #3f6212;--wh-lime-900: #365314;--wh-lime-950: #1a2e05;--wh-green-50: #f0fdf4;--wh-green-100: #dcfce7;--wh-green-200: #bbf7d0;--wh-green-300: #86efac;--wh-green-400: #4ade80;--wh-green-500: #22c55e;--wh-green-600: #16a34a;--wh-green-700: #15803d;--wh-green-800: #166534;--wh-green-900: #14532d;--wh-green-950: #052e16;--wh-emerald-50: #ecfdf5;--wh-emerald-100: #d1fae5;--wh-emerald-200: #a7f3d0;--wh-emerald-300: #6ee7b7;--wh-emerald-400: #34d399;--wh-emerald-500: #10b981;--wh-emerald-600: #059669;--wh-emerald-700: #047857;--wh-emerald-800: #065f46;--wh-emerald-900: #064e3b;--wh-emerald-950: #022c22;--wh-teal-50: #f0fdfa;--wh-teal-100: #ccfbf1;--wh-teal-200: #99f6e4;--wh-teal-300: #5eead4;--wh-teal-400: #2dd4bf;--wh-teal-500: #14b8a6;--wh-teal-600: #0d9488;--wh-teal-700: #0f766e;--wh-teal-800: #115e59;--wh-teal-900: #134e4a;--wh-teal-950: #042f2e;--wh-cyan-50: #ecfeff;--wh-cyan-100: #cffafe;--wh-cyan-200: #a5f3fc;--wh-cyan-300: #67e8f9;--wh-cyan-400: #22d3ee;--wh-cyan-500: #06b6d4;--wh-cyan-600: #0891b2;--wh-cyan-700: #0e7490;--wh-cyan-800: #155e75;--wh-cyan-900: #164e63;--wh-cyan-950: #083344;--wh-sky-50: #f0f9ff;--wh-sky-100: #e0f2fe;--wh-sky-200: #bae6fd;--wh-sky-300: #7dd3fc;--wh-sky-400: #38bdf8;--wh-sky-500: #0ea5e9;--wh-sky-600: #0284c7;--wh-sky-700: #0369a1;--wh-sky-800: #075985;--wh-sky-900: #0c4a6e;--wh-sky-950: #082f49;--wh-blue-50: #eff6ff;--wh-blue-100: #dbeafe;--wh-blue-200: #bfdbfe;--wh-blue-300: #93c5fd;--wh-blue-400: #60a5fa;--wh-blue-500: #3b82f6;--wh-blue-600: #2563eb;--wh-blue-700: #1d4ed8;--wh-blue-800: #1e40af;--wh-blue-900: #1e3a8a;--wh-blue-950: #172554;--wh-indigo-50: #eef2ff;--wh-indigo-100: #e0e7ff;--wh-indigo-200: #c7d2fe;--wh-indigo-300: #a5b4fc;--wh-indigo-400: #818cf8;--wh-indigo-500: #6366f1;--wh-indigo-600: #4f46e5;--wh-indigo-700: #4338ca;--wh-indigo-800: #3730a3;--wh-indigo-900: #312e81;--wh-indigo-950: #1e1b4b;--wh-violet-50: #f5f3ff;--wh-violet-100: #ede9fe;--wh-violet-200: #ddd6fe;--wh-violet-300: #c4b5fd;--wh-violet-400: #a78bfa;--wh-violet-500: #8b5cf6;--wh-violet-600: #7c3aed;--wh-violet-700: #6d28d9;--wh-violet-800: #5b21b6;--wh-violet-900: #4c1d95;--wh-violet-950: #2e1065;--wh-purple-50: #faf5ff;--wh-purple-100: #f3e8ff;--wh-purple-200: #e9d5ff;--wh-purple-300: #d8b4fe;--wh-purple-400: #c084fc;--wh-purple-500: #a855f7;--wh-purple-600: #9333ea;--wh-purple-700: #7e22ce;--wh-purple-800: #6b21a8;--wh-purple-900: #581c87;--wh-purple-950: #3b0764;--wh-fuchsia-50: #fdf4ff;--wh-fuchsia-100: #fae8ff;--wh-fuchsia-200: #f5d0fe;--wh-fuchsia-300: #f0abfc;--wh-fuchsia-400: #e879f9;--wh-fuchsia-500: #d946ef;--wh-fuchsia-600: #c026d3;--wh-fuchsia-700: #a21caf;--wh-fuchsia-800: #86198f;--wh-fuchsia-900: #701a75;--wh-fuchsia-950: #4a044e;--wh-pink-50: #fdf2f8;--wh-pink-100: #fce7f3;--wh-pink-200: #fbcfe8;--wh-pink-300: #f9a8d4;--wh-pink-400: #f472b6;--wh-pink-500: #ec4899;--wh-pink-600: #db2777;--wh-pink-700: #be185d;--wh-pink-800: #9d174d;--wh-pink-900: #831843;--wh-pink-950: #500724;--wh-rose-50: #fff1f2;--wh-rose-100: #ffe4e6;--wh-rose-200: #fecdd3;--wh-rose-300: #fda4af;--wh-rose-400: #fb7185;--wh-rose-500: #f43f5e;--wh-rose-600: #e11d48;--wh-rose-700: #be123c;--wh-rose-800: #9f1239;--wh-rose-900: #881337;--wh-rose-950: #4c0519;--wh-primary-color: var(--wh-primary-500);--wh-primary-color-hover: #00a16e;--wh-primary-color-transparent: #00aa7424;--wh-primary-color-transparent-light: #00a8730f;--wh-primary-light: #53e3a6;--wh-primary-dark: #007f4b;--wh-primary-dark-hover: #017444;--wh-primary-shadow: #00b07841;--wh-primary-shadow-2: #00b07870;--wh-primary-border-color: #c8c8c870;--wh-warning-color: #ff5a1f;--wh-warning-color-light: #feecdc;--secondary-color: #3d4455;--secondary-color-hover: #3a4052;--secondary-color-transparent: #3d44556b;--secondary-light: #4c556d;--secondary-dark: #252934;--secondary-dark-hover: #191b22;--secondary-dark-transparent: #2e2d2d46;--highlight-color: #92ffaa;--error-color: #d62d4c;--error-color-light: #fde8e8;--error-info: #14854e;--success-color: #0e9f6e;--success-color-light: #def7ec;--font-color: #2f3237;--font-color-light: #626364;--font-color-dark: #252525;--wh-font-family: 'SF Pro Display', 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";--font-family: var(--wh-font-family);--font-size: 12px;--webhighlights-font-size: 12px;--link-color: #1d9bf0;--wh-form-active-color: #3b82f6;--wh-accent-blue: #1f6feb;--wh-mobile-breakpoint: 767px;--BREAKPOINT_XS: 575px;--BREAKPOINT_S: 767px;--BREAKPOINT_M: 991px;--BREAKPOINT_L: 1199px;--BREAKPOINT_XL: 1399px;--BREAKPOINT_XXL: 1699px;--wh-danger-color: var(--wh-red-600);--wh-danger-color-hover: var(--wh-red-700);--wh-font-size: 13px;--wh-blockquote-line-height: 1.3;--wh-bg-base: var(--wh-secondary-600);--wh-bg-base-hover: var(--wh-secondary-500);--wh-border-base: var(--wh-secondary-200);--wh-border-base-hover: var(--wh-secondary-100);--wh-border-base-strong: var(--wh-secondary-100);--wh-border-base-strong-hover: var(--wh-secondary-50);--wh-bg-base-hover-strong: var(--wh-secondary-300);--wh-bg-back: var(--wh-secondary-700);--wh-bg-back-strong: var(--wh-secondary-800);--wh-bg-back-strong-hover: var(--wh-secondary-900);--wh-bg-back-hover: var(--wh-secondary-600);--wh-bg-back-hover-strong: var(--wh-secondary-800);--wh-border-back: var(--wh-secondary-100);--wh-border-back-strong: var(--wh-secondary-50);--wh-bg-front: var(--wh-secondary-400);--wh-bg-front-strong: var(--wh-secondary-200);--wh-bg-front-strong-hover: var(--wh-secondary-50);--wh-bg-front-hover: var(--wh-secondary-300);--wh-bg-front-hover-strong: var(--wh-secondary-200);--wh-border-front: hsl(227, 20%, 25%);--wh-border-front-strong: hsl(227, 20%, 35%);--wh-text-stronger: hsla(0, 0%, 100%, 0.95);--wh-text-strongest: hsla(0, 0%, 100%, 1);--wh-text-strong: rgba(255, 255, 255, 0.9);--wh-text: rgba(255, 255, 255, 0.85);--wh-text-hover: var(--wh-text-strong);--wh-text-light: rgba(255, 255, 255, 0.73);--wh-text-lighter: rgba(255, 255, 255, 0.63);--wh-text-lightest: rgba(255, 255, 255, 0.5);--wh-border-color: hsla(0, 0%, 100%, 0.15);--wh-border-color-strong: hsla(0, 0%, 100%, 0.25);--wh-note-editor-bg-color: hsl(221, 27%, 20%);--wh-note-editor-bg-color-preview: hsl(221, 27%, 18%);--wh-bg-tags: var(--wh-secondary-300);--wh-bg-tags-hover: var(--wh-secondary-200);--wh-syntax-bg-color: rgba(255, 255, 255, 0.05);--wh-fallback-img-color: var(--wh-secondary-600);--wh-bg-disabled: hsl(220, 22%, 18%);--wh-bg-notification-unread: hsla(161, 100%, 20%, 0.15);--wh-bg-notification-unread-hover: hsla(161, 100%, 20%, 0.05);--wh-subtle-gray: rgb(255, 255, 255, 0.1);--wh-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.1),
+      /* 2. shadow ring 👇 */ 0 0 0 1px hsla(230, 13%, 9%, 0.075),
+      /* 3. multiple soft shadows 👇 */ 0 0.3px 0.4px hsla(230, 13%, 9%, 0.02),
+      0 0.9px 1.5px hsla(230, 13%, 9%, 0.045),
+      0 3.5px 6px hsla(230, 13%, 9%, 0.09);--wh-shadow-primary: var(--wh-primary-500) 0px 0px 0px 1px inset,
+      var(--wh-primary-500) 0px 0px 1px; }</style><fencedframe id="ps_caff" style="display: none;"></fencedframe><div id="give-freely-root-hldjnlbobkdkghfidgoecgmklcemanhm" class="give-freely-root" data-extension-id="hldjnlbobkdkghfidgoecgmklcemanhm" data-extension-name="Web Highlights: PDF &amp; Web Highlighter + Notes &amp; Annotations" style="display: block;"></div><img src="https://sync.teads.tv/um?eid=167&amp;uid=n0G5YCsVmViuQibRL-uEMP__u--M_klEKVCs9HiZecs" width="1" height="1" scrolling="no" frameborder="0" style="display:none"><style id="web-highlights-global-styles">
+  webhighlights-sidebar {
+    --webhighlights-font-size: 13.5px;
+  }
+
+  body.web-highlights-animate {
+    transition: all 300ms linear;
+    transition-property: margin-left, margin-right;
+  }
+
+  body.web-highlights-open {
+    margin-left: 400px !important;
+  }
+
+  web-highlight.webhighlights-highlight {
+    border-radius: 2px;
+    background-color: #92ffaa;
+    cursor: pointer;
+    visibility: visible !important;
+  }
+
+  web-highlight.webhighlights-highlight.webhighlight-with-tags,
+  web-highlight.webhighlights-highlight.webhighlight-with-notes {
+    border-bottom: 2.8px solid gray;
+    border-radius: 0px;
+  }
+
+  web-highlight > *:not(webhighlights-popup-toolbox) {
+    background-color: #92ffaa;
+  }
+
+  webhighlights-popup-toolbox.contains-highlight {
+    transform: translate(-63px, -10px);
+    position: fixed;
+  }
+</style><webhighlights-popup-toolbox></webhighlights-popup-toolbox><webhighlights-marker></webhighlights-marker><div id="criteo-tags-div" style="display: none;"></div><iframe height="0" width="0" hidden="" aria-hidden="true" title="Criteo DIS iframe"></iframe><iframe src="https://www.google.com/recaptcha/api2/aframe" width="0" height="0" style="display: none;"></iframe></body>

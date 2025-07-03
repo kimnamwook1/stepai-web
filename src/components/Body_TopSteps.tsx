@@ -16,7 +16,7 @@ const placeholderSets = Array(10).fill(0).map(() => ({
     category: '카테고리',
 }));
 
-const TopStepSection: React.FC = () => {
+const Body_TopSteps: React.FC = () => {
     const [startIdx, setStartIdx] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -150,4 +150,4 @@ const TopStepSection: React.FC = () => {
     );
 };
 
-export default TopStepSection; 
+export default Body_TopSteps; 

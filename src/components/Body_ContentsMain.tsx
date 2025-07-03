@@ -13,7 +13,7 @@ interface CardData {
     color: string;
 }
 
-const ContentsMain = () => {
+const Body_ContentsMain = () => {
     const [inputText, setInputText] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0); // 0~2
     const [isTransitioning, setIsTransitioning] = useState(false);
@@ -255,4 +255,4 @@ const ContentsMain = () => {
     );
 };
 
-export default ContentsMain; 
+export default Body_ContentsMain; 
