@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 const SECTION_WIDTH = 1920;
 const SECTION_HEIGHT = 400;
