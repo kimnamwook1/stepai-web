@@ -134,106 +134,108 @@ const ContentsMain = () => {
                             </svg>
                         </button>
 
-                        {/* 캐러셀 카드 3장 겹침 */}
-                        <div className="relative w-[420px] h-[320px] mx-auto">
-                            {cardData.map((card, idx) => {
-                                // 상대 위치 계산
-                                let diff = idx - currentIndex;
-                                if (diff < -1) diff += cardData.length;
-                                if (diff > 1) diff -= cardData.length;
-                                let style: React.CSSProperties = {
-                                    transition: 'all 0.5s cubic-bezier(0.4,0,0.2,1)',
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    width: '100%',
-                                    height: '100%',
-                                    opacity: 0,
-                                    zIndex: 0,
-                                    transform: 'scale(0.92) translateX(46px)',
-                                };
-                                if (diff === 0) {
-                                    // 가운데(활성)
-                                    style = {
-                                        ...style,
-                                        zIndex: 6,
-                                        opacity: 1,
-                                        transform: 'scale(1) translateX(0)',
+                        {/* 카드 전체 래퍼: 항상 중앙 고정 */}
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[320px]">
+                            <div className="relative w-full h-full">
+                                {cardData.map((card, idx) => {
+                                    // 상대 위치 계산
+                                    let diff = idx - currentIndex;
+                                    if (diff < -1) diff += cardData.length;
+                                    if (diff > 1) diff -= cardData.length;
+                                    let style: React.CSSProperties = {
+                                        transition: 'all 0.5s cubic-bezier(0.4,0,0.2,1)',
+                                        position: 'absolute',
                                         top: 0,
-                                    };
-                                } else if (diff === 1 || diff === -2) {
-                                    // 오른쪽(다음)
-                                    style = {
-                                        ...style,
-                                        zIndex: 5,
-                                        opacity: 1,
-                                        transform: 'scale(0.96) translateX(24px)',
-                                        top: '6px',
-                                    };
-                                } else if (diff === -1 || diff === 2) {
-                                    // 왼쪽(이전)
-                                    style = {
-                                        ...style,
-                                        zIndex: 4,
-                                        opacity: 1,
+                                        left: 0,
+                                        width: '100%',
+                                        height: '100%',
+                                        opacity: 0,
+                                        zIndex: 0,
                                         transform: 'scale(0.92) translateX(46px)',
-                                        top: '12px',
                                     };
-                                }
-                                return (
-                                    <div
-                                        key={card.id}
-                                        onClick={() => handleCardClick(card.id)}
-                                        className="overflow-visible rounded-[51px] cursor-pointer"
-                                        style={{
+                                    if (diff === 0) {
+                                        // 가운데(활성)
+                                        style = {
                                             ...style,
-                                            backgroundColor: card.color,
-                                        }}
-                                    >
-                                        {/* 뱃지 - 좌상단 바깥 */}
+                                            zIndex: 6,
+                                            opacity: 1,
+                                            transform: 'scale(1) translateX(0)',
+                                            top: 0,
+                                        };
+                                    } else if (diff === 1 || diff === -2) {
+                                        // 오른쪽(다음)
+                                        style = {
+                                            ...style,
+                                            zIndex: 5,
+                                            opacity: 1,
+                                            transform: 'scale(0.96) translateX(24px)',
+                                            top: '6px',
+                                        };
+                                    } else if (diff === -1 || diff === 2) {
+                                        // 왼쪽(이전)
+                                        style = {
+                                            ...style,
+                                            zIndex: 4,
+                                            opacity: 1,
+                                            transform: 'scale(0.92) translateX(46px)',
+                                            top: '12px',
+                                        };
+                                    }
+                                    return (
                                         <div
-                                            className="absolute bg-gray-400 text-white px-4 py-2 rounded-full z-20"
+                                            key={card.id}
+                                            onClick={() => handleCardClick(card.id)}
+                                            className="overflow-visible rounded-[51px] cursor-pointer"
                                             style={{
-                                                top: '-2px',
-                                                left: '-32px',
+                                                ...style,
+                                                backgroundColor: card.color,
                                             }}
                                         >
-                                            <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
-                                                {card.category}
-                                            </span>
-                                        </div>
-
-                                        {/* 카드 본체 */}
-                                        <div className="p-6 h-full flex flex-col">
-                                            {/* 썸네일 이미지 */}
-                                            <div className="w-[374px] h-[280px] mx-auto rounded-[32px] overflow-hidden mb-3 -mt-2">
-                                                <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                                                    <span className="text-gray-600">썸네일</span>
-                                                </div>
+                                            {/* 뱃지 - 좌상단 바깥 */}
+                                            <div
+                                                className="absolute bg-gray-400 text-white px-4 py-2 rounded-full z-20"
+                                                style={{
+                                                    top: '-2px',
+                                                    left: '-32px',
+                                                }}
+                                            >
+                                                <span className="text-[18px] font-medium" style={{ fontFamily: 'Inter' }}>
+                                                    {card.category}
+                                                </span>
                                             </div>
 
-                                            {/* 하단 영역 */}
-                                            <div className="flex-1 flex flex-col justify-center">
-                                                {/* 로고+서비스명 수평 정렬 */}
-                                                <div className="flex flex-row items-center mb-2" style={{ marginLeft: '23px' }}>
-                                                    <div className="w-[48px] h-[48px] bg-[#f5f04f] rounded-full flex items-center justify-center flex-shrink-0 mr-3">
-                                                        <span className="text-xs">로고</span>
+                                            {/* 카드 본체 */}
+                                            <div className="p-6 h-full flex flex-col">
+                                                {/* 썸네일 이미지 */}
+                                                <div className="w-[374px] h-[280px] mx-auto rounded-[32px] overflow-hidden mb-3 -mt-2">
+                                                    <div className="w-full h-full bg-gray-300 flex items-center justify-center">
+                                                        <span className="text-gray-600">썸네일</span>
                                                     </div>
-                                                    <h4 className="text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
-                                                        {card.title}
-                                                    </h4>
                                                 </div>
-                                                {/* 해시태그 - 아래쪽에 고정 */}
-                                                <div className="mt-auto" style={{ marginLeft: '23px' }}>
-                                                    <p className="text-[12px] font-medium text-black" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
-                                                        {card.hashtags}
-                                                    </p>
+
+                                                {/* 하단 영역 */}
+                                                <div className="flex-1 flex flex-col justify-center">
+                                                    {/* 로고+서비스명 수평 정렬 */}
+                                                    <div className="flex flex-row items-center mb-2" style={{ marginLeft: '23px' }}>
+                                                        <div className="w-[48px] h-[48px] bg-[#f5f04f] rounded-full flex items-center justify-center flex-shrink-0 mr-3">
+                                                            <span className="text-xs">로고</span>
+                                                        </div>
+                                                        <h4 className="text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
+                                                            {card.title}
+                                                        </h4>
+                                                    </div>
+                                                    {/* 해시태그 - 아래쪽에 고정 */}
+                                                    <div className="mt-auto" style={{ marginLeft: '23px' }}>
+                                                        <p className="text-[12px] font-medium text-black" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
+                                                            {card.hashtags}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
+                            </div>
                         </div>
 
                         {/* 우측 화살표 버튼 */}
