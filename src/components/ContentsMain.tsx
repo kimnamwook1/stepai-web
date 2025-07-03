@@ -120,7 +120,7 @@ const ContentsMain = () => {
                 {/* Carousel_cards_container - 우측 */}
                 <div className="w-3/5 flex justify-center">
                     <div
-                        className="Carousel_cards_container relative flex items-center justify-center"
+                        className="Carousel_cards_container relative flex items-center justify-center min-w-[600px] w-full"
                         style={{ marginTop: '-50px' }}
                     >
                         {/* 좌측 화살표 버튼 */}
