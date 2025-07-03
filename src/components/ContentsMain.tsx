@@ -97,7 +97,7 @@ const ContentsMain = () => {
     };
 
     return (
-        <section className="px-80 py-16 mt-[-50px]">
+        <section className="px-80 py-16">
             <div className="flex gap-16 items-end">
                 {/* 대화창 - 좌측 */}
                 <div className="w-2/5">
@@ -117,9 +117,12 @@ const ContentsMain = () => {
                     </div>
                 </div>
 
-                {/* ScrollCard_display - 우측 */}
-                <div className="w-3/5 relative">
-                    <div className="relative h-[400px] flex items-center justify-center">
+                {/* Carousel_cards_container - 우측 */}
+                <div className="w-3/5 flex justify-center">
+                    <div
+                        className="Carousel_cards_container relative flex items-center justify-center"
+                        style={{ marginTop: '-50px' }}
+                    >
                         {/* 좌측 화살표 버튼 */}
                         <button
                             onClick={goPrev}

@@ -125,6 +125,13 @@
 - 카드 사이즈 구체적 수치 결정
 - 피그마 프레임 수정 시작
 
+### 구조 개선 작업 (2024-06-13)
+- [ ] Carousel_cards_container 생성 및 구조 개선
+    - [ ] 캐러셀 카드와 버튼을 하나의 컨테이너로 묶음
+    - [ ] 컨테이너에 명확한 className(`Carousel_cards_container`) 부여
+    - [ ] 컨테이너 전체를 위로 50px 이동
+    - [ ] 기존 스타일 클래스 통합 및 정리
+
 ### 추가 요구사항 (2024-06-13)
 - 카드 우상단 뱃지(카테고리)는 카드의 둥근 모서리 바깥으로 완전히 빼서 잘리지 않게 배치한다.
     - 카드에 overflow: visible, position: relative 적용, 뱃지는 position: absolute, top/right 음수값 사용
