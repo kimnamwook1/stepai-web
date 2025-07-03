@@ -32,18 +32,20 @@ function HeaderCorp() {
 
 const BG_COLOR = 'rgb(245,246,248)';
 
-function FloatingLabelInput({
-    id,
-    label,
-    required,
-    value,
-    onChange,
-    type = "text",
-    maxLength,
-    className = "",
-    noMargin = false,
-    ...props
-}: any) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function FloatingLabelInput(props: any) {
+    const {
+        id,
+        label,
+        required,
+        value,
+        onChange,
+        type = "text",
+        maxLength,
+        className = "",
+        noMargin = false,
+        ...rest
+    } = props;
     const [isFocused, setIsFocused] = useState(false);
     const showFloating = isFocused || value;
     return (
@@ -58,7 +60,7 @@ function FloatingLabelInput({
                 autoComplete="off"
                 onFocus={() => setIsFocused(true)}
                 onBlur={(e: FocusEvent<HTMLInputElement>) => setIsFocused(!!e.target.value)}
-                {...props}
+                {...rest}
             />
             <label
                 htmlFor={id}
@@ -73,16 +75,18 @@ function FloatingLabelInput({
     );
 }
 
-function FloatingLabelSelect({
-    id,
-    label,
-    required,
-    value,
-    onChange,
-    children,
-    className = "",
-    ...props
-}: any) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function FloatingLabelSelect(props: any) {
+    const {
+        id,
+        label,
+        required,
+        value,
+        onChange,
+        children,
+        className = "",
+        ...rest
+    } = props;
     const [isFocused, setIsFocused] = useState(false);
     const showFloating = isFocused || value;
     return (
@@ -94,7 +98,7 @@ function FloatingLabelSelect({
                 className={`w-full border rounded px-3 py-2 appearance-none focus:outline-none focus:border-gray-400 pr-8 ${className}`}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                {...props}
+                {...rest}
             >
                 <option value="" disabled hidden></option>
                 {children}
