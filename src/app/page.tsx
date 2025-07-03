@@ -4,6 +4,7 @@ import Body_Category from '@/components/Body_Category';
 import TopTrendsSection from '@/components/TopTrendsSection';
 import TopStepSection from '@/components/TopStepSection';
 import Body_News from '@/components/Body_News';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <TopStepSection />
         <Body_News />
       </main>
+      <Footer />
     </div>
   );
 }
