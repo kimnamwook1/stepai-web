@@ -105,7 +105,7 @@ const TopTrendsSection: React.FC = () => {
             handleNext();
         }, 3000);
         return () => { if (timerRef.current) clearInterval(timerRef.current); };
-    }, [startIdx]);
+    }, [startIdx, handleNext]);
 
     // 부드러운 애니메이션(좌/우 이동)
     const handleNext = () => {
@@ -169,7 +169,7 @@ const TopTrendsSection: React.FC = () => {
                         justifyContent: 'center',
                     }}
                 >
-                    {getVisibleSets().map((set, idx) => (
+                    {getVisibleSets().map((set) => (
                         <div
                             key={set.category}
                             className="flex flex-col items-center"
