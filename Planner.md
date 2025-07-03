@@ -149,4 +149,4 @@
 - 이미지는 Placeholder(회색 박스 + "아이콘" 텍스트)
 - 반응형: 태블릿까지만 대응, 모바일은 추후 
 
-- 2024-06-13: Merged_Carousel_Main_Category.tsx에서 map 콜백 파라미터를 '_'로 통일, idx만 사용하도록 코드 일관성 및 가독성 개선. 
+- 2024-06-13: Merged_Carousel_Main_Category.tsx에서 handleCategoryClick 함수 및 onClick 부분 주석 처리, onClick에는 더미 함수(() => {})를 전달하여 타입 에러 방지. 

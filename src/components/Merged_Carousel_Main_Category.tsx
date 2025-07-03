@@ -27,9 +27,11 @@ const Merged_Carousel_Main_Category: React.FC = () => {
     setCategoryList((prev) => [...prev.slice(1), prev[0]]);
   };
 
+  /*
   const handleCategoryClick = (title: string) => {
     // 리디렉션 함수 (리턴값 없음)
   };
+  */
 
   return (
     <div className="w-full flex justify-center py-4 bg-transparent">
@@ -48,7 +50,7 @@ const Merged_Carousel_Main_Category: React.FC = () => {
             <Carousel_Main_Category
                 key={idx}
                 title={categoryList[idx]}
-                onClick={() => handleCategoryClick(categoryList[idx])}
+                onClick={() => {}}
             />
           ))}
         </div>
