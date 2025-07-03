@@ -149,4 +149,4 @@
 - 이미지는 Placeholder(회색 박스 + "아이콘" 텍스트)
 - 반응형: 태블릿까지만 대응, 모바일은 추후 
 
-- 2024-06-13: Merged_Carousel_Main_Category.tsx에서 map 콜백의 미사용 파라미터(title) 제거 및 key 값을 idx로 변경하여 ESLint(@typescript-eslint/no-unused-vars) 에러 해결. 
+- 2024-06-13: Merged_Carousel_Main_Category.tsx에서 map 콜백 파라미터를 '_'로 통일, idx만 사용하도록 코드 일관성 및 가독성 개선. 

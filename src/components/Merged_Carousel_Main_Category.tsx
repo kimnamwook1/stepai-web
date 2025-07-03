@@ -45,7 +45,11 @@ const Merged_Carousel_Main_Category: React.FC = () => {
         </button>
         <div className="flex gap-[1px] tablet:gap-0 overflow-x-visible">
           {categoryList.map((_, idx) => (
-            <Carousel_Main_Category key={idx} title={categoryList[idx]} onClick={() => handleCategoryClick(categoryList[idx])} />
+            <Carousel_Main_Category
+                key={idx}
+                title={categoryList[idx]}
+                onClick={() => handleCategoryClick(categoryList[idx])}
+            />
           ))}
         </div>
         <button
