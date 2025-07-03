@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 const CARD_WIDTH = 278;
 const CARD_HEIGHT = 371;
@@ -21,16 +21,16 @@ const TopStepSection: React.FC = () => {
     const [isAnimating, setIsAnimating] = useState(false);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         if (isAnimating) return;
         setIsAnimating(true);
         setStartIdx((prev) => (prev + 1) % placeholderSets.length);
-    };
-    const handlePrev = () => {
+    }, [isAnimating]);
+    const handlePrev = useCallback(() => {
         if (isAnimating) return;
         setIsAnimating(true);
         setStartIdx((prev) => (prev - 1 + placeholderSets.length) % placeholderSets.length);
-    };
+    }, [isAnimating]);
 
     useEffect(() => {
         if (timerRef.current) clearInterval(timerRef.current);
@@ -38,7 +38,7 @@ const TopStepSection: React.FC = () => {
             handleNext();
         }, 3000);
         return () => { if (timerRef.current) clearInterval(timerRef.current); };
-    }, [startIdx]);
+    }, [handleNext]);
 
     useEffect(() => {
         if (!isAnimating) return;

@@ -1,14 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-
-interface TrendSet {
-    category: string;
-    title: string;
-    thumbnail: string;
-    logo: string;
-    hashtags: string;
-}
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 const trendSets = Array(10).fill(0).map(() => ({
     category: '카테고리',
@@ -34,16 +26,16 @@ const TopTrendsSection: React.FC = () => {
     const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     // 부드러운 애니메이션(좌/우 이동)
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         if (isAnimating) return;
         setIsAnimating(true);
         setStartIdx((prev) => (prev + 1) % trendSets.length);
-    };
-    const handlePrev = () => {
+    }, [isAnimating]);
+    const handlePrev = useCallback(() => {
         if (isAnimating) return;
         setIsAnimating(true);
         setStartIdx((prev) => (prev - 1 + trendSets.length) % trendSets.length);
-    };
+    }, [isAnimating]);
 
     // 자동 슬라이드
     useEffect(() => {
@@ -52,7 +44,7 @@ const TopTrendsSection: React.FC = () => {
             handleNext();
         }, 3000);
         return () => { if (timerRef.current) clearInterval(timerRef.current); };
-    }, [startIdx, handleNext]);
+    }, [handleNext]);
 
     useEffect(() => {
         if (!isAnimating) return;
