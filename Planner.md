@@ -148,3 +148,5 @@
 - 카드 클릭 시 리디렉션 함수 호출(리턴값 없음)
 - 이미지는 Placeholder(회색 박스 + "아이콘" 텍스트)
 - 반응형: 태블릿까지만 대응, 모바일은 추후 
+
+- 2024-06-13: Merged_Carousel_Main_Category.tsx에서 map 콜백의 미사용 파라미터(title) 제거 및 key 값을 idx로 변경하여 ESLint(@typescript-eslint/no-unused-vars) 에러 해결. 
