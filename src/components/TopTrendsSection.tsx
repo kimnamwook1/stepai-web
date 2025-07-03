@@ -10,78 +10,13 @@ interface TrendSet {
     hashtags: string;
 }
 
-const trendSets: TrendSet[] = [
-    {
-        category: "문서·글쓰기",
-        title: "DocuGenie",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#문서 #자동화 #AI"
-    },
-    {
-        category: "마케팅·디자인",
-        title: "Draph Art",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#광고 #모델이미지 #상품이미지"
-    },
-    {
-        category: "교육·학습",
-        title: "Tutor Me",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#스터디 #PDF #개인강사"
-    },
-    {
-        category: "미디어·엔터테인먼트",
-        title: "Gemini",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#코딩 #기획 #디버그"
-    },
-    {
-        category: "IT·프로그래밍",
-        title: "CodeFlow",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#개발 #자동화 #테스트"
-    },
-    {
-        category: "비즈니스·전문가",
-        title: "BizPro",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#비즈니스 #전략 #트렌드"
-    },
-    {
-        category: "커머스/리테일",
-        title: "Octance AI",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#마케팅 #데이터 #개인화 ..."
-    },
-    {
-        category: "번역·통역",
-        title: "Transly",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#번역 #언어 #AI"
-    },
-    {
-        category: "건강·웰니스",
-        title: "HealthMate",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#헬스케어 #웰빙 #AI"
-    },
-    {
-        category: "에이전트·자동화",
-        title: "AgentX",
-        thumbnail: "/api/placeholder/278/185",
-        logo: "/api/placeholder/48/48",
-        hashtags: "#자동화 #에이전트 #AI"
-    }
-];
+const trendSets = Array(10).fill(0).map(() => ({
+    category: '카테고리',
+    title: '서비스',
+    thumbnail: '이미지',
+    logo: '로고',
+    hashtags: '해시태그'
+}));
 
 const CARD_WIDTH = 278;
 const CARD_HEIGHT = 371;
@@ -180,7 +115,7 @@ const TopTrendsSection: React.FC = () => {
                             <div className="w-full text-center mb-1">
                                 <span className="text-[20px] font-bold text-[#222]" style={{ fontFamily: 'Inter' }}>{set.category}</span>
                             </div>
-                            {/* 카드 */}
+                            {/* 카드 본체 */}
                             <div
                                 className="bg-[#ededed] rounded-[22px] shadow-md flex flex-col items-center cursor-pointer"
                                 style={{
@@ -190,29 +125,24 @@ const TopTrendsSection: React.FC = () => {
                                     overflow: 'hidden',
                                     border: '1px solid #e5e7eb',
                                 }}
-                                onClick={() => {}}
                             >
-                                {/* 썸네일 */}
+                                {/* 썸네일 Placeholder */}
                                 <div
-                                    className="w-full"
+                                    className="w-full flex items-center justify-center"
                                     style={{ height: 185, background: '#e5e7eb', borderRadius: '22px 22px 0 0', overflow: 'hidden' }}
                                 >
-                                    <img
-                                        src={set.thumbnail}
-                                        alt={set.title}
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                    />
+                                    <span className="text-gray-400 text-lg">이미지</span>
                                 </div>
-                                {/* 로고+서비스명 */}
+                                {/* 로고+서비스명 Placeholder */}
                                 <div className="flex items-center mt-4 mb-2 w-full px-6">
                                     <div className="w-10 h-10 rounded-full bg-[#f5f04f] flex items-center justify-center mr-3 overflow-hidden">
-                                        <img src={set.logo} alt="logo" style={{ width: 32, height: 32, objectFit: 'cover' }} />
+                                        <span className="text-xs text-gray-700">로고</span>
                                     </div>
-                                    <span className="text-lg font-bold text-black" style={{ fontFamily: 'Inter' }}>{set.title}</span>
+                                    <span className="text-lg font-bold text-black" style={{ fontFamily: 'Inter' }}>서비스</span>
                                 </div>
-                                {/* 해시태그 */}
+                                {/* 해시태그 Placeholder */}
                                 <div className="w-full px-6 mt-auto mb-4">
-                                    <span className="text-xs text-gray-700 font-medium" style={{ fontFamily: 'Inter' }}>{set.hashtags}</span>
+                                    <span className="text-xs text-gray-400 font-medium" style={{ fontFamily: 'Inter' }}>해시태그</span>
                                 </div>
                             </div>
                         </div>
