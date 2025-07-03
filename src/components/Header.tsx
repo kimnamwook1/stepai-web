@@ -114,9 +114,13 @@ const Header = () => {
                             <button
                                 key={item.id}
                                 className={`text-black font-medium hover:text-gray-600 transition-colors duration-300 text-xs sm:text-sm lg:text-base whitespace-nowrap ${
-                                    // 모바일에서는 마지막 2개 버튼만 표시
                                     index < 2 ? 'hidden sm:block' : ''
                                 }`}
+                                onClick={
+                                    item.id === 'company'
+                                        ? () => window.location.href = '/corp'
+                                        : undefined
+                                }
                             >
                                 {item.label}
                             </button>
