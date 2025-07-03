@@ -98,15 +98,6 @@ const TopTrendsSection: React.FC = () => {
     const [isAnimating, setIsAnimating] = useState(false);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-    // 자동 슬라이드
-    useEffect(() => {
-        if (timerRef.current) clearInterval(timerRef.current);
-        timerRef.current = setInterval(() => {
-            handleNext();
-        }, 3000);
-        return () => { if (timerRef.current) clearInterval(timerRef.current); };
-    }, [startIdx, handleNext]);
-
     // 부드러운 애니메이션(좌/우 이동)
     const handleNext = () => {
         if (isAnimating) return;
@@ -118,6 +109,16 @@ const TopTrendsSection: React.FC = () => {
         setIsAnimating(true);
         setStartIdx((prev) => (prev - 1 + trendSets.length) % trendSets.length);
     };
+
+    // 자동 슬라이드
+    useEffect(() => {
+        if (timerRef.current) clearInterval(timerRef.current);
+        timerRef.current = setInterval(() => {
+            handleNext();
+        }, 3000);
+        return () => { if (timerRef.current) clearInterval(timerRef.current); };
+    }, [startIdx, handleNext]);
+
     useEffect(() => {
         if (!isAnimating) return;
         const timer = setTimeout(() => setIsAnimating(false), 500);
