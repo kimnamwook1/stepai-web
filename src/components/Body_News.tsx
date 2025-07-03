@@ -24,7 +24,6 @@ const Body_News: React.FC = () => {
     const [activeTopic, setActiveTopic] = useState(0);
     const [startIdx, setStartIdx] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     // 캐러셀 이동
     const handleNext = useCallback(() => {
