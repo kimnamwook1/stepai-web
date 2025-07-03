@@ -137,4 +137,14 @@
     - 카드에 overflow: visible, position: relative 적용, 뱃지는 position: absolute, top/right 음수값 사용
 - 캐러셀은 크몽 스타일(3장, absolute, z-index/opacity/scale/translate로 겹침, 무한루프, 애니메이션)로 리팩토링한다.
 - 왼쪽(이전) 버튼은 비활성화(숨김) 처리한다.
-- 뱃지는 카드 우상단에서 -32px 바깥 pill형으로 항상 보이도록 구조/overflow/z-index를 재정비한다. 
+- 뱃지는 카드 우상단에서 -32px 바깥 pill형으로 항상 보이도록 구조/overflow/z-index를 재정비한다.
+
+### 메인 카테고리 캐러셀(2024-06-14)
+- 10개 카테고리를 한 번에 모두 노출
+- (이미지+스페이서+카테고리명) 묶음: Carousel_Main_Category
+- 좌/우 버튼 클릭 시, 카드가 실제로 이동하지 않고 카테고리 배열의 순서만 바뀜(무한루프)
+- 좌우 버튼, 카테고리 묶음을 하나의 컨테이너(Merged_Carousel_Main_Category)로 구성
+- 카드 간격: 16px, 카드 크기: 130×170px(추천), 좌우 여백: 기존과 동일(320px)
+- 카드 클릭 시 리디렉션 함수 호출(리턴값 없음)
+- 이미지는 Placeholder(회색 박스 + "아이콘" 텍스트)
+- 반응형: 태블릿까지만 대응, 모바일은 추후 
