@@ -120,13 +120,13 @@ const ContentsMain = () => {
                 {/* Carousel_cards_container - 우측 */}
                 <div className="w-3/5 flex justify-center">
                     <div
-                        className="Carousel_cards_container relative flex items-center justify-center min-w-[600px] w-full"
+                        className="Carousel_cards_container relative w-[600px] h-[400px] flex items-center justify-center"
                         style={{ marginTop: '-50px' }}
                     >
                         {/* 좌측 화살표 버튼 */}
                         <button
                             onClick={goPrev}
-                            className="absolute left-6 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                             disabled={isTransitioning}
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,7 +135,7 @@ const ContentsMain = () => {
                         </button>
 
                         {/* 캐러셀 카드 3장 겹침 */}
-                        <div className="relative w-[420px] h-[320px]">
+                        <div className="relative w-[420px] h-[320px] mx-auto">
                             {cardData.map((card, idx) => {
                                 // 상대 위치 계산
                                 let diff = idx - currentIndex;
@@ -239,7 +239,7 @@ const ContentsMain = () => {
                         {/* 우측 화살표 버튼 */}
                         <button
                             onClick={goNext}
-                            className="absolute right-6 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                             disabled={isTransitioning}
                         >
                             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
