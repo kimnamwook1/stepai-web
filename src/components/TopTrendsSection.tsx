@@ -65,12 +65,13 @@ const TopTrendsSection: React.FC = () => {
                 padding: `0 ${SIDE_PADDING}px ${BOTTOM_PADDING}px ${SIDE_PADDING}px`,
                 boxSizing: "border-box",
                 overflow: "hidden",
-                background: "#fff"
+                background: "#fff",
+                margin: '50px 0'
             }}
             className="flex flex-col justify-center"
         >
             {/* 섹션 제목 */}
-            <div className="w-full flex justify-start mb-2">
+            <div className="w-full flex justify-center mb-2">
                 <span className="text-[38px] font-bold text-black" style={{ fontFamily: 'Inter' }}>
                     Top 인기
                 </span>

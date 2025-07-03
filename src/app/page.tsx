@@ -3,6 +3,7 @@ import ContentsMain from '@/components/ContentsMain';
 import Body_Category from '@/components/Body_Category';
 import TopTrendsSection from '@/components/TopTrendsSection';
 import TopStepSection from '@/components/TopStepSection';
+import Body_News from '@/components/Body_News';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Body_Category />
         <TopTrendsSection /> 
         <TopStepSection />
+        <Body_News />
       </main>
     </div>
   );
