@@ -124,7 +124,7 @@ function CorpInfoSection() {
     const [corpAddress, setCorpAddress] = useState("");
 
     return (
-        <section className="mb-8 bg-white rounded-lg shadow p-8">
+        <section className="max-w-[700px] mx-auto mb-8 bg-white rounded-lg shadow p-8">
             <h2 className="text-xl font-semibold mb-4">기업정보</h2>
             <div className="space-y-4">
                 {/* 기업형태 */}
