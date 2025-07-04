@@ -22,6 +22,46 @@ const TrendPage = () => {
     const countryOptions = ["한국", "미국", "중국", "프랑스"];
     const reviewOptions = [5, 4, 3, 2, 1, 0];
 
+    // 일자별, 카테고리별, 국가별 숫자 예시(실제 데이터 연동 전까지 하드코딩)
+    const dateCounts: Record<string, number> = {
+        "1일 전": 12,
+        "1주일 전": 34,
+        "1달 전": 56,
+        "1년 전": 78,
+    };
+    const categoryCounts: Record<string, number> = {
+        "All": 123,
+        "문서·글쓰기": 45,
+        "마케팅·디자인": 67,
+        "교육·학습": 89,
+        "미디어·엔터테인먼트": 10,
+        "IT·프로그래밍": 11,
+        "비즈니스·전문가": 12,
+        "커머스·세일즈": 13,
+        "번역·통역": 14,
+        "건강·웰니스": 15,
+        "에이전트·자동화": 16,
+    };
+    const countryCounts: Record<string, number> = {
+        "한국": 100,
+        "미국": 200,
+        "중국": 300,
+        "프랑스": 400,
+    };
+
+    // 리뷰별 숫자 예시(실제 데이터 연동 전까지 하드코딩)
+    const reviewCounts: Record<number, number> = {
+        5: 12345,
+        4: 6789,
+        3: 234,
+        2: 56,
+        1: 7,
+        0: 0,
+    };
+
+    // ResultSection 탭 상태
+    const [tab, setTab] = useState<'popular' | 'recent'>('popular');
+
     // Header에서 사용한 V 아이콘 SVG
     const ArrowIcon = ({ open }: { open: boolean }) => (
         <svg
@@ -55,7 +95,10 @@ const TrendPage = () => {
                         {open.date && (
                             <ul className="pl-2 mb-2">
                                 {dateOptions.map((opt) => (
-                                    <li key={opt} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">{opt}</li>
+                                    <li key={opt} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">
+                                        {opt}
+                                        <span className="ml-2 text-gray-500">({dateCounts[opt]})</span>
+                                    </li>
                                 ))}
                             </ul>
                         )}
@@ -67,7 +110,10 @@ const TrendPage = () => {
                         {open.category && (
                             <ul className="pl-2 mb-2">
                                 {categoryOptions.map((opt) => (
-                                    <li key={opt} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">{opt}</li>
+                                    <li key={opt} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">
+                                        {opt}
+                                        <span className="ml-2 text-gray-500">({categoryCounts[opt]})</span>
+                                    </li>
                                 ))}
                             </ul>
                         )}
@@ -79,7 +125,10 @@ const TrendPage = () => {
                         {open.country && (
                             <ul className="pl-2 mb-2">
                                 {countryOptions.map((opt) => (
-                                    <li key={opt} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">{opt}</li>
+                                    <li key={opt} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">
+                                        {opt}
+                                        <span className="ml-2 text-gray-500">({countryCounts[opt]})</span>
+                                    </li>
                                 ))}
                             </ul>
                         )}
@@ -92,10 +141,8 @@ const TrendPage = () => {
                             <ul className="pl-2 mb-2">
                                 {reviewOptions.map((num) => (
                                     <li key={num} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">
-                                        {num > 0
-                                            ? Array(num).fill('⭐').join('')
-                                            : Array(5).fill('🩶').join('')
-                                        }
+                                        {Array(num).fill('★').join('') + Array(5 - num).fill('☆').join('')}
+                                        <span className="ml-2 text-gray-500">({reviewCounts[num]})</span>
                                     </li>
                                 ))}
                             </ul>
@@ -103,7 +150,31 @@ const TrendPage = () => {
                     </div>
                     {/* ResultSection */}
                     <div className="flex-[8] flex flex-col p-6">
-                        {/* ResultSection: 추후 내용 */}
+                        {/* 상단 탭 */}
+                        <div className="w-full flex flex-row items-center justify-center mb-6">
+                            <button
+                                className={`flex-1 flex items-center justify-center py-4 text-xl font-bold border-b-2 transition-colors duration-200 ${tab === 'popular' ? 'text-blue-600 border-blue-500 bg-white' : 'text-gray-400 border-transparent bg-gray-50'}`}
+                                onClick={() => setTab('popular')}
+                            >
+                                {/* 아이콘은 추후 추가 */}
+                                Popular Service
+                            </button>
+                            <button
+                                className={`flex-1 flex items-center justify-center py-4 text-xl font-bold border-b-2 transition-colors duration-200 ${tab === 'recent' ? 'text-blue-600 border-blue-500 bg-white' : 'text-gray-400 border-transparent bg-gray-50'}`}
+                                onClick={() => setTab('recent')}
+                            >
+                                {/* 아이콘은 추후 추가 */}
+                                Recently Added
+                            </button>
+                        </div>
+                        {/* 탭에 따라 내용이 바뀌는 영역 (아직 내용 없음) */}
+                        <div className="w-full min-h-[200px] bg-white rounded-lg flex items-center justify-center border border-gray-100">
+                            {tab === 'popular' ? (
+                                <span className="text-gray-400">Popular Service 배열 (미구현)</span>
+                            ) : (
+                                <span className="text-gray-400">Recently Added 배열 (미구현)</span>
+                            )}
+                        </div>
                     </div>
                 </div>
             </main>
