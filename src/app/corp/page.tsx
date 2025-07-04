@@ -199,12 +199,159 @@ function CorpInfoSection() {
     );
 }
 
+function AIServiceInfo() {
+    // 카테고리별 스킬 데이터 구조
+    const categorySkillMap: { [key: string]: string[] } = {
+        "디자인": [
+            "Adobe Photoshop", "Adobe Illustrator", "Adobe Creative Suite", "Adobe Dreamweaver", "Adobe Flash",
+            "Adobe XD", "Indesign", "MicroSoft PowerPoint", "Paint tool sai", "sketch up", "Corel Painter",
+            "Sketch3", "Sketchapp", "Zeplin", "HTML & CSS", "Keyshot"
+        ],
+        "마케팅": ["Google Analytics", "Facebook Ads", "Instagram Ads", "SEO", "콘텐츠 마케팅"],
+        "번역·통역": ["영한 번역", "한영 번역", "일한 번역", "중한 번역"],
+        "문서·글쓰기": ["기획서 작성", "보고서 작성", "에세이", "블로그 글쓰기"],
+        "IT·프로그래밍": ["HTML & CSS", "JavaScript", "React", "Node.js", "Python", "Java", "C#", "Spring"],
+        "세무·법무·노무": ["세무 상담", "법률 자문", "노무 관리"],
+        "창업·사업": ["사업계획서", "BM 설계", "시장조사"],
+        "운세": ["사주", "타로", "신점"],
+        "직무역량 레슨": ["엑셀", "파워포인트", "프레젠테이션"],
+        "취업·입시": ["이력서 첨삭", "면접 코칭", "자소서"],
+        "투잡·노하우": ["온라인 판매", "블로그 수익화"],
+        "취미 레슨": ["기타", "피아노", "드로잉"],
+        "생활서비스": ["청소", "이사", "수리"],
+        "영상·사진·음향": ["프리미어", "애프터이펙트", "파이널컷"],
+        "심리상담": ["성인 상담", "아동 상담"],
+        "주문제작": ["굿즈 제작", "인쇄물 제작"]
+    };
+    const categories = Object.keys(categorySkillMap);
+    const [selectedCategory, setSelectedCategory] = React.useState(categories[0]);
+    const [search, setSearch] = React.useState("");
+    const [selectedSkills, setSelectedSkills] = React.useState<string[]>([]);
+
+    // 검색 필터링
+    const filteredSkills = (categorySkillMap[selectedCategory] || []).filter(skill =>
+        skill.toLowerCase().includes(search.toLowerCase())
+    );
+
+    // 스킬 선택/해제
+    const handleSkillClick = (skill: string) => {
+        if (selectedSkills.includes(skill)) {
+            setSelectedSkills(selectedSkills.filter(s => s !== skill));
+        } else if (selectedSkills.length < 20) {
+            setSelectedSkills([...selectedSkills, skill]);
+        }
+    };
+
+    // 태그 X 버튼
+    const handleRemoveSkill = (skill: string) => {
+        setSelectedSkills(selectedSkills.filter(s => s !== skill));
+    };
+
+    // 전체삭제
+    const handleRemoveAll = () => {
+        setSelectedSkills([]);
+    };
+
+    return (
+        <section className="max-w-[700px] mx-auto mb-8 bg-white rounded-lg shadow p-8 mt-8">
+            {/* 제목 */}
+            <h2 className="text-xl font-semibold mb-4">AI 서비스 등록</h2>
+            {/* 기술 검색 박스 (2단 컬럼 위) */}
+            <div className="mb-2">
+                <div className="flex items-center gap-2 w-full">
+                    <span className="text-gray-400">
+                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M14.94 16.29C13.58 17.36 11.86 18 10 18 5.58 18 2 14.42 2 10 2 5.58 5.58 2 10 2c4.42 0 8 3.58 8 8 0 1.83-.62 3.52-1.65 4.87l4.36 4.36c.39.39.39 1.02 0 1.41-.39.39-1.02.39-1.41 0l-4.36-4.36ZM16 10c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6 6 2.69 6 6Z" fill="#bdbdbd" /></svg>
+                    </span>
+                    <input
+                        type="text"
+                        placeholder="기술 검색"
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                        className="w-full border border-gray-300 rounded bg-white px-2 py-1 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                        style={{ minWidth: 0 }}
+                    />
+                </div>
+            </div>
+            {/* 2단 컬럼 */}
+            <div className="flex border border-gray-300 rounded overflow-hidden" style={{ minHeight: 240 }}>
+                {/* 카테고리 리스트 */}
+                <div className="w-1/3 border-r-2 border-gray-300 bg-[#fafbfc] overflow-y-auto" style={{ maxHeight: 240 }}>
+                    <ul>
+                        {categories.map(cat => (
+                            <li
+                                key={cat}
+                                className={`px-4 py-2 cursor-pointer text-sm ${selectedCategory === cat ? "bg-white font-bold text-blue-700" : "text-gray-700 hover:bg-gray-100"}`}
+                                onClick={() => setSelectedCategory(cat)}
+                            >
+                                {cat}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                {/* 스킬+태그 flex row */}
+                <div className="flex w-2/3" style={{ maxHeight: 240, minWidth: 0 }}>
+                    {/* 스킬 리스트 */}
+                    <div className="overflow-y-auto border-r-2 border-gray-300 bg-white flex-1" style={{ maxHeight: 200, minWidth: 0 }}>
+                        <ul>
+                            {filteredSkills.length === 0 ? (
+                                <li className="px-4 py-2 text-gray-400 text-sm">해당 기술이 없습니다.</li>
+                            ) : (
+                                filteredSkills.map(skill => {
+                                    const selected = selectedSkills.includes(skill);
+                                    return (
+                                        <li
+                                            key={skill}
+                                            className={`px-4 py-2 text-sm border-b last:border-b-0 cursor-pointer flex items-center ${selected ? "bg-yellow-100 border-yellow-300" : "text-gray-800 hover:bg-gray-50"}`}
+                                            onClick={() => handleSkillClick(skill)}
+                                        >
+                                            <span className="flex-1 truncate">{skill}</span>
+                                            {selected && (
+                                                <span className="ml-2 text-yellow-500">
+                                                    <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><path d="M7.5 13.5l-3-3 1.06-1.06L7.5 11.38l6.44-6.44 1.06 1.06-7.5 7.5z" fill="#facc15" /></svg>
+                                                </span>
+                                            )}
+                                        </li>
+                                    );
+                                })
+                            )}
+                        </ul>
+                    </div>
+                    {/* 태그 리스트 (오른쪽 고정, 좌측정렬) + 상단 컨트롤 */}
+                    <div className="flex flex-col items-start gap-2 pl-4 py-2 min-w-[140px] max-w-[180px] overflow-y-auto bg-[#f8fafc]" style={{ maxHeight: 240, borderLeft: '2px solid #d1d5db' }}>
+                        {/* 상단 컨트롤 */}
+                        <div className="flex items-center gap-4 mb-2 w-full">
+                            <span className="text-xs text-gray-500 font-medium">{selectedSkills.length}/20</span>
+                            <button type="button" className="text-xs text-blue-700 hover:underline" onClick={handleRemoveAll}>전체삭제</button>
+                        </div>
+                        {selectedSkills.length > 0 ? (
+                            selectedSkills.map(skill => (
+                                <span key={skill} className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-3 py-1 text-xs text-gray-800 whitespace-nowrap mb-1">
+                                    {skill}
+                                    <button
+                                        type="button"
+                                        className="ml-2 text-gray-400 hover:text-red-500 focus:outline-none"
+                                        onClick={() => handleRemoveSkill(skill)}
+                                        aria-label="선택 해제"
+                                    >
+                                        <svg width="14" height="14" fill="none" viewBox="0 0 20 20"><path d="M6 6l8 8M6 14L14 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+                                    </button>
+                                </span>
+                            ))
+                        ) : null}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
 const CorpRegisterPage = () => {
     return (
         <div style={{ background: BG_COLOR, minHeight: '100vh' }}>
             <HeaderCorp />
             <main className="max-w-[700px] mx-auto my-8 p-4">
                 <CorpInfoSection />
+                <AIServiceInfo />
                 {/* TODO: 다음 섹션(담당자정보, 약관동의 등) 추가 예정 */}
             </main>
         </div>
