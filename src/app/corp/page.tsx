@@ -444,6 +444,70 @@ function BizLicenseSection() {
     );
 }
 
+// AI 담당자 정보 섹션 컴포넌트
+function ManagerInfoSection() {
+    const [showPw, setShowPw] = React.useState(false);
+    return (
+        <section className="max-w-[700px] mx-auto mb-8 bg-white rounded-lg shadow p-8 mt-8">
+            <h2 className="text-xl font-semibold mb-6 flex items-center">AI 담당자 정보 <span className="text-[#ff0000] text-base ml-2">(필수)</span></h2>
+            {/* 인증 선택 박스 Figma 스타일 */}
+            <div className="flex gap-4 mb-8">
+                {/* 본인 인증 */}
+                <div className="flex-1 bg-[#f5faff] border border-[#b6e0fe] rounded-xl shadow-sm flex flex-col items-start p-5 min-h-[120px]">
+                    <div className="mb-2">
+                        {/* 스마트폰 아이콘 (SVG) */}
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="7" y="3" width="18" height="26" rx="3" fill="#e3f0fc" /><rect x="9" y="5" width="14" height="22" rx="2" fill="#b6e0fe" /><rect x="13" y="25" width="6" height="2" rx="1" fill="#7cc1fa" /></svg>
+                    </div>
+                    <div className="font-bold text-base mb-1 text-gray-800">본인 인증</div>
+                    <div className="text-xs text-gray-500 leading-snug">본인 인증 시 제공되는 정보는 인증 이외 용도로 이용 또는 저장되지 않습니다.</div>
+                </div>
+                {/* 아이핀 인증 */}
+                <div className="flex-1 bg-[#f5faff] border border-[#b6e0fe] rounded-xl shadow-sm flex flex-col items-start p-5 min-h-[120px]">
+                    <div className="mb-2">
+                        {/* 자물쇠 아이콘 (SVG) */}
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="14" width="16" height="12" rx="2" fill="#e3f0fc" /><rect x="10" y="16" width="12" height="8" rx="2" fill="#b6e0fe" /><rect x="14" y="10" width="4" height="6" rx="2" fill="#7cc1fa" /></svg>
+                    </div>
+                    <div className="font-bold text-base mb-1 text-gray-800">아이핀 인증</div>
+                    <div className="text-xs text-gray-500 leading-snug">NICE평가정보(주)를 통해 본인임을 확인받을 수 있는 서비스입니다.</div>
+                </div>
+            </div>
+            {/* 기본 정보 입력 */}
+            <div className="flex flex-col gap-5">
+                {/* 아이디 + 비밀번호 + ? + 표시 한 줄 배치 */}
+                <div className="flex items-center gap-3">
+                    <input id="manager-id" type="text" maxLength={16}
+                        className="flex-1 border border-[#dbe4ec] rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#7cc1fa] placeholder-[#b0b8c1] bg-white transition min-w-0"
+                        placeholder="아이디 *" />
+                    <input id="manager-pw" type={showPw ? 'text' : 'password'} maxLength={16}
+                        className="flex-1 border border-[#dbe4ec] rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#7cc1fa] placeholder-[#b0b8c1] bg-white transition min-w-0"
+                        placeholder="비밀번호 *" />
+                    <button type="button" className="text-[#b0b8c1] hover:text-[#7cc1fa] text-xs border border-[#dbe4ec] px-2 py-1 rounded-lg bg-white" title="안전한 비밀번호 작성법">?</button>
+                    <button type="button" className="text-[#b0b8c1] hover:text-[#7cc1fa] text-xs border border-[#dbe4ec] px-3 py-1 rounded-lg bg-white" onClick={() => setShowPw(v => !v)}>{showPw ? '숨김' : '표시'}</button>
+                </div>
+                {/* 가입자명 */}
+                <div>
+                    <input id="manager-name" type="text" maxLength={12}
+                        className="w-full border border-[#dbe4ec] rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#7cc1fa] placeholder-[#b0b8c1] bg-white transition"
+                        placeholder="가입자명 *" />
+                </div>
+                {/* 전화번호 */}
+                <div>
+                    <input id="manager-phone" type="text" maxLength={13}
+                        className="w-full border border-[#dbe4ec] rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#7cc1fa] placeholder-[#b0b8c1] bg-white transition"
+                        placeholder="전화번호 *" />
+                </div>
+                {/* 이메일 */}
+                <div>
+                    <input id="manager-email" type="text" maxLength={100}
+                        className="w-full border border-[#dbe4ec] rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#7cc1fa] placeholder-[#b0b8c1] bg-white transition"
+                        placeholder="이메일 *" />
+                    <div className="text-xs text-gray-400 mt-1">&nbsp;</div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
 const CorpRegisterPage = () => {
     return (
         <div style={{ background: BG_COLOR, minHeight: '100vh' }}>
@@ -453,7 +517,8 @@ const CorpRegisterPage = () => {
                 <AIServiceInfo />
                 <SNSInfoSection />
                 <BizLicenseSection />
-                {/* TODO: 다음 섹션(담당자정보, 약관동의 등) 추가 예정 */}
+                <ManagerInfoSection />
+                {/* TODO: 다음 섹션(약관동의 등) 추가 예정 */}
             </main>
         </div>
     );
