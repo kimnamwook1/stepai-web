@@ -256,6 +256,54 @@ function AIServiceInfo() {
         <section className="max-w-[700px] mx-auto mb-8 bg-white rounded-lg shadow p-8 mt-8">
             {/* 제목 */}
             <h2 className="text-xl font-semibold mb-4">AI 서비스 등록</h2>
+            {/* Figma 주황색 박스 영역 */}
+            <div className="rounded-md p-4 mb-6 bg-[#f8f6f4]">
+                <div className="flex gap-4 items-center justify-center">
+                    {/* 대표 이미지 업로드 (원형) */}
+                    <div className="flex flex-col items-center w-32">
+                        <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm mb-2 border border-gray-300 cursor-pointer">
+                            대표 이미지
+                            <br />
+                            <span className="text-lg">⭳</span>
+                        </div>
+                        {/* 실제 업로드 기능은 추후 구현 */}
+                    </div>
+                    {/* 서비스 이름 입력 */}
+                    <div className="flex-1 flex items-center">
+                        <div className="relative w-full mb-2">
+                            <input
+                                type="text"
+                                id="serviceName"
+                                placeholder=" "
+                                className="w-full border border-gray-300 rounded px-3 py-3 focus:outline-none focus:border-blue-400 text-base bg-white peer"
+                                maxLength={50}
+                            />
+                            <label
+                                htmlFor="serviceName"
+                                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none bg-transparent px-1 transition-all duration-200
+                                    peer-focus:-top-2 peer-focus:text-xs peer-focus:text-blue-600
+                                    peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm
+                                    peer-placeholder-shown:text-gray-400
+                                    peer-focus:-translate-y-full"
+                                style={{
+                                    transition: 'all 0.2s',
+                                }}
+                            >
+                                서비스 이름 <span className="text-[#ff0000]">*</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                {/* TIP 안내 박스 */}
+                <div className="mt-3 p-3 rounded border border-blue-200 bg-blue-50 text-xs text-gray-600">
+                    <div className="font-bold text-[11px] text-blue-700 mb-1">TIP</div>
+                    <ul className="list-disc pl-4 space-y-0.5">
+                        <li>닉네임은 최초 설정 또는 변경 후 30일이 지나야 바꿀 수 있어요.</li>
+                        <li>진행 중인 거래가 있으면 닉네임을 바꿀 수 없어요.</li>
+                        <li>한글/영문/숫자만 사용할 수 있으며, 이메일 아이디와 동일한 문자열은 사용이 불가해요.</li>
+                    </ul>
+                </div>
+            </div>
             {/* 기술 검색 박스 (2단 컬럼 위) */}
             <div className="mb-2">
                 <div className="flex items-center gap-2 w-full">
