@@ -3,7 +3,7 @@
 import React from "react";
 
 const SECTION_WIDTH = 1920;
-const SECTION_HEIGHT = 490;
+const SECTION_HEIGHT = 300;
 const SIDE_PADDING = 320;
 
 const pages = [
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
                 background: "#fff",
                 boxSizing: "border-box",
                 display: "flex",
-                alignItems: "center",
+                alignItems: "start",
                 justifyContent: "center",
             }}
         >
@@ -52,8 +52,8 @@ const Footer: React.FC = () => {
                         <button
                             key={p.label}
                             className="text-base text-black text-left hover:underline"
-                            // onClick={() => router.push(p.link)} // 실제 리디렉션, 추후 주석 해제
-                            // window.location.href = p.link
+                        // onClick={() => router.push(p.link)} // 실제 리디렉션, 추후 주석 해제
+                        // window.location.href = p.link
                         >
                             {p.label}
                         </button>
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                             <button
                                 key={s.label}
                                 className="text-2xl"
-                                // onClick={() => window.open(s.link, '_blank')} // 실제 외부 링크 이동, 추후 주석 해제
+                            // onClick={() => window.open(s.link, '_blank')} // 실제 외부 링크 이동, 추후 주석 해제
                             >
                                 <span>{s.icon}</span>
                             </button>
@@ -89,4 +89,4 @@ const Footer: React.FC = () => {
     );
 };
 
-export default Footer; 
+export default Footer;

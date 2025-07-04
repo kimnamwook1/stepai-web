@@ -211,4 +211,4 @@ const CorpRegisterPage = () => {
     );
 };
 
-export default CorpRegisterPage; 
+export default CorpRegisterPage;
