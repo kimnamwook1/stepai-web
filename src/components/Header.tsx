@@ -14,7 +14,7 @@ const Header = () => {
 
     const actionMenuItems = [
         { id: 'company', label: '기업등록', hasDropdown: false },
-        { id: 'expert', label: '전문가 등록', hasDropdown: false },
+        { id: 'expert', label: '전문가등록', hasDropdown: false },
         { id: 'login', label: '로그인', hasDropdown: false },
         { id: 'signup', label: '회원가입', hasDropdown: false },
     ];
@@ -111,7 +111,9 @@ const Header = () => {
                                 onClick={
                                     item.id === 'company'
                                         ? () => window.location.href = '/corp'
-                                        : undefined
+                                        : item.id === 'expert'
+                                            ? () => window.location.href = '/expert'
+                                            : undefined
                                 }
                             >
                                 {item.label}
