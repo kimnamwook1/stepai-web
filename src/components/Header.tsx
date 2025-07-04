@@ -42,7 +42,7 @@ const Header = () => {
     return (
         <header className="bg-white border-b border-gray-100">
             <div className="px-80 py-0">
-                <div className="flex items-center justify-between h-[110px]">
+                <div className="flex items-center justify-between h-[80px]">
                     {/* 좌측 네비게이션 */}
                     <div className="flex items-center space-x-4 sm:space-x-6 lg:space-x-8">
                         {/* 로고 */}
@@ -66,9 +66,8 @@ const Header = () => {
                                         <span>{item.label}</span>
                                         {item.hasDropdown && (
                                             <svg
-                                                className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-300 ${
-                                                    openDropdown === item.id ? 'rotate-180' : ''
-                                                }`}
+                                                className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-300 ${openDropdown === item.id ? 'rotate-180' : ''
+                                                    }`}
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -86,11 +85,10 @@ const Header = () => {
                                     {/* 드롭다운 메뉴 */}
                                     {item.hasDropdown && (
                                         <div
-                                            className={`absolute top-full left-0 mt-2 w-40 lg:w-48 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-300 ${
-                                                openDropdown === item.id
-                                                    ? 'opacity-100 max-h-60 visible'
-                                                    : 'opacity-0 max-h-0 invisible'
-                                            }`}
+                                            className={`absolute top-full left-0 mt-2 w-40 lg:w-48 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-300 ${openDropdown === item.id
+                                                ? 'opacity-100 max-h-60 visible'
+                                                : 'opacity-0 max-h-0 invisible'
+                                                }`}
                                             onClick={(e) => e.stopPropagation()}
                                         >
                                             {dropdownItems.map((dropdownItem, index) => (
@@ -113,9 +111,8 @@ const Header = () => {
                         {actionMenuItems.map((item, index) => (
                             <button
                                 key={item.id}
-                                className={`text-black font-medium hover:text-gray-600 transition-colors duration-300 text-xs sm:text-sm lg:text-base whitespace-nowrap ${
-                                    index < 2 ? 'hidden sm:block' : ''
-                                }`}
+                                className={`text-black font-medium hover:text-gray-600 transition-colors duration-300 text-xs sm:text-sm lg:text-base whitespace-nowrap ${index < 2 ? 'hidden sm:block' : ''
+                                    }`}
                                 onClick={
                                     item.id === 'company'
                                         ? () => window.location.href = '/corp'
@@ -145,9 +142,8 @@ const Header = () => {
                                     <span>{item.label}</span>
                                     {item.hasDropdown && (
                                         <svg
-                                            className={`w-3 h-3 transition-transform duration-300 ${
-                                                openDropdown === item.id ? 'rotate-180' : ''
-                                            }`}
+                                            className={`w-3 h-3 transition-transform duration-300 ${openDropdown === item.id ? 'rotate-180' : ''
+                                                }`}
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
@@ -165,11 +161,10 @@ const Header = () => {
                                 {/* 모바일 드롭다운 메뉴 */}
                                 {item.hasDropdown && (
                                     <div
-                                        className={`absolute top-full left-0 mt-2 w-36 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-300 ${
-                                            openDropdown === item.id
-                                                ? 'opacity-100 max-h-60 visible'
-                                                : 'opacity-0 max-h-0 invisible'
-                                        }`}
+                                        className={`absolute top-full left-0 mt-2 w-36 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-300 ${openDropdown === item.id
+                                            ? 'opacity-100 max-h-60 visible'
+                                            : 'opacity-0 max-h-0 invisible'
+                                            }`}
                                         onClick={(e) => e.stopPropagation()}
                                     >
                                         {dropdownItems.map((dropdownItem, index) => (
@@ -191,4 +186,4 @@ const Header = () => {
     );
 };
 
-export default Header; 
+export default Header;
