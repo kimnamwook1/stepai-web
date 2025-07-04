@@ -52,18 +52,28 @@ const Header = () => {
                         {/* 주 메뉴 */}
                         <nav className="flex items-center space-x-8">
                             {mainMenuItems.map((item) => (
-                                <div key={item.id} className="relative">
+                                <div key={item.id} className="relative flex items-center space-x-1">
+                                    {/* 텍스트 버튼 */}
                                     <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            if (item.hasDropdown) {
-                                                toggleDropdown(item.id);
+                                        className="text-black font-medium hover:text-gray-600 transition-colors duration-300 text-base px-1"
+                                        onClick={() => {
+                                            if (item.id === 'trends') {
+                                                window.location.href = '/trend';
                                             }
+                                            // 추후 탐색/소식/광고 등도 경로 추가
                                         }}
-                                        className="flex items-center space-x-1 text-black font-medium hover:text-gray-600 transition-colors duration-300 text-base"
                                     >
-                                        <span>{item.label}</span>
-                                        {item.hasDropdown && (
+                                        {item.label}
+                                    </button>
+                                    {/* V(아래 화살표) 버튼 */}
+                                    {item.hasDropdown && (
+                                        <button
+                                            className="flex items-center"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                toggleDropdown(item.id);
+                                            }}
+                                        >
                                             <svg
                                                 className={`w-4 h-4 transition-transform duration-300 ${openDropdown === item.id ? 'rotate-180' : ''}`}
                                                 fill="none"
@@ -77,8 +87,8 @@ const Header = () => {
                                                     d="M19 9l-7 7-7-7"
                                                 />
                                             </svg>
-                                        )}
-                                    </button>
+                                        </button>
+                                    )}
                                     {/* 드롭다운 메뉴 */}
                                     {item.hasDropdown && (
                                         <div

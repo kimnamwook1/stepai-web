@@ -52,8 +52,11 @@ const Footer: React.FC = () => {
                         <button
                             key={p.label}
                             className="text-base text-black text-left hover:underline"
-                        // onClick={() => router.push(p.link)} // 실제 리디렉션, 추후 주석 해제
-                        // window.location.href = p.link
+                            onClick={
+                                p.label === '트렌드'
+                                    ? () => window.location.href = '/trend'
+                                    : undefined
+                            }
                         >
                             {p.label}
                         </button>
