@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Main_Banner from "@/components/Main_Banner";
+import Trend_card from '@/components/Trend_card';
 
 const TrendPage = () => {
     // SortSection 상태 관리
@@ -78,6 +79,23 @@ const TrendPage = () => {
             />
         </svg>
     );
+
+    // Trend_card용 예시 데이터
+    const trendList = Array.from({ length: 10 }, (_, i) => ({
+        rank: i,
+        serviceName: `Service${i + 1}`,
+        category: categoryOptions[i % categoryOptions.length],
+        updown: (i % 2 === 0 ? 'Up' : 'Down') as 'Up' | 'Down',
+        homepage: 'https://example.com',
+        snsLinks: {
+            youtube: 'https://youtube.com',
+            instagram: 'https://instagram.com',
+            facebook: 'https://facebook.com',
+            x: 'https://x.com',
+            thread: 'https://threads.net',
+            linkedin: 'https://linkedin.com',
+        },
+    }));
 
     return (
         <>
@@ -168,12 +186,19 @@ const TrendPage = () => {
                             </button>
                         </div>
                         {/* 탭에 따라 내용이 바뀌는 영역 (아직 내용 없음) */}
-                        <div className="w-full min-h-[200px] bg-white rounded-lg flex items-center justify-center border border-gray-100">
-                            {tab === 'popular' ? (
-                                <span className="text-gray-400">Popular Service 배열 (미구현)</span>
-                            ) : (
-                                <span className="text-gray-400">Recently Added 배열 (미구현)</span>
-                            )}
+                        <div className="w-full min-h-[200px] bg-white rounded-lg border border-gray-100 px-2">
+                            {/* 헤더 row */}
+                            <div className="w-full flex flex-row items-center py-2 border-b bg-gray-50">
+                                <div className="w-20 flex justify-center text-xs text-gray-400 font-semibold">순위</div>
+                                <div className="w-32 flex justify-center text-xs text-gray-400 font-semibold">서비스명</div>
+                                <div className="w-60 text-center text-xs text-gray-400 font-semibold">카테고리</div>
+                                <div className="w-40 text-center text-xs text-gray-400 font-semibold">Up & Down</div>
+                                <div className="w-40 text-center text-xs text-gray-400 font-semibold">홈페이지</div>
+                                <div className="flex-1 text-center text-xs gap-1 ml-10 text-gray-400 font-semibold">SNS</div>
+                            </div>
+                            {(tab === 'popular' ? trendList : trendList).map((item, idx) => (
+                                <Trend_card key={idx} {...item} />
+                            ))}
                         </div>
                     </div>
                 </div>
