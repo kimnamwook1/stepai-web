@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
                 background: "#fff",
                 boxSizing: "border-box",
                 display: "flex",
-                alignItems: "start",
+                alignItems: "center",
                 justifyContent: "center",
             }}
         >
