@@ -1,16 +1,14 @@
 'use client';
 
 import Header from '@/components/Header';
-import Body_Category from '@/components/Body_Category';
 import Body_News from '@/components/Body_News';
 import Footer from '@/components/Footer';
-// import Body_ContentsMain from '@/components/Body_ContentsMain';
 import Body_TopTrends from '@/components/Body_TopTrends';
 import Body_TopSteps from '@/components/Body_TopSteps';
 
 import { useState, useRef, useEffect } from 'react';
 
-export default function Home() {
+function Body_ContentsMainSection() {
     // Body_ContentsMain 내부 state/로직
     const [inputText, setInputText] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0); // 0~2
@@ -91,7 +89,6 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-white">
-            <Header />
             <main className="pt-[110px]">
                 {/* Body_ContentsMain의 return 전체를 1:1로 복사 */}
                 <section className="px-80 py-16">
@@ -240,8 +237,101 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+            </main>
+        </div>
+    );
+}
+
+function Body_CategorySection() {
+    // Carousel_Main_Category 내부 함수
+    function Carousel_Main_Category({ title, onClick }: { title: string; onClick: () => void }) {
+        return (
+            <div
+                className="w-[120px] h-[130px] flex flex-col items-center cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+                onClick={onClick}
+            >
+                <div className="w-[60px] h-[60px] bg-gray-200 flex items-center justify-center rounded-md mt-4 mb-2">
+                    <span className="text-gray-400 text-xs font-semibold select-none">아이콘</span>
+                </div>
+                <span className="text-[13px] font-medium text-center text-gray-800 select-none tracking-tighter whitespace-nowrap">
+                    {title.replace(/\s*·\s*/g, '·')}
+                </span>
+            </div>
+        );
+    }
+
+    // Merged_Carousel_Main_Category 내부 함수
+    function Merged_Carousel_Main_Category() {
+        const categories = [
+            '문서·글쓰기',
+            '마케팅·디자인',
+            '교육·학습',
+            '미디어·엔터테인먼트',
+            'IT·프로그래밍',
+            '비즈니스·전문가',
+            '커머스·세일즈',
+            '번역·통역',
+            '건강·웰니스',
+            '에이전트·자동화',
+        ];
+        const [categoryList, setCategoryList] = useState(categories);
+        const handleLeft = () => {
+            setCategoryList((prev) => [prev[prev.length - 1], ...prev.slice(0, prev.length - 1)]);
+        };
+        const handleRight = () => {
+            setCategoryList((prev) => [...prev.slice(1), prev[0]]);
+        };
+        return (
+            <div className="w-full flex justify-center py-4 bg-transparent">
+                <div className="w-[1280px] max-w-full flex items-center justify-center">
+                    <button
+                        onClick={handleLeft}
+                        className="w-8 h-8 flex items-center justify-center rounded-full bg-white border-2 border-gray-300 shadow-lg hover:bg-gray-50 transition-colors duration-300 mr-1"
+                        aria-label="왼쪽으로 이동"
+                    >
+                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <div className="flex gap-[1px] tablet:gap-0 overflow-x-visible">
+                        {categoryList.map((title, idx) => (
+                            <Carousel_Main_Category
+                                key={idx}
+                                title={title}
+                                onClick={() => { }}
+                            />
+                        ))}
+                    </div>
+                    <button
+                        onClick={handleRight}
+                        className="w-8 h-8 flex items-center justify-center rounded-full bg-white border-2 border-gray-300 shadow-lg hover:bg-gray-50 transition-colors duration-300 ml-1"
+                        aria-label="오른쪽으로 이동"
+                    >
+                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    // Body_CategorySection의 반환 JSX
+    return (
+        <section className="w-full px-80 py-8 bg-white">
+            <Merged_Carousel_Main_Category />
+        </section>
+    );
+}
+
+export default function Home() {
+    return (
+        <div className="min-h-screen bg-white">
+            <Header />
+            <main className="pt-[110px]">
+                <Body_ContentsMainSection />
                 {/* 다음 섹션들 */}
-                <Body_Category />
+                <Body_CategorySection />
                 <Body_TopTrends />
                 <Body_TopSteps />
                 <Body_News />
