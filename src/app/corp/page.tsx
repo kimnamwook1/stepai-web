@@ -576,12 +576,13 @@ function PolicySection() {
             {/* 이용약관 동의 (필수) */}
             <div className="border-t border-b border-gray-200 py-4">
                 <div className="flex items-center justify-between">
-                    <label htmlFor="chk_service" className="cursor-pointer select-none text-left w-full pr-8">
+                    <label htmlFor="chk_service" className="cursor-pointer select-none text-left">
                         <span className="font-semibold text-blue-600 mr-2">[필수]</span> 이용약관 동의
-                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowService(v => !v)}>
-                            내용보기
-                        </button>
                     </label>
+                    <div className="flex-1" />
+                    <button type="button" className="text-xs text-blue-600 underline mr-2" onClick={() => setShowService(v => !v)}>
+                        내용보기
+                    </button>
                     <input type="checkbox" id="chk_service" checked={serviceChecked} onChange={handleServiceChange}
                         className="w-4 h-4 accent-blue-600 flex-shrink-0" />
                 </div>
@@ -611,12 +612,13 @@ function PolicySection() {
             {/* 개인정보 수집 및 이용 동의 (필수) */}
             <div className="border-b border-gray-200 py-4">
                 <div className="flex items-center justify-between">
-                    <label htmlFor="chk_privacy" className="cursor-pointer select-none text-left w-full pr-8">
+                    <label htmlFor="chk_privacy" className="cursor-pointer select-none text-left">
                         <span className="font-semibold text-blue-600 mr-2">[필수]</span> 개인정보 수집 및 이용 동의
-                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowPrivacy(v => !v)}>
-                            내용보기
-                        </button>
                     </label>
+                    <div className="flex-1" />
+                    <button type="button" className="text-xs text-blue-600 underline mr-2" onClick={() => setShowPrivacy(v => !v)}>
+                        내용보기
+                    </button>
                     <input type="checkbox" id="chk_privacy" checked={privacyChecked} onChange={handlePrivacyChange}
                         className="w-4 h-4 accent-blue-600 flex-shrink-0" />
                 </div>
@@ -645,12 +647,13 @@ function PolicySection() {
             {/* 문자서비스 이용약관 동의 (필수) */}
             <div className="border-b border-gray-200 py-4">
                 <div className="flex items-center justify-between">
-                    <label htmlFor="chk_sms" className="cursor-pointer select-none text-left w-full pr-8">
+                    <label htmlFor="chk_sms" className="cursor-pointer select-none text-left">
                         <span className="font-semibold text-blue-600 mr-2">[필수]</span> 문자서비스 이용약관 동의
-                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowSms(v => !v)}>
-                            내용보기
-                        </button>
                     </label>
+                    <div className="flex-1" />
+                    <button type="button" className="text-xs text-blue-600 underline mr-2" onClick={() => setShowSms(v => !v)}>
+                        내용보기
+                    </button>
                     <input type="checkbox" id="chk_sms" checked={smsChecked} onChange={handleSmsChange}
                         className="w-4 h-4 accent-blue-600 flex-shrink-0" />
                 </div>
@@ -671,12 +674,13 @@ function PolicySection() {
             {/* 개인정보 수집 및 이용 동의 (선택) */}
             <div className="border-b border-gray-200 py-4">
                 <div className="flex items-center justify-between">
-                    <label htmlFor="chk_privacy_opt" className="cursor-pointer select-none text-left w-full pr-8">
+                    <label htmlFor="chk_privacy_opt" className="cursor-pointer select-none text-left">
                         <span className="font-semibold text-gray-500 mr-2">[선택]</span> 개인정보 수집 및 이용 동의
-                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowPrivacyOpt(v => !v)}>
-                            내용보기
-                        </button>
                     </label>
+                    <div className="flex-1" />
+                    <button type="button" className="text-xs text-blue-600 underline mr-2" onClick={() => setShowPrivacyOpt(v => !v)}>
+                        내용보기
+                    </button>
                     <input type="checkbox" id="chk_privacy_opt" checked={privacyOptChecked} onChange={handlePrivacyOptChange}
                         className="w-4 h-4 accent-blue-600 flex-shrink-0" />
                 </div>
@@ -696,12 +700,13 @@ function PolicySection() {
             {/* 광고성 정보 수신 동의 (선택) */}
             <div className="py-4">
                 <div className="flex items-center justify-between">
-                    <label htmlFor="chk_ad" className="cursor-pointer select-none text-left w-full pr-8">
+                    <label htmlFor="chk_ad" className="cursor-pointer select-none text-left">
                         <span className="font-semibold text-gray-500 mr-2">[선택]</span> 광고성 정보 수신 동의
-                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowAd(v => !v)}>
-                            내용보기
-                        </button>
                     </label>
+                    <div className="flex-1" />
+                    <button type="button" className="text-xs text-blue-600 underline mr-2" onClick={() => setShowAd(v => !v)}>
+                        내용보기
+                    </button>
                     <input type="checkbox" id="chk_ad" checked={adChecked} onChange={handleAdChange}
                         className="w-4 h-4 accent-blue-600 flex-shrink-0" />
                 </div>
@@ -728,7 +733,14 @@ const CorpRegisterPage = () => {
                 <BizLicenseSection />
                 <ManagerInfoSection />
                 <PolicySection />
-                {/* TODO: 다음 섹션(약관동의 등) 추가 예정 */}
+                <div className="w-[668px] mx-auto mt-8">
+                    <button
+                        type="button"
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded py-3 text-lg transition-colors"
+                    >
+                        심사신청
+                    </button>
+                </div>
             </main>
         </div>
     );
