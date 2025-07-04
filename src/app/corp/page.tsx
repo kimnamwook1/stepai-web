@@ -508,6 +508,215 @@ function ManagerInfoSection() {
     );
 }
 
+// 약관 동의 섹션 컴포넌트
+function PolicySection() {
+    const [allChecked, setAllChecked] = React.useState(false);
+    const [serviceChecked, setServiceChecked] = React.useState(false);
+    const [privacyChecked, setPrivacyChecked] = React.useState(false);
+    const [smsChecked, setSmsChecked] = React.useState(false);
+    const [privacyOptChecked, setPrivacyOptChecked] = React.useState(false);
+    const [adChecked, setAdChecked] = React.useState(false);
+    const [showService, setShowService] = React.useState(false);
+    const [showPrivacy, setShowPrivacy] = React.useState(false);
+    const [showSms, setShowSms] = React.useState(false);
+    const [showPrivacyOpt, setShowPrivacyOpt] = React.useState(false);
+    const [showAd, setShowAd] = React.useState(false);
+
+    // 전체동의 체크 시 하위 항목 모두 체크/해제
+    const handleAllChange = () => {
+        const next = !allChecked;
+        setAllChecked(next);
+        setServiceChecked(next);
+        setPrivacyChecked(next);
+        setSmsChecked(next);
+        setPrivacyOptChecked(next);
+        setAdChecked(next);
+    };
+    // 개별 체크 시 전체동의 해제/체크
+    const updateAllChecked = (checks: boolean[]) => {
+        if (checks.every(Boolean)) setAllChecked(true);
+        else setAllChecked(false);
+    };
+    const handleServiceChange = () => {
+        const next = !serviceChecked;
+        setServiceChecked(next);
+        updateAllChecked([next, privacyChecked, smsChecked, privacyOptChecked, adChecked]);
+    };
+    const handlePrivacyChange = () => {
+        const next = !privacyChecked;
+        setPrivacyChecked(next);
+        updateAllChecked([serviceChecked, next, smsChecked, privacyOptChecked, adChecked]);
+    };
+    const handleSmsChange = () => {
+        const next = !smsChecked;
+        setSmsChecked(next);
+        updateAllChecked([serviceChecked, privacyChecked, next, privacyOptChecked, adChecked]);
+    };
+    const handlePrivacyOptChange = () => {
+        const next = !privacyOptChecked;
+        setPrivacyOptChecked(next);
+        updateAllChecked([serviceChecked, privacyChecked, smsChecked, next, adChecked]);
+    };
+    const handleAdChange = () => {
+        const next = !adChecked;
+        setAdChecked(next);
+        updateAllChecked([serviceChecked, privacyChecked, smsChecked, privacyOptChecked, next]);
+    };
+
+    return (
+        <section className="max-w-[700px] mx-auto mb-8 bg-white rounded-lg shadow p-8 mt-8">
+            {/* 전체 동의 */}
+            <div className="flex items-center justify-between mb-6">
+                <label htmlFor="chk_all" className="font-medium text-base cursor-pointer select-none text-left w-full pr-8">
+                    <span className="align-middle">필수동의 항목 및 개인정보 수집 및 이용 동의(선택), 광고성 정보 수신 동의(선택)에 모두 동의합니다.</span>
+                </label>
+                <input type="checkbox" id="chk_all" checked={allChecked} onChange={handleAllChange}
+                    className="w-6 h-6 accent-blue-600 flex-shrink-0" />
+            </div>
+            {/* 이용약관 동의 (필수) */}
+            <div className="border-t border-b border-gray-200 py-4">
+                <div className="flex items-center justify-between">
+                    <label htmlFor="chk_service" className="cursor-pointer select-none text-left w-full pr-8">
+                        <span className="font-semibold text-blue-600 mr-2">[필수]</span> 이용약관 동의
+                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowService(v => !v)}>
+                            내용보기
+                        </button>
+                    </label>
+                    <input type="checkbox" id="chk_service" checked={serviceChecked} onChange={handleServiceChange}
+                        className="w-4 h-4 accent-blue-600 flex-shrink-0" />
+                </div>
+                {showService && (
+                    <div className="mt-4 bg-gray-50 border border-gray-200 rounded p-4 text-sm max-h-60 overflow-y-auto">
+                        <ol className="list-decimal pl-4 space-y-2">
+                            <li>
+                                <strong>제 1 조 (목적)</strong><br />
+                                본 약관은 잡코리아 유한책임회사(이하 "회사")가 운영하는 "서비스"를 이용함에 있어 "회사"와 회원간의 이용 조건 및 제반 절차, 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 한다.
+                            </li>
+                            <li>
+                                <strong>제 2 조 (용어의 정의)</strong><br />
+                                이 약관에서 사용하는 용어의 정의는 아래와 같다.<br />
+                                <ul className="list-disc pl-6">
+                                    <li>"사이트"라 함은 회사가 서비스를 "회원"에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 설정한 가상의 영업장 또는 회사가 운영하는 웹사이트, 모바일웹, 앱 등의 서비스를 제공하는 모든 매체를 통칭하며, 통합된 하나의 회원 계정(아이디 및 비밀번호)을 이용하여 서비스를 제공받을 수 있는 아래의 사이트를 말한다.<br />- www.jobkorea.co.kr<br />- www.albamon.com<br />- m.jobkorea.co.kr<br />- m.albamon.com</li>
+                                    <li>"서비스"라 함은 회사가 운영하는 사이트를 통해  기업(단체, 사업자, 교육기관)이 직원채용을 목적으로 등록하는 자료를 DB화하여 각각의 목적에 맞게 분류 가공, 집계하여 정보를 제공하는 서비스와 사이트에서 제공하는 모든 부대 서비스를 말한다.</li>
+                                    <li>"회원"이라 함은 기업의 필요한 인재를 고용할 것을 목적으로 약관에 동의하고 아이디를 부여받아 회사의 서비스를 이용하는 자를 말하며, 아웃소싱(도급), 인재파견, 채용대행 기업을 포함한다. 또한, 회원은 각 사업자 별로 아이디를 부여 받아 회사의 서비스를 이용하여야 한다.</li>
+                                    <li>"아이디"라  함은 회원가입시 회원의 식별과 회원의 서비스 이용을 위하여 회원이 선정하고 "회사"가 부여하는 문자와 숫자의 조합을 말한다.</li>
+                                    <li>"비밀번호"라 함은 위 제4항에 따라 회원이 회원가입시 아이디를 설정하면서 아이디를 부여받은 자와 동일인임을 확인하고 "회원"의 권익을 보호하기 위하여 "회원"이 선정한 문자와 숫자의 조합을 말한다.</li>
+                                    <li>"비회원"이라 함은 회원가입절차를 거치지 않고 "회사"가 제공하는 서비스를 이용하거나 하려는 자를 말한다.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                )}
+            </div>
+            {/* 개인정보 수집 및 이용 동의 (필수) */}
+            <div className="border-b border-gray-200 py-4">
+                <div className="flex items-center justify-between">
+                    <label htmlFor="chk_privacy" className="cursor-pointer select-none text-left w-full pr-8">
+                        <span className="font-semibold text-blue-600 mr-2">[필수]</span> 개인정보 수집 및 이용 동의
+                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowPrivacy(v => !v)}>
+                            내용보기
+                        </button>
+                    </label>
+                    <input type="checkbox" id="chk_privacy" checked={privacyChecked} onChange={handlePrivacyChange}
+                        className="w-4 h-4 accent-blue-600 flex-shrink-0" />
+                </div>
+                {showPrivacy && (
+                    <div className="mt-4 bg-gray-50 border border-gray-200 rounded p-4 text-sm max-h-60 overflow-y-auto">
+                        <p className="mb-2">잡코리아 및 알바몬 서비스 이용을 위해 아래와 같이 개인정보를 수집 및 이용합니다.<br />동의를 거부할 권리가 있으며, 동의 거부 시 잡코리아 및 알바몬 회원서비스 이용이 불가합니다.</p>
+                        <table className="w-full text-xs border border-gray-300 mb-2">
+                            <thead>
+                                <tr className="bg-gray-100">
+                                    <th className="border border-gray-300 px-2 py-1">목적</th>
+                                    <th className="border border-gray-300 px-2 py-1">항목</th>
+                                    <th className="border border-gray-300 px-2 py-1">보유 및 이용기간</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="border border-gray-300 px-2 py-1">본인여부 확인, 각종 맞춤형 서비스 제공, 취업활동증명서 서비스, 서비스 개선 및 신규 서비스 개발을 위한 통계 활용, 계약이행 및 약관변경 등의 고지를 위한 연락, 본인의사확인 및 민원 등의 고객불만처리</td>
+                                    <td className="border border-gray-300 px-2 py-1">가입자명, 본인인증정보 또는 중복가입확인정보(DI), 아이디, 비밀번호, 전화번호, 이메일</td>
+                                    <td className="border border-gray-300 px-2 py-1"><span className="underline">회원 탈퇴 시 즉시 파기</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
+            {/* 문자서비스 이용약관 동의 (필수) */}
+            <div className="border-b border-gray-200 py-4">
+                <div className="flex items-center justify-between">
+                    <label htmlFor="chk_sms" className="cursor-pointer select-none text-left w-full pr-8">
+                        <span className="font-semibold text-blue-600 mr-2">[필수]</span> 문자서비스 이용약관 동의
+                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowSms(v => !v)}>
+                            내용보기
+                        </button>
+                    </label>
+                    <input type="checkbox" id="chk_sms" checked={smsChecked} onChange={handleSmsChange}
+                        className="w-4 h-4 accent-blue-600 flex-shrink-0" />
+                </div>
+                {showSms && (
+                    <div className="mt-4 bg-gray-50 border border-gray-200 rounded p-4 text-sm max-h-60 overflow-y-auto">
+                        <h3 className="font-semibold mb-2">제1조(목적)</h3>
+                        <p className="mb-2">본 약관은 잡코리아 유한책임회사(이하 "회사")가 운영하는 웹사이트 및 모바일 어플리케이션(이하 "사이트")에서 제공하는 문자메시지 발송 서비스(이하 "서비스")를 이용함에 있어 이용자의 권리/의무 및 책임사항, 기타 필요사항을 규정함을 목적으로 한다.</p>
+                        <h3 className="font-semibold mb-2">제2조(정의)</h3>
+                        <ul className="list-disc pl-6 mb-2 text-xs">
+                            <li>서비스 : 회사가 사이트에서 유료 또는 무료로 제공하는 SMS, LMS 등 문자메시지 발송 기능</li>
+                            <li>이용자 : 회사가 제공하는 서비스를 이용하고자 절차에 의거 신청한 사이트의 기업회원</li>
+                            <li>이용신청 : 회사가 정한 별도의 기준과 절차에 따라 서비스 이용을 신청하는 것</li>
+                        </ul>
+                        <p className="text-xs text-gray-500">※ 전체 약관은 '내용보기'를 확장하여 확인하세요.</p>
+                    </div>
+                )}
+            </div>
+            {/* 개인정보 수집 및 이용 동의 (선택) */}
+            <div className="border-b border-gray-200 py-4">
+                <div className="flex items-center justify-between">
+                    <label htmlFor="chk_privacy_opt" className="cursor-pointer select-none text-left w-full pr-8">
+                        <span className="font-semibold text-gray-500 mr-2">[선택]</span> 개인정보 수집 및 이용 동의
+                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowPrivacyOpt(v => !v)}>
+                            내용보기
+                        </button>
+                    </label>
+                    <input type="checkbox" id="chk_privacy_opt" checked={privacyOptChecked} onChange={handlePrivacyOptChange}
+                        className="w-4 h-4 accent-blue-600 flex-shrink-0" />
+                </div>
+                {showPrivacyOpt && (
+                    <div className="mt-4 bg-gray-50 border border-gray-200 rounded p-4 text-sm max-h-60 overflow-y-auto">
+                        <h3 className="font-semibold mb-2">1. 수집 이용 목적</h3>
+                        <p className="mb-2"><u>상품•서비스 영업, 홍보, 마케팅, 쿠폰 발송을 목적으로 잡코리아, 알바몬에서 활용</u></p>
+                        <h3 className="font-semibold mb-2">2. 수집하는 개인정보 항목</h3>
+                        <p className="mb-2">전화번호, 이메일, 푸시토큰, 서비스 이용 기록</p>
+                        <h3 className="font-semibold mb-2">3. 개인정보 보유 및 이용기간</h3>
+                        <p className="mb-2"><u>회원탈퇴 시 즉시 파기</u></p>
+                        <h3 className="font-semibold mb-2">4. 수신동의 거부 및 철회방법 안내</h3>
+                        <p>본 동의는 거부하실 수 있습니다. 다만 거부 시 동의를 통해 제공 가능한 각종 혜택, 이벤트 안내를 받아보실 수 없습니다.<br />더 이상 상품•서비스 영업, 홍보, 마케팅, 쿠폰 발송을 원하시지 않는 경우 회원정보수정 페이지에서 수신여부를 변경하실 수 있습니다.</p>
+                    </div>
+                )}
+            </div>
+            {/* 광고성 정보 수신 동의 (선택) */}
+            <div className="py-4">
+                <div className="flex items-center justify-between">
+                    <label htmlFor="chk_ad" className="cursor-pointer select-none text-left w-full pr-8">
+                        <span className="font-semibold text-gray-500 mr-2">[선택]</span> 광고성 정보 수신 동의
+                        <button type="button" className="ml-2 text-xs text-blue-600 underline" onClick={() => setShowAd(v => !v)}>
+                            내용보기
+                        </button>
+                    </label>
+                    <input type="checkbox" id="chk_ad" checked={adChecked} onChange={handleAdChange}
+                        className="w-4 h-4 accent-blue-600 flex-shrink-0" />
+                </div>
+                {showAd && (
+                    <div className="mt-4 bg-gray-50 border border-gray-200 rounded p-4 text-sm max-h-60 overflow-y-auto">
+                        <h3 className="font-semibold mb-2">광고성 정보 수신 동의 안내</h3>
+                        <p className="mb-2">회원이 수집 및 이용에 동의한 개인정보를 잡코리아, 알바몬에서 활용하는 것에 동의하며, 해당 개인정보를 활용하여 전화 또는 전자적 전송매체(이메일/SMS 등 다양한 전송매체)를 통해 서비스에 대한 개인 맞춤형 광고 정보(뉴스레터, 소식 및 광고메일, 휴대폰 알림), 상품•서비스 영업, 홍보, 마케팅 정보를 전송할 수 있습니다.</p>
+                        <p>광고성 정보 수신 동의를 철회하고자 할 경우에는 광고성 동의 수신 설정 페이지에서 수신여부를 변경하실 수 있습니다.</p>
+                    </div>
+                )}
+            </div>
+        </section>
+    );
+}
+
 const CorpRegisterPage = () => {
     return (
         <div style={{ background: BG_COLOR, minHeight: '100vh' }}>
@@ -518,6 +727,7 @@ const CorpRegisterPage = () => {
                 <SNSInfoSection />
                 <BizLicenseSection />
                 <ManagerInfoSection />
+                <PolicySection />
                 {/* TODO: 다음 섹션(약관동의 등) 추가 예정 */}
             </main>
         </div>
