@@ -40,18 +40,17 @@ const Header = () => {
     }, [openDropdown]);
 
     return (
-        <header className="bg-white border-b border-gray-100">
-            <div className="px-80 py-0">
-                <div className="flex items-center justify-between h-[80px]">
+        <header className="bg-white border-b border-gray-100 min-w-[1280px] max-w-[1920px] w-full mx-auto" style={{ minWidth: 1280, maxWidth: 1920 }}>
+            <div className="px-80 py-0 w-full" style={{ width: 1920, minWidth: 1280, maxWidth: 1920, margin: '0 auto' }}>
+                <div className="flex items-center justify-between h-[80px] w-full">
                     {/* 좌측 네비게이션 */}
-                    <div className="flex items-center space-x-4 sm:space-x-6 lg:space-x-8">
+                    <div className="flex items-center space-x-8">
                         {/* 로고 */}
-                        <div className="text-lg sm:text-xl lg:text-2xl font-bold text-black whitespace-nowrap">
+                        <div className="text-2xl font-bold text-black whitespace-nowrap">
                             로고 STEPAI|스텝AI
                         </div>
-
-                        {/* 주 메뉴 - 태블릿 이상에서만 표시 */}
-                        <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
+                        {/* 주 메뉴 */}
+                        <nav className="flex items-center space-x-8">
                             {mainMenuItems.map((item) => (
                                 <div key={item.id} className="relative">
                                     <button
@@ -61,13 +60,12 @@ const Header = () => {
                                                 toggleDropdown(item.id);
                                             }
                                         }}
-                                        className="flex items-center space-x-1 text-black font-medium hover:text-gray-600 transition-colors duration-300 text-sm lg:text-base"
+                                        className="flex items-center space-x-1 text-black font-medium hover:text-gray-600 transition-colors duration-300 text-base"
                                     >
                                         <span>{item.label}</span>
                                         {item.hasDropdown && (
                                             <svg
-                                                className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-300 ${openDropdown === item.id ? 'rotate-180' : ''
-                                                    }`}
+                                                className={`w-4 h-4 transition-transform duration-300 ${openDropdown === item.id ? 'rotate-180' : ''}`}
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -81,11 +79,10 @@ const Header = () => {
                                             </svg>
                                         )}
                                     </button>
-
                                     {/* 드롭다운 메뉴 */}
                                     {item.hasDropdown && (
                                         <div
-                                            className={`absolute top-full left-0 mt-2 w-40 lg:w-48 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-300 ${openDropdown === item.id
+                                            className={`absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-300 ${openDropdown === item.id
                                                 ? 'opacity-100 max-h-60 visible'
                                                 : 'opacity-0 max-h-0 invisible'
                                                 }`}
@@ -94,7 +91,7 @@ const Header = () => {
                                             {dropdownItems.map((dropdownItem, index) => (
                                                 <button
                                                     key={index}
-                                                    className="block w-full px-3 lg:px-4 py-2 lg:py-3 text-left text-sm lg:text-base text-black hover:bg-gray-50 transition-colors duration-300 first:rounded-t-lg last:rounded-b-lg"
+                                                    className="block w-full px-4 py-3 text-left text-base text-black hover:bg-gray-50 transition-colors duration-300 first:rounded-t-lg last:rounded-b-lg"
                                                 >
                                                     {dropdownItem}
                                                 </button>
@@ -105,14 +102,12 @@ const Header = () => {
                             ))}
                         </nav>
                     </div>
-
                     {/* 우측 액션 버튼 */}
-                    <nav className="flex items-center space-x-2 sm:space-x-4 lg:space-x-8">
-                        {actionMenuItems.map((item, index) => (
+                    <nav className="flex items-center space-x-8">
+                        {actionMenuItems.map((item) => (
                             <button
                                 key={item.id}
-                                className={`text-black font-medium hover:text-gray-600 transition-colors duration-300 text-xs sm:text-sm lg:text-base whitespace-nowrap ${index < 2 ? 'hidden sm:block' : ''
-                                    }`}
+                                className="text-black font-medium hover:text-gray-600 transition-colors duration-300 text-base whitespace-nowrap"
                                 onClick={
                                     item.id === 'company'
                                         ? () => window.location.href = '/corp'
@@ -121,63 +116,6 @@ const Header = () => {
                             >
                                 {item.label}
                             </button>
-                        ))}
-                    </nav>
-                </div>
-
-                {/* 모바일 네비게이션 - 태블릿 미만에서만 표시 */}
-                <div className="md:hidden pb-4">
-                    <nav className="flex flex-wrap gap-2">
-                        {mainMenuItems.map((item) => (
-                            <div key={item.id} className="relative">
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        if (item.hasDropdown) {
-                                            toggleDropdown(item.id);
-                                        }
-                                    }}
-                                    className="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-lg text-black font-medium hover:bg-gray-200 transition-colors duration-300 text-sm"
-                                >
-                                    <span>{item.label}</span>
-                                    {item.hasDropdown && (
-                                        <svg
-                                            className={`w-3 h-3 transition-transform duration-300 ${openDropdown === item.id ? 'rotate-180' : ''
-                                                }`}
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M19 9l-7 7-7-7"
-                                            />
-                                        </svg>
-                                    )}
-                                </button>
-
-                                {/* 모바일 드롭다운 메뉴 */}
-                                {item.hasDropdown && (
-                                    <div
-                                        className={`absolute top-full left-0 mt-2 w-36 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-300 ${openDropdown === item.id
-                                            ? 'opacity-100 max-h-60 visible'
-                                            : 'opacity-0 max-h-0 invisible'
-                                            }`}
-                                        onClick={(e) => e.stopPropagation()}
-                                    >
-                                        {dropdownItems.map((dropdownItem, index) => (
-                                            <button
-                                                key={index}
-                                                className="block w-full px-3 py-2 text-left text-sm text-black hover:bg-gray-50 transition-colors duration-300 first:rounded-t-lg last:rounded-b-lg"
-                                            >
-                                                {dropdownItem}
-                                            </button>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
                         ))}
                     </nav>
                 </div>

@@ -762,14 +762,19 @@ function Body_NewsSection() {
 
 export default function Home() {
     return (
-        <div className="min-h-screen bg-white">
+        <div
+            className="bg-white min-h-screen w-full min-w-[1280px] max-w-[1920px] mx-auto overflow-x-auto"
+            style={{ width: '100vw', minWidth: 1280, maxWidth: 1920 }}
+        >
             <Header />
-            <main className="pt-[110px]">
-                <Body_ContentsMainSection />
-                <Body_CategorySection />
-                <Body_TopTrendsSection />
-                <Body_TopStepsSection />
-                <Body_NewsSection />
+            <main className="pt-[110px] w-full min-w-[1280px] max-w-[1920px] mx-auto">
+                <div className="w-full" style={{ width: 1920, minWidth: 1280, maxWidth: 1920, margin: '0 auto' }}>
+                    <Body_ContentsMainSection />
+                    <Body_CategorySection />
+                    <Body_TopTrendsSection />
+                    <Body_TopStepsSection />
+                    <Body_NewsSection />
+                </div>
             </main>
             <Footer />
         </div>
