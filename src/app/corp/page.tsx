@@ -393,6 +393,37 @@ function AIServiceInfo() {
     );
 }
 
+// SNS 등록 섹션 컴포넌트
+function SNSInfoSection() {
+    // SNS 종류 및 아이콘(간단한 예시)
+    const snsList = [
+        { name: 'YouTube', icon: '▶️' },
+        { name: 'Instagram', icon: '📸' },
+        { name: 'TikTok', icon: '🎵' },
+        { name: 'Thread', icon: '🧵' },
+        { name: 'X (구 Twitter)', icon: '✖️' },
+        { name: 'LinkedIn', icon: '🔗' },
+    ];
+    return (
+        <section className="max-w-[700px] mx-auto mb-8 bg-white rounded-lg shadow p-8 mt-8">
+            <h2 className="text-xl font-semibold mb-4 flex items-center">SNS 등록 <span className="text-gray-400 text-sm ml-2">(선택)</span></h2>
+            <div className="grid grid-cols-1 gap-4">
+                {snsList.map(sns => (
+                    <div key={sns.name} className="flex items-center gap-3">
+                        <span className="text-2xl w-10 flex-shrink-0 flex items-center justify-center">{sns.icon}</span>
+                        <input
+                            type="text"
+                            id={`sns-${sns.name}`}
+                            placeholder={`${sns.name} 링크`}
+                            className="w-full border border-gray-300 rounded px-3 py-3 focus:outline-none focus:border-blue-400 text-base bg-white"
+                        />
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+}
+
 const CorpRegisterPage = () => {
     return (
         <div style={{ background: BG_COLOR, minHeight: '100vh' }}>
@@ -400,6 +431,7 @@ const CorpRegisterPage = () => {
             <main className="max-w-[700px] mx-auto my-8 p-4">
                 <CorpInfoSection />
                 <AIServiceInfo />
+                <SNSInfoSection />
                 {/* TODO: 다음 섹션(담당자정보, 약관동의 등) 추가 예정 */}
             </main>
         </div>
