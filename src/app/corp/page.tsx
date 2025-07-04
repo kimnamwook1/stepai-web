@@ -424,6 +424,26 @@ function SNSInfoSection() {
     );
 }
 
+// 사업자등록증 제출 섹션 컴포넌트
+function BizLicenseSection() {
+    return (
+        <section className="max-w-[700px] mx-auto mb-8 bg-white rounded-lg shadow p-8 mt-8">
+            <h2 className="text-xl font-semibold mb-4 flex items-center">사업자등록증 제출 <span className="text-[#ff0000] text-sm ml-2">(필수)</span></h2>
+            <div className="flex flex-col items-center justify-center">
+                <label className="w-full max-w-screen-md flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 cursor-pointer hover:border-blue-400 transition">
+                    <span className="text-4xl mb-0 text-blue-400">📄</span>
+                    <span className="text-gray-600 mb-0">클릭 또는 파일을 드래그하여 업로드</span>
+                    <span className="text-xs text-gray-400 mb-0">(PDF 파일만 가능)</span>
+                    {/* 실제 파일 업로드는 미구현, input 숨김 */}
+                    <input type="file" className="hidden" />
+                    {/* 업로드된 파일명 표시 예시 */}
+                    {/* <span className="mt-2 text-sm text-green-600">사업자등록증.pdf</span> */}
+                </label>
+            </div>
+        </section>
+    );
+}
+
 const CorpRegisterPage = () => {
     return (
         <div style={{ background: BG_COLOR, minHeight: '100vh' }}>
@@ -432,6 +452,7 @@ const CorpRegisterPage = () => {
                 <CorpInfoSection />
                 <AIServiceInfo />
                 <SNSInfoSection />
+                <BizLicenseSection />
                 {/* TODO: 다음 섹션(담당자정보, 약관동의 등) 추가 예정 */}
             </main>
         </div>
