@@ -3,8 +3,10 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Main_Banner from "@/components/Main_Banner";
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Card from '@/components/Card';
+import SelectedItem from '@/components/SelectedItem';
+import type { SelectedItemProps } from '@/components/SelectedItem';
 
 const categoryOptions = [
     "문서·글쓰기", "마케팅·디자인", "교육·학습", "미디어·엔터테인먼트", "IT·프로그래밍", "비즈니스·전문가", "커머스·세일즈", "번역·통역", "건강·웰니스", "에이전트·자동화"
@@ -68,6 +70,27 @@ const cardTestData = [
     },
 ];
 
+// 더미 상세 데이터 생성 함수
+const getDetailData = (item: { serviceName?: string }): SelectedItemProps['data'] => ({
+    serviceName: item.serviceName || 'ChatGPT',
+    category: 'AI 어시스턴트',
+    tags: ['대화형 AI', '텍스트 생성', '문제 해결', '코딩 지원'],
+    description: 'ChatGPT는 OpenAI에서 개발한 대화형 AI 모델로, 다양한 질문에 답변하고 창작, 분석, 학습을 도와주는 AI 어시스턴트입니다.',
+    features: ['자연스러운 대화형 인터페이스', '텍스트 생성 및 편집', '코드 작성 및 디버깅', '언어 번역 및 요약'],
+    scenarios: ['학생: 학습 및 과제 도움', '개발자: 코딩 및 문제 해결', '작가: 창작 아이디어 및 글쓰기', '직장인: 업무 효율성 향상'],
+    rating: 4.8,
+    review: '정말 유용한 AI 도구입니다!',
+    reviewCount: '전 세계 1억+ 사용자',
+    homepage: 'https://chat.openai.com',
+    pricing: 'https://openai.com/pricing',
+    sns: [
+        { type: 'twitter', name: 'Twitter', handle: '@OpenAI', url: 'https://twitter.com/openai', icon: '🐦' },
+        { type: 'linkedin', name: 'LinkedIn', handle: 'OpenAI', url: 'https://www.linkedin.com/company/openai', icon: '💼' },
+        { type: 'youtube', name: 'YouTube', handle: 'OpenAI', url: 'https://www.youtube.com/@OpenAI', icon: '📺' },
+        { type: 'github', name: 'GitHub', handle: 'OpenAI', url: 'https://github.com/openai', icon: '💻' },
+    ],
+});
+
 const CategoryPage = () => {
     const [open, setOpen] = useState({
         category: true,
@@ -75,6 +98,33 @@ const CategoryPage = () => {
         price: false,
     });
     const [selectedCategory, setSelectedCategory] = useState(categoryOptions[0]);
+    const [displayedCards, setDisplayedCards] = useState(cardTestData.slice(0, 6));
+    const [page, setPage] = useState(1);
+    const observerRef = useRef<HTMLDivElement | null>(null);
+    const [selectedItem, setSelectedItem] = useState<SelectedItemProps['data'] | null>(null);
+
+    const loadMore = useCallback(() => {
+        setDisplayedCards((prev) => [
+            ...prev,
+            ...cardTestData.map((item) => ({ ...item })),
+        ].slice(0, (page + 1) * 6));
+        setPage((p) => p + 1);
+    }, [page]);
+
+    useEffect(() => {
+        if (!observerRef.current) return;
+        const observer = new window.IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    loadMore();
+                }
+            },
+            { threshold: 1 }
+        );
+        observer.observe(observerRef.current);
+        return () => observer.disconnect();
+    }, [loadMore]);
+
     const toggle = (key: keyof typeof open) => setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
 
     return (
@@ -141,7 +191,7 @@ const CategoryPage = () => {
                     <div className="flex-[8] flex flex-col p-6">
                         <div className="text-3xl font-bold mb-8">{selectedCategory}</div>
                         <div className="grid grid-cols-3 gap-5">
-                            {cardTestData.slice(0, 6).map((item, idx) => (
+                            {displayedCards.map((item, idx) => (
                                 <Card
                                     key={idx}
                                     size={{ width: 300, height: 300 }}
@@ -151,13 +201,17 @@ const CategoryPage = () => {
                                     detailsMinHeight={32}
                                     detailsMaxHeight={50}
                                     detailsLineClamp={3}
+                                    onClick={() => setSelectedItem(getDetailData(item))}
                                 />
                             ))}
                         </div>
+                        <div ref={observerRef} style={{ height: 1 }} />
                     </div>
                 </div>
             </main>
             <Footer />
+            {/* SelectedItem 모달 */}
+            <SelectedItem open={!!selectedItem} onClose={() => setSelectedItem(null)} data={selectedItem || getDetailData({})} />
         </>
     );
 };

@@ -169,6 +169,16 @@
 - [ ] 배너 Main_Title: "Step Ahead", Detail_Text: "Other Sentence"
 - [ ] 추후 News 리스트/상세 등 추가 예정
 
+### [2025-07-04] Category 페이지 무한 스크롤(프론트엔드 더미)
+- 요구: 스크롤 하단 도달 시 카드 6개씩 추가 로딩(Intersection Observer)
+- cardTestData를 여러 번 append, 추후 API 연동 시 구조 변경 최소화
+- (옵션) 로딩 중 표시/더 이상 없음 메시지는 추후 필요 시 추가
+
+#### 작업 단계
+1. Intersection Observer로 마지막 카드 감지 로직 추가
+2. 6개씩 카드 append (더미 데이터 반복)
+3. 추후 API 연동 시 fetch 함수만 교체
+
 ---
 
 추가 고려 필요사항
@@ -179,3 +189,9 @@
 - 로그인 페이지 및 기능 필요
 - 회원가입 페이지 및 기능 필요
 - Recently Added 배열 기획 필요
+
+### [2025-07-04] jasper_popup.html → SelectedItem.tsx 컴포넌트화
+- jasper_popup.html의 구조/스타일을 React 컴포넌트(SelectedItem.tsx)로 변환
+- props로 데이터 받아 동적 렌더링, 오버레이/닫기/z-index 등 모달 기능 포함
+- 카드 클릭 시 팝업 오픈/닫기 예시 구현(더미 데이터)
+- DB 연동은 추후 API 연결 시점에 fetch만 추가 예정

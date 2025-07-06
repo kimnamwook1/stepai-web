@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasper - AI 마케팅 카피 생성 서비스</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-container {
+            width: 1280px;
+            height: 1000px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .left-section {
+            flex: 1;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .logo::after {
+            content: "🤖";
+            font-size: 24px;
+        }
+
+        .info-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .stars-large {
+            color: #fbbf24;
+            font-size: 20px;
+        }
+
+        .rating-score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .review-count {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 5px;
+        }
+
+        .main-links {
+            margin-bottom: 35px;
+        }
+
+        .homepage-link {
+            display: block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .homepage-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .link-desc {
+            display: block;
+            font-size: 12px;
+            opacity: 0.9;
+            font-weight: normal;
+            margin-top: 4px;
+        }
+
+        .sns-section {
+            margin-bottom: 35px;
+        }
+
+        .sns-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .sns-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .sns-link.twitter {
+            background: #f0f9ff;
+            color: #0284c7;
+        }
+
+        .sns-link.linkedin {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .sns-link.youtube {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .sns-link.github {
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        .sns-link:hover {
+            transform: translateY(-1px);
+            border-color: currentColor;
+            opacity: 0.8;
+        }
+
+        .sns-icon {
+            font-size: 20px;
+        }
+
+        .sns-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .sns-handle {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .newsletter-section {
+        }
+
+        .newsletter-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .newsletter-header {
+            margin-bottom: 20px;
+        }
+
+        .newsletter-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .newsletter-desc {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .subscribe-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .subscribe-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .newsletter-options {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #374151;
+            cursor: pointer;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.1);
+        }
+
+        .newsletter-info {
+            text-align: center;
+            color: #6b7280;
+        }
+
+        .service-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .category {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .feature-tags {
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 50px 35px;
+            background: white;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-overlay">
+        <div class="popup-container">
+            <button class="close-btn" onclick="closePopup()">×</button>
+            
+            <div class="left-section">
+                <div class="logo-section">
+                    <div class="logo"></div>
+                    <h1 class="service-title">ChatGPT</h1>
+                </div>
+
+                <div class="category">카테고리: AI 어시스턴트</div>
+                
+                <div class="feature-tags">
+                    <span class="tag">대화형 AI</span>
+                    <span class="tag">텍스트 생성</span>
+                    <span class="tag">문제 해결</span>
+                    <span class="tag">코딩 지원</span>
+                </div>
+
+                <p class="description">
+                    ChatGPT는 OpenAI에서 개발한 대화형 AI 모델로, 다양한 질문에 답변하고 창작, 분석, 학습을 도와주는 AI 어시스턴트입니다.
+                </p>
+
+                <div class="info-sections">
+                    <div class="info-card">
+                        <div class="info-title">🚀 주요 기능 요약</div>
+                        <div class="info-item">• 자연스러운 대화형 인터페이스</div>
+                        <div class="info-item">• 텍스트 생성 및 편집</div>
+                        <div class="info-item">• 코드 작성 및 디버깅</div>
+                        <div class="info-item">• 언어 번역 및 요약</div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-title">👥 사용 시나리오</div>
+                        <div class="info-item">• 학생: 학습 및 과제 도움</div>
+                        <div class="info-item">• 개발자: 코딩 및 문제 해결</div>
+                        <div class="info-item">• 작가: 창작 아이디어 및 글쓰기</div>
+                        <div class="info-item">• 직장인: 업무 효율성 향상</div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-title">⭐ 사용자 리뷰 / 평점</div>
+                        <div class="rating-display">
+                            <span class="stars-large">★★★★★</span>
+                            <span class="rating-score">4.8</span>
+                        </div>
+                        <div class="review-text">"정말 유용한 AI 도구입니다!"</div>
+                        <div class="review-count">전 세계 1억+ 사용자</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="main-links">
+                    <h2 class="section-title">🌐 공식 홈페이지</h2>
+                    <a href="https://chat.openai.com" class="homepage-link" target="_blank">
+                        🔗 ChatGPT 바로가기
+                        <span class="link-desc">OpenAI 공식 사이트에서 ChatGPT 사용하기</span>
+                    </a>
+                    <a href="https://openai.com/pricing" class="homepage-link" target="_blank">
+                        💳 요금제 보기
+                        <span class="link-desc">ChatGPT Plus 및 Enterprise 플랜</span>
+                    </a>
+                </div>
+
+                <div class="sns-section">
+                    <h2 class="section-title">📱 공식 SNS</h2>
+                    <div class="sns-grid">
+                        <a href="https://twitter.com/openai" class="sns-link twitter" target="_blank">
+                            <div class="sns-icon">🐦</div>
+                            <div class="sns-info">
+                                <div class="sns-name">Twitter</div>
+                                <div class="sns-handle">@OpenAI</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.linkedin.com/company/openai" class="sns-link linkedin" target="_blank">
+                            <div class="sns-icon">💼</div>
+                            <div class="sns-info">
+                                <div class="sns-name">LinkedIn</div>
+                                <div class="sns-handle">OpenAI</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/@OpenAI" class="sns-link youtube" target="_blank">
+                            <div class="sns-icon">📺</div>
+                            <div class="sns-info">
+                                <div class="sns-name">YouTube</div>
+                                <div class="sns-handle">OpenAI</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://github.com/openai" class="sns-link github" target="_blank">
+                            <div class="sns-icon">💻</div>
+                            <div class="sns-info">
+                                <div class="sns-name">GitHub</div>
+                                <div class="sns-handle">OpenAI</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="newsletter-section">
+                    <h2 class="section-title">🔔 뉴스 알림 신청</h2>
+                    <div class="newsletter-card">
+                        <div class="newsletter-header">
+                            <div class="newsletter-title">ChatGPT 업데이트 소식</div>
+                            <div class="newsletter-desc">새로운 기능과 AI 업계 소식을 가장 먼저 받아보세요</div>
+                        </div>
+                        
+                        <form class="newsletter-form">
+                            <input type="email" class="email-input" placeholder="이메일 주소 입력">
+                            <button type="submit" class="subscribe-btn">구독하기</button>
+                        </form>
+                        
+                        <div class="newsletter-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                주요 업데이트 알림
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                이벤트 및 프로모션
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                AI 업계 뉴스
+                            </label>
+                        </div>
+                        
+                        <div class="newsletter-info">
+                            <small>✅ 언제든지 구독 해지 가능 • 📧 주 1회 발송</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closePopup() {
+            document.querySelector('.popup-overlay').style.display = 'none';
+        }
+
+        // 뉴스레터 구독 기능
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.querySelector('.email-input').value;
+            
+            if (email && email.includes('@')) {
+                alert(`${email}로 뉴스레터 구독이 신청되었습니다!`);
+                document.querySelector('.email-input').value = '';
+                
+                // 성공 메시지 표시
+                const form = this;
+                const originalHTML = form.innerHTML;
+                form.innerHTML = `
+                    <div style="text-align: center; color: #10b981; font-weight: 600;">
+                        ✅ 구독 신청 완료!
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    form.innerHTML = originalHTML;
+                    // 이벤트 리스너 재설정
+                    setupNewsletterForm();
+                }, 2000);
+            } else {
+                alert('올바른 이메일 주소를 입력해주세요.');
+            }
+        });
+
+        function setupNewsletterForm() {
+            document.querySelector('.newsletter-form').addEventListener('submit', arguments.callee);
+        }
+
+        // 체크박스 상호작용
+        document.querySelectorAll('.checkbox-label input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = this.closest('.checkbox-label');
+                if (this.checked) {
+                    label.style.color = '#3b82f6';
+                    label.style.fontWeight = '500';
+                } else {
+                    label.style.color = '#374151';
+                    label.style.fontWeight = 'normal';
+                }
+            });
+        });
+
+        // SNS 링크 클릭 추적
+        document.querySelectorAll('.sns-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const platform = this.querySelector('.sns-name').textContent;
+                console.log(`${platform} 링크 클릭됨`);
+                // 실제로는 여기서 분석 도구로 데이터 전송
+            });
+        });
+
+        // ESC 키로 팝업 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+
+        // 배경 클릭시 팝업 닫기
+        document.querySelector('.popup-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
