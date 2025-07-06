@@ -57,7 +57,9 @@ const Header = () => {
                                     <button
                                         className="text-black font-medium hover:text-gray-600 transition-colors duration-300 text-base px-1"
                                         onClick={() => {
-                                            if (item.id === 'trends') {
+                                            if (item.id === 'explore') {
+                                                window.location.href = '/category';
+                                            } else if (item.id === 'trends') {
                                                 window.location.href = '/trend';
                                             } else if (item.id === 'news') {
                                                 window.location.href = '/news';

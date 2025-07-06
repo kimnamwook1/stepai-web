@@ -53,9 +53,15 @@ const Footer: React.FC = () => {
                             key={p.label}
                             className="text-base text-black text-left hover:underline"
                             onClick={
-                                p.label === '트렌드'
-                                    ? () => window.location.href = '/trend'
-                                    : undefined
+                                p.label === '탐색'
+                                    ? () => window.location.href = '/category'
+                                    : p.label === '트렌드'
+                                        ? () => window.location.href = '/trend'
+                                        : p.label === '소식'
+                                            ? () => window.location.href = '/news'
+                                            : p.label === '광고'
+                                                ? () => window.location.href = '/ad'
+                                                : undefined
                             }
                         >
                             {p.label}
