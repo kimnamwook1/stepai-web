@@ -63,7 +63,7 @@ const Card_News: React.FC<CardNewsProps> = ({
                 <div
                     style={{
                         width: typeof thumbnailWidth === 'number' ? `${thumbnailWidth}px` : thumbnailWidth,
-                        height: '100%',
+                        height: typeof thumbnailHeight === 'number' ? `${thumbnailHeight}px` : thumbnailHeight,
                         background: '#eee',
                         borderRadius: 8,
                         overflow: 'hidden',

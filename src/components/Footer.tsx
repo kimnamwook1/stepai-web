@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
             <div className="w-full flex flex-row justify-between items-start" style={{ maxWidth: 1280 }}>
                 {/* (로고) STEPAI */}
                 <div className="flex flex-col min-w-[180px] items-start">
-                    <span className="text-xl font-medium mb-2">(로고) STEPAI</span>
+                    <span className="text-xl font-medium mb-2 cursor-pointer" onClick={() => window.location.href = '/'}>(로고) STEPAI</span>
                 </div>
                 {/* Pages */}
                 <div className="flex flex-col gap-4 min-w-[180px] items-start">

@@ -46,7 +46,7 @@ const Header = () => {
                     {/* 좌측 네비게이션 */}
                     <div className="flex items-center space-x-8">
                         {/* 로고 */}
-                        <div className="text-2xl font-bold text-black whitespace-nowrap">
+                        <div className="text-2xl font-bold text-black whitespace-nowrap cursor-pointer" onClick={() => window.location.href = '/'}>
                             로고 STEPAI|스텝AI
                         </div>
                         {/* 주 메뉴 */}
