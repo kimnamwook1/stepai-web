@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(find:*)",
+      "Bash(env)",
+      "Bash(cat:*)",
+      "Bash"
+    ],
+    "deny": []
+  }
+}

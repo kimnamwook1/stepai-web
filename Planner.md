@@ -160,6 +160,15 @@
 - [ ] 상단/중앙 배너, 서비스별 로고/썸네일 이미지 적용
 - [ ] Footer 컴포넌트 재사용
 
+### [2025-07-04] News 페이지 작업 계획
+- [ ] app/news 폴더 생성 및 page.tsx 파일 생성
+- [ ] Header 컴포넌트(@Header.tsx) 사용, 고정형(1920px, min 1280px)
+- [ ] Footer 컴포넌트(@Footer.tsx) 사용, 고정형(1920px, min 1280px)
+- [ ] 헤더/푸터 모두 반응형 아님, 1280~1920px 내 고정
+- [ ] 헤더 바로 아래 메인배너(Main_Banner) 삽입 (Trend 페이지와 동일 위치/크기)
+- [ ] 배너 Main_Title: "Step Ahead", Detail_Text: "Other Sentence"
+- [ ] 추후 News 리스트/상세 등 추가 예정
+
 ---
 
 추가 고려 필요사항

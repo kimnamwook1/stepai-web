@@ -59,6 +59,8 @@ const Header = () => {
                                         onClick={() => {
                                             if (item.id === 'trends') {
                                                 window.location.href = '/trend';
+                                            } else if (item.id === 'news') {
+                                                window.location.href = '/news';
                                             }
                                             // 추후 탐색/소식/광고 등도 경로 추가
                                         }}
