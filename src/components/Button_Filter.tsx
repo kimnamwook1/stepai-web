@@ -18,7 +18,7 @@ const Button_Filter: React.FC<ButtonFilterProps> = ({
     return (
         <button
             type="button"
-            className={`rounded-xl font-bold border-2 transition-colors duration-200 focus:outline-none w-full mb-4
+            className={`rounded-xl font-bold border-2 transition-colors duration-200 focus:outline-none mb-4
                 ${selected ? "bg-black text-white border-black" : "bg-white text-black border-black"}`}
             style={{
                 width: typeof width === 'number' ? `${width}px` : width,
