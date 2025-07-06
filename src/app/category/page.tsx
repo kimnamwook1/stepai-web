@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Main_Banner from "@/components/Main_Banner";
 import { useState } from "react";
+import Card from '@/components/Card';
 
 const categoryOptions = [
     "문서·글쓰기", "마케팅·디자인", "교육·학습", "미디어·엔터테인먼트", "IT·프로그래밍", "비즈니스·전문가", "커머스·세일즈", "번역·통역", "건강·웰니스", "에이전트·자동화"
@@ -28,12 +29,52 @@ const ArrowIcon = ({ open }: { open: boolean }) => (
     </svg>
 );
 
+const cardTestData = [
+    {
+        thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="로고" className="w-8 h-8" />,
+        serviceName: 'ChatGPT',
+        details: '#슬로건작성 #마케팅문구 #광고트렌드',
+    },
+    {
+        thumbnail: <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <span className="text-2xl">🌊</span>,
+        serviceName: 'VEO3',
+        details: '#마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상',
+    },
+    {
+        thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <span className="text-2xl">✖️</span>,
+        serviceName: 'ClovaX',
+        details: '#슬로건작성 #마케팅문구 #광고트렌드',
+    },
+    {
+        thumbnail: <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <span className="text-2xl">🦄</span>,
+        serviceName: 'UnicornAI',
+        details: '#유니콘 #AI #혁신',
+    },
+    {
+        thumbnail: <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <span className="text-2xl">🚀</span>,
+        serviceName: 'RocketBot',
+        details: '#로켓 #챗봇 #자동화',
+    },
+    {
+        thumbnail: <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <span className="text-2xl">🦉</span>,
+        serviceName: 'OwlSense',
+        details: '#부엉이 #센서 #지능',
+    },
+];
+
 const CategoryPage = () => {
     const [open, setOpen] = useState({
         category: true,
         country: false,
         price: false,
     });
+    const [selectedCategory, setSelectedCategory] = useState(categoryOptions[0]);
     const toggle = (key: keyof typeof open) => setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
 
     return (
@@ -52,7 +93,11 @@ const CategoryPage = () => {
                         {open.category && (
                             <ul className="pl-2 mb-2">
                                 {categoryOptions.map((opt) => (
-                                    <li key={opt} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">
+                                    <li
+                                        key={opt}
+                                        className={`py-1 text-base cursor-pointer hover:font-bold ${selectedCategory === opt ? 'font-bold text-black' : 'text-gray-700'}`}
+                                        onClick={() => setSelectedCategory(opt)}
+                                    >
                                         {opt}
                                         <span className="ml-2 text-gray-500">({categoryCounts[opt]})</span>
                                     </li>
@@ -94,7 +139,21 @@ const CategoryPage = () => {
                     </div>
                     {/* ResultSection (우측) */}
                     <div className="flex-[8] flex flex-col p-6">
-                        <div className="flex items-center justify-center h-full text-gray-400">우측 영역</div>
+                        <div className="text-3xl font-bold mb-8">{selectedCategory}</div>
+                        <div className="grid grid-cols-3 gap-5">
+                            {cardTestData.slice(0, 6).map((item, idx) => (
+                                <Card
+                                    key={idx}
+                                    size={{ width: 300, height: 300 }}
+                                    items={item}
+                                    serviceNameFontSize={18}
+                                    detailsFontSize={12}
+                                    detailsMinHeight={32}
+                                    detailsMaxHeight={50}
+                                    detailsLineClamp={3}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </main>

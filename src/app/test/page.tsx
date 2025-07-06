@@ -1,41 +1,57 @@
-import React from 'react';
-import Main_Banner from '../../components/Main_Banner';
-import Trend_card from '../../components/Trend_card';
+"use client";
 
-const TestPage = () => {
+import React from 'react';
+import Card from '@/components/Card';
+
+const testCards = [
+    {
+        thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="로고" className="w-8 h-8" />,
+        serviceName: 'ChatGPT',
+        details: '#슬로건작성 #마케팅문구 #광고트렌드',
+    },
+    {
+        thumbnail: <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <span className="text-2xl">🌊</span>,
+        serviceName: 'VEO3',
+        details: '#마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상' ,
+    },
+    {
+        thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
+        logo: <span className="text-2xl">✖️</span>,
+        serviceName: 'ClovaX',
+        details: '#슬로건작성 #마케팅문구 #광고트렌드',
+    },
+];
+
+export default function TestPage() {
     return (
-        <div className="w-full min-h-screen bg-gray-50 flex flex-col items-center py-10">
-            <h2 className="text-2xl font-bold mb-6">컴포넌트 테스트 페이지</h2>
-            <section className="mb-12 w-full flex flex-col items-center">
-                <h3 className="text-xl font-semibold mb-4">Main_Banner</h3>
-                <Main_Banner
-                    Main_Title="테스트용 메인 배너 타이틀"
-                    Detail_Text="이곳은 테스트 페이지에서 전달된 상세 설명입니다."
-                />
-            </section>
-            <section className="mb-12 w-full flex flex-col items-center">
-                <h3 className="text-xl font-semibold mb-4">Trend_card</h3>
-                <div className="w-[900px]">
-                    <Trend_card
-                        rank={0}
-                        serviceName="ChatGPT"
-                        category="글쓰기"
-                        updown="Up"
-                        homepage="https://chatgpt.com"
-                        snsLinks={{
-                            youtube: 'https://youtube.com',
-                            instagram: 'https://instagram.com',
-                            facebook: 'https://facebook.com',
-                            x: 'https://x.com',
-                            thread: 'https://threads.net',
-                            linkedin: 'https://linkedin.com',
-                        }}
+        <div className="w-full min-h-screen flex flex-col items-center justify-start pt-12 bg-white">
+            <div className="w-[1100px] grid grid-cols-3 gap-8 mt-12">
+                {testCards.map((item, idx) => (
+                    <Card
+                        key={idx}
+                        size={{ width: 340, height: 320 }}
+                        items={item}
+                        thumbnailRowGap={8}
+                        detailRowGap={8}
+                        detailBottomGap={0                        }
+                        thumbnailHeight={180}
+                        thumbnailWidth={"100%"}
+                        logoSize={32}
+                        logoMinWidth={28}
+                        logoMinHeight={28}
+                        logoMaxWidth={40}
+                        logoMaxHeight={40}
+                        logoBackground="#f5f5f5"
+                        serviceNameFontSize={20}
+                        detailsFontSize={15}
+                        detailsMinHeight={32}
+                        detailsMaxHeight={52}
+                        detailsLineClamp={2}
                     />
-                </div>
-            </section>
-            {/* 추후 다른 컴포넌트도 아래에 추가 */}
+                ))}
+            </div>
         </div>
     );
-};
-
-export default TestPage;
+}
