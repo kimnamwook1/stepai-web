@@ -109,17 +109,24 @@ alwaysApply: true
 
 ## [Planner 작성법법]
 
-0. Planner.md는 항상 프로젝트 폴더 최상위에 위치시킬 것
-1. 내용을 임의로 삭제하지 말고 아래로 계속 추가할 것
-2. 작업 단위를 매우 작게 쪼갤 것
-3. 작업에 필요한 사소한 것까지 확인 받고 진행할 것 (ex. 박스 버튼의 사이즈를 어떻게 할까요? 저는 ~~ 사이즈를 추천드립니다.)
-4. 삽입 시 해당 날짜가 있는지 확인하고 있으면 아래에 추가하여 작성할 것
-5. 작업항목은 줄글 형태가 아닌 체크박스 형태로 작성할 것
-6. 체크박스 작성 시 상위 작업, 하위 작업을 나눌 때에는 들여쓰기를 활용할 것
+- Planner.md는 항상 프로젝트 폴더 최상위에 위치시킬 것
+- 내용을 임의로 삭제하지 말고 아래로 계속 추가할 것
+- 작업 단위를 매우 작게 쪼갤 것
+- 작업에 필요한 사소한 것까지 확인 받고 진행할 것 (ex. 박스 버튼의 사이즈를 어떻게 할까요? 저는 ~~ 사이즈를 추천드립니다.)
+- 삽입 시 해당 날짜가 있는지 확인하고 있으면 아래에 추가하여 작성할 것
+- 작업항목은 줄글 형태가 아닌 체크박스 형태로 작성할 것
+- 체크박스 작성 시 상위 작업, 하위 작업을 나눌 때에는 들여쓰기를 활용할 것
    예시: 체크박스 들여쓰기.
-   - [ ] ~~~ 하기
-       - [ ] ~~~ 하기
-       - [ ] ~~~ 하기
-7. 작업이 완료되면 Planner.md에서 체크박스를 꼭 체크할 것
-8. Planner.md 최하단에는 추가 고려 사항으로 항목을 추가하여 유저가 추가한 리스트를 확인할 것
-9. 착업을 착수하게 되면 해당 작업 항목은 "(진행중)"으로 표시하고 완료 시 체크박스 체크하면서 진행중은 삭제할 것
+      - [ ] ~~~ 하기
+        - [ ] ~~~ 하기
+        - [ ] ~~~ 하기
+- 작업이 완료되면 Planner.md에서 체크박스를 꼭 체크할 것
+- Planner.md 최하단에는 추가 고려 사항으로 항목을 추가하여 유저가 추가한 리스트를 확인할 것
+- 착업을 착수하게 되면 해당 작업 항목은 "(진행중)"으로 표시하고 완료 시 체크박스 체크하면서 진행중은 삭제할 것
+
+## Memory Bank
+
+- Initialize a Memory Bank: /mcp memory-bank-mcp initialize_memory_bank path=./memory-bank
+Track Progress: /mcp memory-bank-mcp track_progress action="Feature Implementation" description="Implemented feature X"
+Log Decision: /mcp memory-bank-mcp log_decision title="API Design" context="..." decision="..."
+Switch Mode: /mcp memory-bank-mcp switch_mode mode=code

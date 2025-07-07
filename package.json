@@ -10,6 +10,7 @@
         "format": "prettier --write ."
     },
     "dependencies": {
+        "@movibe/memory-bank-mcp": "^0.4.1",
         "next": "14.2.30",
         "react": "^18",
         "react-dom": "^18",
