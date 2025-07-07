@@ -241,9 +241,9 @@ function Body_ContentsMainSection() {
     );
 }
 
-function Body_CategorySection() {
-    // Carousel_Main_Category 내부 함수
-    function Carousel_Main_Category({ title, onClick }: { title: string; onClick: () => void }) {
+function Body_ExploreSection() {
+    // Carousel_Main_Explore 내부 함수
+    function Carousel_Main_Explore({ title, onClick }: { title: string; onClick: () => void }) {
         return (
             <div
                 className="w-[120px] h-[130px] flex flex-col items-center cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
@@ -259,8 +259,8 @@ function Body_CategorySection() {
         );
     }
 
-    // Merged_Carousel_Main_Category 내부 함수
-    function Merged_Carousel_Main_Category() {
+    // Merged_Carousel_Main_Explore 내부 함수
+    function Merged_Carousel_Main_Explore() {
         const categories = [
             '문서·글쓰기',
             '마케팅·디자인',
@@ -294,7 +294,7 @@ function Body_CategorySection() {
                     </button>
                     <div className="flex gap-[1px] tablet:gap-0 overflow-x-visible">
                         {categoryList.map((title, idx) => (
-                            <Carousel_Main_Category
+                            <Carousel_Main_Explore
                                 key={idx}
                                 title={title}
                                 onClick={() => { }}
@@ -315,10 +315,10 @@ function Body_CategorySection() {
         );
     }
 
-    // Body_CategorySection의 반환 JSX
+    // Body_ExploreSection의 반환 JSX
     return (
         <section className="w-full px-80 py-0 pb-16 bg-white">
-            <Merged_Carousel_Main_Category />
+            <Merged_Carousel_Main_Explore />
         </section>
     );
 }
@@ -770,7 +770,7 @@ export default function Home() {
             <main className="pt-[110px] w-full min-w-[1280px] max-w-[1920px] mx-auto">
                 <div className="w-full" style={{ width: 1920, minWidth: 1280, maxWidth: 1920, margin: '0 auto' }}>
                     <Body_ContentsMainSection />
-                    <Body_CategorySection />
+                    <Body_ExploreSection />
                     <Body_TopTrendsSection />
                     <Body_TopStepsSection />
                     <Body_NewsSection />

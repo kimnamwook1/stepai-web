@@ -2,10 +2,10 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Main_Banner from "@/components/Main_Banner";
-import Button_Filter from "@/components/Button_Filter";
-import Card_with_Badge from "@/components/Card_with_Badge";
-import Card_News from "@/components/Card_News";
+import MainBanner from "@/components/MainBanner";
+import Button_Filter from "@/components/Button/Filter";
+import Card_with_Badge from "@/components/Card/CardWithBadge";
+import Card_News from "@/components/Card/CardNews";
 import { useState } from "react";
 
 const filterList = [
@@ -75,7 +75,7 @@ const NewsPage = () => {
         <>
             <Header />
             <main className="w-full min-h-screen flex flex-col items-center justify-start pt-12">
-                <Main_Banner Main_Title="Step Ahead" Detail_Text="Other Sentence" />
+                <MainBanner Main_Title="Step Ahead" Detail_Text="Other Sentence" />
                 <div className="w-[1280px] flex flex-row mt-8 border border-gray-300 rounded-xl bg-white" style={{ minHeight: 600 }}>
                     {/* 좌측 필터 메뉴 (2/10) */}
                     <div className="flex flex-col items-center justify-start py-8 px-4 border-r border-gray-200" style={{ flex: 1 }}>

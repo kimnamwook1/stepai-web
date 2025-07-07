@@ -2,17 +2,17 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Main_Banner from "@/components/Main_Banner";
+import MainBanner from "@/components/MainBanner";
 import { useState, useRef, useEffect, useCallback } from "react";
-import Card from '@/components/Card';
-import SelectedItem from '@/components/SelectedItem';
-import type { SelectedItemProps } from '@/components/SelectedItem';
+import Card from '@/components/Card/Card';
+import SelectedItem from '@/components/SelectedItem/SelectedItem';
+import type { SelectedItemProps } from '@/components/SelectedItem/SelectedItem';
 
-const categoryOptions = [
+const exploreOptions = [
     "문서·글쓰기", "마케팅·디자인", "교육·학습", "미디어·엔터테인먼트", "IT·프로그래밍", "비즈니스·전문가", "커머스·세일즈", "번역·통역", "건강·웰니스", "에이전트·자동화"
 ];
 const countryOptions = ["한국", "미국", "중국", "프랑스"];
-const categoryCounts: Record<string, number> = { "문서·글쓰기": 45, "마케팅·디자인": 67, "교육·학습": 89, "미디어·엔터테인먼트": 10, "IT·프로그래밍": 11, "비즈니스·전문가": 12, "커머스·세일즈": 13, "번역·통역": 14, "건강·웰니스": 15, "에이전트·자동화": 16 };
+const exploreCounts: Record<string, number> = { "문서·글쓰기": 45, "마케팅·디자인": 67, "교육·학습": 89, "미디어·엔터테인먼트": 10, "IT·프로그래밍": 11, "비즈니스·전문가": 12, "커머스·세일즈": 13, "번역·통역": 14, "건강·웰니스": 15, "에이전트·자동화": 16 };
 const countryCounts: Record<string, number> = { "한국": 100, "미국": 200, "중국": 300, "프랑스": 400 };
 
 const ArrowIcon = ({ open }: { open: boolean }) => (
@@ -97,7 +97,7 @@ const CategoryPage = () => {
         country: false,
         price: false,
     });
-    const [selectedCategory, setSelectedCategory] = useState(categoryOptions[0]);
+    const [selectedExplore, setSelectedExplore] = useState(exploreOptions[0]);
     const [displayedCards, setDisplayedCards] = useState(cardTestData.slice(0, 6));
     const [page, setPage] = useState(1);
     const observerRef = useRef<HTMLDivElement | null>(null);
@@ -131,7 +131,7 @@ const CategoryPage = () => {
         <>
             <Header />
             <main className="w-full min-h-screen flex flex-col items-center justify-start pt-12 bg-white">
-                <Main_Banner Main_Title="Step by Step" Detail_Text="First step to AI" />
+                <MainBanner Main_Title="Step by Step" Detail_Text="First step to AI" />
                 <div className="w-[1280px] mt-8 border border-dashed border-gray-300 rounded-lg min-h-[300px] flex flex-row items-stretch">
                     {/* SortSection (좌측) */}
                     <div className="flex-[2] min-w-[180px] border-r border-gray-200 bg-white flex flex-col p-6">
@@ -142,14 +142,14 @@ const CategoryPage = () => {
                         </button>
                         {open.category && (
                             <ul className="pl-2 mb-2">
-                                {categoryOptions.map((opt) => (
+                                {exploreOptions.map((opt) => (
                                     <li
                                         key={opt}
-                                        className={`py-1 text-base cursor-pointer hover:font-bold ${selectedCategory === opt ? 'font-bold text-black' : 'text-gray-700'}`}
-                                        onClick={() => setSelectedCategory(opt)}
+                                        className={`py-1 text-base cursor-pointer hover:font-bold ${selectedExplore === opt ? 'font-bold text-black' : 'text-gray-700'}`}
+                                        onClick={() => setSelectedExplore(opt)}
                                     >
                                         {opt}
-                                        <span className="ml-2 text-gray-500">({categoryCounts[opt]})</span>
+                                        <span className="ml-2 text-gray-500">({exploreCounts[opt]})</span>
                                     </li>
                                 ))}
                             </ul>
@@ -189,7 +189,7 @@ const CategoryPage = () => {
                     </div>
                     {/* ResultSection (우측) */}
                     <div className="flex-[8] flex flex-col p-6">
-                        <div className="text-3xl font-bold mb-8">{selectedCategory}</div>
+                        <div className="text-3xl font-bold mb-8">{selectedExplore}</div>
                         <div className="grid grid-cols-3 gap-5">
                             {displayedCards.map((item, idx) => (
                                 <Card

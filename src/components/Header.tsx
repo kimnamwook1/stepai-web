@@ -58,7 +58,7 @@ const Header = () => {
                                         className="text-black font-medium hover:text-gray-600 transition-colors duration-300 text-base px-1"
                                         onClick={() => {
                                             if (item.id === 'explore') {
-                                                window.location.href = '/category';
+                                                window.location.href = '/explore';
                                             } else if (item.id === 'trends') {
                                                 window.location.href = '/trend';
                                             } else if (item.id === 'news') {

@@ -14,13 +14,19 @@
 
 #### 1. 구조변경
 
-- [ ] dev 브랜치 생성 및 환경 분리
+- [x] dev 브랜치 생성 및 환경 분리
 - [ ] 기존 폴더/파일 구조 분석 및 개선안 설계
-  - [ ] app/ 폴더 내 라우트별 폴더 구조 정비
-  - [ ] src/components/에 Card, Header, Footer 등 공통 컴포넌트 이동 및 props 기반 유연화
-  - [ ] src/hooks/, src/types/, src/utils/, src/constants/ 등 공통 폴더 신설
-  - [ ] Header, Footer는 layout.tsx에서 import하여 전체 페이지에 공통 적용
-  - [ ] 도메인 특화 컴포넌트만 app/xxx/components/에 배치
+  - [x] app/ 폴더 내 라우트별 폴더 구조 정비
+  - [x] src/components/에 Card, Header, Footer 등 공통 컴포넌트 이동 및 props 기반 유연화
+  - [x] 도메인 특화 컴포넌트만 app/xxx/components/에 배치
+  - [x] src/components/Button, Card 등 폴더 생성 및 파일 이동
+  - [x] Main_Banner → MainBanner, SelectedItem 폴더화 등 PascalCase 네이밍 통일
+  - [x] import 경로 전체 일괄 수정 (app, components 등)
+  - [x] src/hooks, src/types, src/utils, src/constants 폴더 신설
+  - [x] SelectedItem 등 폴더화 및 import 경로 정비
+  - [ ] Footer, Header는 layout.tsx에서 import하여 전체 페이지에 공통 적용
+  - [ ] Footer, Header 등 추가 폴더화/네이밍 정비 (필요시)
+  - [ ] util/hook/type 샘플 파일 작성 (필요시)
 
 #### 2. 코드 정제
 
@@ -43,7 +49,8 @@
 ### [추가 고려 필요사항]
 
 - 고객센터 페이지 필요
+- 로그인 페이지, 회원가입 페이지
+- 메인페이지 수정 (기본에 있다가 검색 결과로 나타나도록)
 - 심사신청, 등록하기 버튼 클릭 시 로직 필요(입력 정보 json 형태로 백엔드 전달)
-- 객체지향적으로 리팩토링
 - 로그인/회원가입 페이지 및 기능 필요
 - Recently Added 배열 기획 필요

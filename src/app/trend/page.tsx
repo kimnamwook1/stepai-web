@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Main_Banner from "@/components/Main_Banner";
-import Trend_card from '@/components/Trend_card';
+import MainBanner from "@/components/MainBanner";
+import Trend_card from '@/components/Card/TrendCard';
 
 const TrendPage = () => {
     // SortSection 상태 관리
@@ -101,7 +101,7 @@ const TrendPage = () => {
         <>
             <Header />
             <main className="w-full min-h-screen flex flex-col items-center justify-start pt-12">
-                <Main_Banner Main_Title="Stepper" Detail_Text="Other sentence" />
+                <MainBanner Main_Title="Stepper" Detail_Text="Other sentence" />
                 <div className="w-[1280px] mt-8 border border-dashed border-gray-300 rounded-lg min-h-[300px] flex flex-row items-stretch">
                     {/* SortSection */}
                     <div className="flex-[2] min-w-[180px] border-r border-gray-200 bg-white flex flex-col p-6">

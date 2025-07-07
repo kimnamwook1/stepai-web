@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Card from '@/components/Card';
+import Card from '@/components/Card/Card';
 
 const testCards = [
     {
@@ -14,7 +14,7 @@ const testCards = [
         thumbnail: <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="썸네일" className="w-full h-full object-cover" />,
         logo: <span className="text-2xl">🌊</span>,
         serviceName: 'VEO3',
-        details: '#마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상' ,
+        details: '#마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상',
     },
     {
         thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
@@ -35,7 +35,7 @@ export default function TestPage() {
                         items={item}
                         thumbnailRowGap={8}
                         detailRowGap={8}
-                        detailBottomGap={0                        }
+                        detailBottomGap={0}
                         thumbnailHeight={180}
                         thumbnailWidth={"100%"}
                         logoSize={32}
