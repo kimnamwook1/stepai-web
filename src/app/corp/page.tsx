@@ -2,7 +2,6 @@
 
 import React, { useState, FocusEvent } from "react";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/Footer";
 
 // Header_Corp 컴포넌트 내부 정의
 function HeaderCorp() {
@@ -743,7 +742,6 @@ const CorpRegisterPage = () => {
                     </button>
                 </div>
             </main>
-            <Footer />
         </div>
     );
 };

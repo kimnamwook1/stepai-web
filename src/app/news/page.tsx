@@ -1,7 +1,6 @@
 "use client";
 
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import MainBanner from "@/components/MainBanner";
 import Button_Filter from "@/components/Button/Filter";
 import Card_with_Badge from "@/components/Card/CardWithBadge";
@@ -139,7 +138,6 @@ const NewsPage = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
         </>
     );
 };

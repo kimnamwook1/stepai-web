@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import MainBanner from "@/components/MainBanner";
 import Trend_card from '@/components/Card/TrendCard';
 
@@ -203,7 +202,6 @@ const TrendPage = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
         </>
     );
 };

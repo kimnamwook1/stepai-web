@@ -2,7 +2,6 @@
 
 
 import React, { useRef, useState } from "react";
-import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 
 const BG_COLOR = 'rgb(245,246,248)';
@@ -593,7 +592,6 @@ const ExpertRegisterPage = () => {
                     등록하기
                 </button>
             </main>
-            <Footer />
         </div>
     );
 };

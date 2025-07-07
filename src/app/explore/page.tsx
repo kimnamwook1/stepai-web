@@ -1,7 +1,6 @@
 "use client";
 
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import MainBanner from "@/components/MainBanner";
 import { useState, useRef, useEffect, useCallback } from "react";
 import Card from '@/components/Card/Card';
@@ -209,7 +208,6 @@ const CategoryPage = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
             {/* SelectedItem 모달 */}
             <SelectedItem open={!!selectedItem} onClose={() => setSelectedItem(null)} data={selectedItem || getDetailData({})} />
         </>
