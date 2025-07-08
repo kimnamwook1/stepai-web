@@ -85,3 +85,7 @@
 - [x] 헤더 네비게이션 링크 수정
   - [x] 기업등록 버튼: /corp → /register/corp
   - [x] 전문가등록 버튼: /expert → /register/expert
+- [x] Header 및 RegisterHeader 반응형 여백 적용
+  - [x] Footer와 동일한 반응형 로직 적용 (1920px+ 점진적 증가, 1920~1280px 점진적 축소, 1280px 미만 고정)
+  - [x] Header.tsx 수정
+  - [x] RegisterHeader.tsx 수정
