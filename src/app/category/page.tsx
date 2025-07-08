@@ -3,6 +3,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Main_Banner from "@/components/Main_Banner";
+import { useApi, useInfiniteApi } from '@/hooks/useApi';
+import { categoryApi, aiCategoryApi } from '@/services';
 import { useState, useRef, useEffect, useCallback } from "react";
 import Card from '@/components/Card';
 import SelectedItem from '@/components/SelectedItem';
@@ -92,6 +94,12 @@ const getDetailData = (item: { serviceName?: string }): SelectedItemProps['data'
 });
 
 const CategoryPage = () => {
+    // API 데이터 가져오기
+    const { data: categories, loading: categoriesLoading } = useApi(aiCategoryApi.getAllCategories);
+    const { data: aiServices, loading: servicesLoading } = useApi(
+        () => categoryApi.getServicesByCategory(1, { page: 1, limit: 6 })
+    );
+
     const [open, setOpen] = useState({
         category: true,
         country: false,
@@ -102,6 +110,16 @@ const CategoryPage = () => {
     const [page, setPage] = useState(1);
     const observerRef = useRef<HTMLDivElement | null>(null);
     const [selectedItem, setSelectedItem] = useState<SelectedItemProps['data'] | null>(null);
+
+    // API 데이터를 카드 데이터로 변환
+    const apiCardData = aiServices && Array.isArray(aiServices) && aiServices.length > 0
+        ? aiServices.map((service: any) => ({
+            thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
+            logo: <span className="text-2xl">🤖</span>,
+            serviceName: service.ai_name || 'AI 서비스',
+            details: service.ai_description ? `#${service.ai_description.split(' ').slice(0, 3).join(' #')}` : '#AI #서비스',
+        }))
+        : cardTestData;
 
     const loadMore = useCallback(() => {
         setDisplayedCards((prev) => [
