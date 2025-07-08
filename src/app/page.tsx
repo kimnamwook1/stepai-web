@@ -2,8 +2,10 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useApi } from '@/hooks/useApi';
+import { mainApi, aiCategoryApi } from '@/services';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
 function Body_ContentsMainSection() {
     // Body_ContentsMain 내부 state/로직
@@ -13,9 +15,16 @@ function Body_ContentsMainSection() {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const autoRotateRef = useRef<NodeJS.Timeout | null>(null);
 
+    // AI 서비스 검색 API 연동
+    const { data: searchResults, loading: searchLoading, refetch: searchAIServices } = useApi(
+        () => inputText ? mainApi.searchAIServices(inputText) : Promise.resolve({ success: true, data: [], message: '' }),
+        { enabled: !!inputText } // 입력이 있을 때만 호출
+    );
+
     const HASHTAGS = '#광고 #모델이미지 #상품이미지';
 
-    const cardData = [
+    // 기본 카드 데이터 (검색 결과가 없을 때 표시)
+    const defaultCardData = [
         {
             id: 0,
             category: '디자인',
@@ -47,6 +56,23 @@ function Body_ContentsMainSection() {
             color: '#81bcff'
         }
     ];
+
+    // 검색 결과를 카드 데이터로 변환
+    const cardData = (() => {
+        if (searchResults && Array.isArray(searchResults) && searchResults.length > 0) {
+            return searchResults.slice(0, 3).map((service: any, index: number) => ({
+                id: service.id,
+                category: service.ai_type || 'AI 서비스',
+                title: service.ai_name,
+                brand: service.nationality || 'Unknown',
+                thumbnail: '/api/placeholder/340/280',
+                logo: '/api/placeholder/60/60',
+                hashtags: service.ai_description ? `#${service.ai_description.split(' ').slice(0, 3).join(' #')}` : '#AI #서비스',
+                color: ['#ffcab3', '#fffc97', '#81bcff'][index % 3]
+            }));
+        }
+        return defaultCardData;
+    })();
 
     const adjustTextareaHeight = () => {
         if (textareaRef.current) {
@@ -242,18 +268,33 @@ function Body_ContentsMainSection() {
 }
 
 function Body_CategorySection() {
+    // 카테고리 데이터 가져오기
+    const { data: categoriesData, loading: categoriesLoading, error: categoriesError } = useApi(aiCategoryApi.getAICategories);
+
     // Carousel_Main_Category 내부 함수
-    function Carousel_Main_Category({ title, onClick }: { title: string; onClick: () => void }) {
+    function Carousel_Main_Category({ category, onClick }: { category: { name: string; icon: string | null }; onClick: () => void }) {
         return (
             <div
                 className="w-[120px] h-[130px] flex flex-col items-center cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
                 onClick={onClick}
             >
                 <div className="w-[60px] h-[60px] bg-gray-200 flex items-center justify-center rounded-md mt-4 mb-2">
+                    {category.icon ? (
+                        <img
+                            src={category.icon}
+                            alt={category.name}
+                            className="w-full h-full object-cover rounded-md"
+                            onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                                target.nextElementSibling?.classList.remove('hidden');
+                            }}
+                        />
+                    ) : null}
                     <span className="text-gray-400 text-xs font-semibold select-none">아이콘</span>
                 </div>
                 <span className="text-[13px] font-medium text-center text-gray-800 select-none tracking-tighter whitespace-nowrap">
-                    {title.replace(/\s*·\s*/g, '·')}
+                    {category.name.replace(/\s*·\s*/g, '·')}
                 </span>
             </div>
         );
@@ -261,19 +302,30 @@ function Body_CategorySection() {
 
     // Merged_Carousel_Main_Category 내부 함수
     function Merged_Carousel_Main_Category() {
-        const categories = [
-            '문서·글쓰기',
-            '마케팅·디자인',
-            '교육·학습',
-            '미디어·엔터테인먼트',
-            'IT·프로그래밍',
-            '비즈니스·전문가',
-            '커머스·세일즈',
-            '번역·통역',
-            '건강·웰니스',
-            '에이전트·자동화',
+        // 기본 카테고리 (로딩 중이거나 에러일 때)
+        const defaultCategories = [
+            { name: '준비중입니다', icon: null },
         ];
-        const [categoryList, setCategoryList] = useState(categories);
+
+        // API 데이터를 카테고리 리스트로 변환 (useMemo로 메모이제이션)
+        const categories = useMemo(() => {
+            return categoriesData && Array.isArray((categoriesData as any).categories) && (categoriesData as any).categories.length > 0
+                ? (categoriesData as any).categories.map((category: any) => ({
+                    name: category.category_name,
+                    icon: category.category_icon
+                }))
+                : defaultCategories;
+        }, [categoriesData]);
+
+        const [categoryList, setCategoryList] = useState<Array<{ name: string; icon: string | null }>>(categories);
+
+        // categories가 변경될 때 categoryList 업데이트
+        useEffect(() => {
+            if (categories && categories.length > 0) {
+                setCategoryList(categories);
+            }
+        }, [categories]);
+
         const handleLeft = () => {
             setCategoryList((prev) => [prev[prev.length - 1], ...prev.slice(0, prev.length - 1)]);
         };
@@ -293,10 +345,10 @@ function Body_CategorySection() {
                         </svg>
                     </button>
                     <div className="flex gap-[1px] tablet:gap-0 overflow-x-visible">
-                        {categoryList.map((title, idx) => (
+                        {categoryList.map((category, idx) => (
                             <Carousel_Main_Category
                                 key={idx}
-                                title={title}
+                                category={category}
                                 onClick={() => { }}
                             />
                         ))}
@@ -324,13 +376,28 @@ function Body_CategorySection() {
 }
 
 function Body_TopTrendsSection() {
-    const trendSets = Array(10).fill(0).map(() => ({
+    // AI 서비스 데이터 가져오기
+    const { data: aiServices, loading, error } = useApi(mainApi.getTrends);
+
+    // 기본 데이터 (로딩 중이거나 에러일 때)
+    const defaultTrendSets = Array(10).fill(0).map(() => ({
         category: '카테고리',
         title: '서비스',
         thumbnail: '이미지',
         logo: '로고',
         hashtags: '해시태그'
     }));
+
+    // API 데이터를 트렌드 세트로 변환
+    const trendSets = aiServices && Array.isArray(aiServices) && aiServices.length > 0
+        ? aiServices.slice(0, 10).map((service: any) => ({
+            category: service.ai_type || 'AI 서비스',
+            title: service.ai_name,
+            thumbnail: '이미지',
+            logo: '로고',
+            hashtags: service.ai_description ? service.ai_description.slice(0, 20) + '...' : '해시태그'
+        }))
+        : defaultTrendSets;
 
     const CARD_WIDTH = 278;
     const CARD_HEIGHT = 330;
@@ -416,9 +483,9 @@ function Body_TopTrendsSection() {
                         justifyContent: 'center',
                     }}
                 >
-                    {getVisibleSets().map((set) => (
+                    {getVisibleSets().map((set, index) => (
                         <div
-                            key={set.category}
+                            key={`${set.category}-${startIdx + index}`}
                             className="flex flex-col items-center"
                             style={{ width: CARD_WIDTH }}
                         >
