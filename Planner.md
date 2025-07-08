@@ -27,9 +27,9 @@
   - [x] Footer 구조 리팩토링(3섹션, 반응형, 점선 border)
   - [x] Footer를 layout.tsx에서 공통 적용
   - [x] 각 page에서 Footer import/사용 코드 일괄 삭제(중복 제거)
-  - [ ] Footer, Header 등 추가 폴더화/네이밍 정비 (필요시)
+  - [x] Footer, Header 등 추가 폴더화/네이밍 정비 (필요시)
   - [ ] util/hook/type 샘플 파일 작성 (필요시)
-  - [ ] register/corp, register/expert로 파일 이동 후 import 경로 수정 (진행중)
+  - [x] register/corp, register/expert로 파일 이동 후 import 경로 수정 (진행중)
 
 #### 2. 코드 정제
 
