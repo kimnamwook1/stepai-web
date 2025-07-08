@@ -12,6 +12,7 @@ alwaysApply: true
 3. 작업 착수 전, Planner.md를 수정하고 컨펌받아 진행할 것 (임의로 진행하지 말 것)
 4. Planner 작성 요령은 아래의 [Planner 작성법] 참고할 것
 5. 작업 착수 전, 필요한 정보를 얻을 때까지 질문할 것 (중요요)
+6. 작업 후 내가 "좋아" 또는 "오케이" 라고 하면 WorkLog.md 라는 파일에 작업 일시(일자+시간), 작업 내용(어떤 코드를 어떻게 수정했다 등)의 로그를 남겨. 내가 보고 공부하기 위한 용도 있지만 추후 대화 세션이 끊겼을 때 너가 보고 다시 작업을 이어서 착수할 수 있게 하기 위한거야. 예시는 아래 [WorkLog 작성법] 을 참고해
 
 ## [코드 작성 원칙]
 
@@ -107,7 +108,7 @@ alwaysApply: true
 - 리팩토링과 기능 추가를 분리하여 진행할 것
 - 필요한 경우 마지막 작업에 항상 README.md에 내용을 추가할 것
 
-## [Planner 작성법법]
+## [Planner 작성법]
 
 - Planner.md는 항상 프로젝트 폴더 최상위에 위치시킬 것
 - 내용을 임의로 삭제하지 말고 아래로 계속 추가할 것
@@ -133,3 +134,95 @@ alwaysApply: true
     "- [ ] ~~~~ 하기"
         " - [ ] ~~~~ 하기"
     "- [ ] ~~~하기"
+
+## [WorkLong 작성법]
+
+### Work Log YYYY-MM-DD-HH-MM
+
+- **Task** : [Planner에서 진행한 내용]
+- **Status:** [진행중/완료/대기]
+
+---
+
+### 🔧 Code Changes
+
+#### [시간] - [파일명/모듈명]
+
+**Action:** [생성/수정/삭제/리팩토링]
+**File:** `path/to/file.ext`
+
+**Changes Made:**
+
+- 변경 사항 1
+- 변경 사항 2
+
+**Code Diff:**
+
+```language
+// Before
+기존 코드
+
+// After
+수정된 코드
+```
+
+##### 📁 File Operations
+
+[시간] - File Management
+Action: [생성/이동/삭제/이름변경]
+Files:
+
+old/path/file1.ext → new/path/file1.ext
+created/new/file2.ext
+deleted/old/file3.ext
+
+Purpose: 파일 작업 목적
+
+##### 🐛 Bug Fixes
+
+[시간] - [버그 제목]
+Issue: 발생한 문제 설명
+Root Cause: 원인 분석
+Solution: 해결 방법
+Files Modified:
+
+file1.ext - 수정 내용
+file2.ext - 수정 내용
+
+##### ✨ New Features
+
+Description: 새로운 기능 설명
+Implementation:
+
+구현 단계 1
+구현 단계 2
+
+Files Created/Modified:
+
+new-feature.ext - 새로 생성
+existing-file.ext - 기능 추가를 위해 수정
+
+##### 🔄 Refactoring
+
+[시간] - [리팩토링 대상]
+Target: 리팩토링한 코드/모듈
+Before Structure:
+기존 구조
+After Structure:
+새로운 구조
+Benefits:
+
+개선된 점 1
+개선된 점 2
+
+**Code Diff:**
+
+```language
+// Before
+기존 코드
+
+// After
+수정된 코드
+```
+
+- Reason: 변경 이유 설명
