@@ -1,36 +1,6 @@
 'use client';
 
-
 import React, { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-
-const BG_COLOR = 'rgb(245,246,248)';
-
-function HeaderCorp() {
-    const router = useRouter();
-    return (
-        <header className="w-full bg-white shadow">
-            <div className="max-w-[700px] mx-auto h-20 flex items-center justify-end px-6">
-                <nav className="flex items-center gap-2 text-sm">
-                    <button
-                        className="font-bold text-gray-800 hover:underline focus:outline-none"
-                        onClick={() => router.push("/")}
-                        type="button"
-                    >
-                        홈
-                    </button>
-                    <span className="text-gray-300">|</span>
-                    <button
-                        className="font-bold text-gray-800 hover:underline focus:outline-none"
-                        type="button"
-                    >
-                        고객센터
-                    </button>
-                </nav>
-            </div>
-        </header>
-    );
-}
 
 function ExpertProfileSection() {
     // 카테고리별 스킬 데이터 구조
@@ -578,21 +548,18 @@ function PolicySection() {
 }
 const ExpertRegisterPage = () => {
     return (
-        <div style={{ minHeight: '100vh', background: BG_COLOR }}>
-            <HeaderCorp />
-            <main className="max-w-[700px] mx-auto my-8 p-4">
-                <ExpertProfileSection />
-                <SNSInfoSection />
-                <ResultRegisterSection />
-                <PolicySection />
-                <button
-                    type="button"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded py-3 text-lg transition-colors"
-                >
-                    등록하기
-                </button>
-            </main>
-        </div>
+        <main className="max-w-[700px] mx-auto my-8 p-4">
+            <ExpertProfileSection />
+            <SNSInfoSection />
+            <ResultRegisterSection />
+            <PolicySection />
+            <button
+                type="button"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded py-3 text-lg transition-colors"
+            >
+                등록하기
+            </button>
+        </main>
     );
 };
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/Footer";
+import ConditionalFooter from "@/components/ConditionalFooter";
 
 export const metadata: Metadata = {
     title: "STEPAI | 스텝AI",
@@ -24,7 +24,7 @@ export default function RootLayout({
             </head>
             <body className="font-pretendard antialiased">
                 {children}
-                <Footer />
+                <ConditionalFooter />
             </body>
         </html>
     );

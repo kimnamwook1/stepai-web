@@ -124,9 +124,9 @@ const Header = () => {
                                 className="text-black font-medium hover:text-gray-600 transition-colors duration-300 text-base whitespace-nowrap"
                                 onClick={
                                     item.id === 'company'
-                                        ? () => window.location.href = '/corp'
+                                        ? () => window.location.href = '/register/corp'
                                         : item.id === 'expert'
-                                            ? () => window.location.href = '/expert'
+                                            ? () => window.location.href = '/register/expert'
                                             : undefined
                                 }
                             >

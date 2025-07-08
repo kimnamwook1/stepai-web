@@ -57,3 +57,31 @@
 - 심사신청, 등록하기 버튼 클릭 시 로직 필요(입력 정보 json 형태로 백엔드 전달)
 - 로그인/회원가입 페이지 및 기능 필요
 - Recently Added 배열 기획 필요
+
+## [2025-07-08]
+
+### [요구사항분석]
+
+- register 폴더의 corp, expert 페이지에서 HeaderCorp 컴포넌트가 중복되고 있음
+- register 폴더 내 모든 페이지에서 공통 헤더를 사용해야 함
+- 중복 코드 제거 및 유지보수성 향상을 위해 별도 컴포넌트 및 layout 적용 필요
+
+### [세부작업내용]
+
+#### Register 폴더 공통 컴포넌트 분리
+
+- [x] register 폴더에 공통 HeaderCorp 컴포넌트 분리
+  - [x] src/app/register/components/RegisterHeader.tsx 생성
+  - [x] 기존 HeaderCorp 컴포넌트 코드 이동 및 네이밍 변경
+- [x] register 폴더에 layout.tsx 생성
+  - [x] RegisterHeader 컴포넌트를 layout에 적용
+  - [x] 배경색(BG_COLOR) 등 공통 스타일 적용
+- [x] 기존 페이지들에서 중복 코드 제거
+  - [x] corp/page.tsx에서 HeaderCorp 컴포넌트 및 관련 스타일 제거
+  - [x] expert/page.tsx에서 HeaderCorp 컴포넌트 및 관련 스타일 제거
+  - [x] import 경로 정리 및 불필요한 코드 삭제
+- [x] register 폴더에서 Footer 숨기기
+  - [x] Root Layout에서 pathname 기반으로 Footer 조건부 렌더링 적용
+- [x] 헤더 네비게이션 링크 수정
+  - [x] 기업등록 버튼: /corp → /register/corp
+  - [x] 전문가등록 버튼: /expert → /register/expert
