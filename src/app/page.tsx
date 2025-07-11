@@ -278,20 +278,36 @@ function Body_CategorySection() {
                 className="w-[80px] h-[90px] sm:w-[100px] sm:h-[110px] lg:w-[120px] lg:h-[130px] flex flex-col items-center cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
                 onClick={onClick}
             >
-                <div className="w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] lg:w-[60px] lg:h-[60px] bg-gray-200 flex items-center justify-center rounded-md mt-2 sm:mt-3 lg:mt-4 mb-1 sm:mb-2">
+                <div className="w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] lg:w-[60px] lg:h-[60px] bg-gray-200 flex items-center justify-center rounded-md mt-2 sm:mt-3 lg:mt-4 mb-1 sm:mb-2 relative">
                     {category.icon ? (
                         <img
                             src={category.icon}
                             alt={category.name}
-                            className="w-full h-full object-cover rounded-md"
+                            className="w-full h-full object-contain rounded-md"
+                            crossOrigin="anonymous"
                             onError={(e) => {
+                                console.log('Image load error for:', category.icon);
                                 const target = e.target as HTMLImageElement;
                                 target.style.display = 'none';
-                                target.nextElementSibling?.classList.remove('hidden');
+                                const fallback = target.parentElement?.querySelector('.icon-fallback');
+                                if (fallback) {
+                                    fallback.classList.remove('hidden');
+                                }
+                            }}
+                            onLoad={(e) => {
+                                console.log('Image loaded successfully:', category.icon);
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'block';
+                                const fallback = target.parentElement?.querySelector('.icon-fallback');
+                                if (fallback) {
+                                    fallback.classList.add('hidden');
+                                }
                             }}
                         />
                     ) : null}
-                    <span className="text-gray-400 text-xs font-semibold select-none">아이콘</span>
+                    <span className="text-gray-400 text-xs font-semibold select-none icon-fallback hidden">
+                        {category.name.charAt(0)}
+                    </span>
                 </div>
                 <span className="text-[10px] sm:text-[11px] lg:text-[13px] font-medium text-center text-gray-800 select-none tracking-tighter whitespace-nowrap px-1">
                     {category.name.replace(/\s*·\s*/g, '·')}
@@ -309,12 +325,30 @@ function Body_CategorySection() {
 
         // API 데이터를 카테고리 리스트로 변환 (useMemo로 메모이제이션)
         const categories = useMemo(() => {
-            return categoriesData && Array.isArray((categoriesData as any).categories) && (categoriesData as any).categories.length > 0
-                ? (categoriesData as any).categories.map((category: any) => ({
+            console.log('Processing categoriesData:', categoriesData);
+
+            if (categoriesData && (categoriesData as any).data && Array.isArray((categoriesData as any).data)) {
+                // PaginatedResponse 구조인 경우
+                return (categoriesData as any).data.map((category: any) => ({
                     name: category.category_name,
                     icon: category.category_icon
-                }))
-                : defaultCategories;
+                }));
+            } else if (categoriesData && Array.isArray((categoriesData as any).categories)) {
+                // categories 배열이 직접 있는 경우
+                return (categoriesData as any).categories.map((category: any) => ({
+                    name: category.category_name,
+                    icon: category.category_icon
+                }));
+            } else if (categoriesData && Array.isArray(categoriesData)) {
+                // 배열이 직접 반환되는 경우
+                return categoriesData.map((category: any) => ({
+                    name: category.category_name,
+                    icon: category.category_icon
+                }));
+            }
+
+            console.log('Using default categories');
+            return defaultCategories;
         }, [categoriesData]);
 
         const [categoryList, setCategoryList] = useState<Array<{ name: string; icon: string | null }>>(categories);
