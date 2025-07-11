@@ -25,7 +25,7 @@ const rankImg = [
     '/rank_3.png', // 2
 ];
 
-const Trend_card: React.FC<TrendCardProps> = ({ rank, serviceName, category, updown, homepage, snsLinks }) => {
+const CardTrend: React.FC<TrendCardProps> = ({ rank, serviceName, category, updown, homepage, snsLinks }) => {
     return (
         <div className="w-full flex flex-row items-center py-4 border-b last:border-b-0">
             {/* Rank */}
@@ -68,4 +68,4 @@ const Trend_card: React.FC<TrendCardProps> = ({ rank, serviceName, category, upd
     );
 };
 
-export default Trend_card;
+export default CardTrend;

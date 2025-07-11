@@ -161,17 +161,14 @@
     - [x] BaseCard export
     - [x] 기존 Card 컴포넌트들과의 호환성 유지
     - [x] 타입 정의들 re-export
-  - [ ] BaseCard 스토리북 작성 (선택사항)
-    - [ ] 기본 카드 스토리
-    - [ ] 메인페이지용 카드 스토리 (카테고리 포함)
-    - [ ] 탐색페이지용 카드 스토리 (카테고리 제외)
-    - [ ] Badge 포함 카드 스토리
-    - [ ] 다양한 크기별 카드 스토리
-  - [ ] BaseCard 테스트 작성 (선택사항)
-    - [ ] 기본 렌더링 테스트
-    - [ ] 클릭 이벤트 테스트
-    - [ ] Props 전달 테스트
-    - [ ] 조건부 렌더링 테스트
+    - [x] 컴포넌트별 테스트 페이지 구조 생성
+    - [x] src/app/test/ 폴더 구조 설계 및 생성
+    - [x] test/page.tsx를 테스트 허브 페이지로 변경
+    - [x] test/basecard/page.tsx - BaseCard 전용 테스트 페이지
+    - [ ] test/newscard/page.tsx - NewsCard 전용 테스트 페이지
+    - [ ] test/trendcard/page.tsx - TrendCard 전용 테스트 페이지
+    - [ ] test/buttons/page.tsx - Button 컴포넌트들 테스트 페이지
+    - [x] 각 테스트 페이지에 해당 컴포넌트의 다양한 props 조합 시나리오 작성 (BaseCard 완료)
 
 - [ ] Button 컴포넌트 props 구조 통일 및 유연화
   - [ ] src/components/Button/Arrow.tsx - Arrow 버튼 props 정의

@@ -1,274 +1,164 @@
 "use client";
 
-import React, { useState } from 'react';
-import Card from '@/components/Card/Card';
-import { BaseCard } from '@/components/Card';
-import type { CardData } from '@/components/Card';
+import React from 'react';
+import Link from 'next/link';
 
-// 기존 Card 테스트 데이터
-const testCards = [
+const testItems = [
     {
-        thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
-        logo: <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="로고" className="w-8 h-8" />,
-        serviceName: 'ChatGPT',
-        details: '#슬로건작성 #마케팅문구 #광고트렌드',
+        name: 'BaseCard',
+        description: 'AI 서비스 카드 기본 컴포넌트',
+        path: '/test/basecard',
+        status: '🟢 완료',
+        features: ['동적 크기 조정', 'Badge 오버레이', '이미지 fallback', '반응형 디자인']
     },
     {
-        thumbnail: <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="썸네일" className="w-full h-full object-cover" />,
-        logo: <span className="text-2xl">🌊</span>,
-        serviceName: 'VEO3',
-        details: '#마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상 #마케팅영상 #최고성능 #광고영상',
+        name: 'NewsCard',
+        description: '뉴스 전용 카드 컴포넌트',
+        path: '/test/newscard',
+        status: '🟡 예정',
+        features: ['뉴스 썸네일', '제목/요약', '날짜 표시', '카테고리 배지']
     },
     {
-        thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
-        logo: <span className="text-2xl">✖️</span>,
-        serviceName: 'ClovaX',
-        details: '#슬로건작성 #마케팅문구 #광고트렌드',
+        name: 'TrendCard',
+        description: '트렌드/랭킹 전용 카드 컴포넌트',
+        path: '/test/trendcard',
+        status: '🟡 예정',
+        features: ['순위 표시', '변화량 표시', '그래프 아이콘', '컬러 코딩']
     },
+    {
+        name: 'Buttons',
+        description: '버튼 컴포넌트들 (Arrow, Filter, Link)',
+        path: '/test/buttons',
+        status: '🟡 예정',
+        features: ['다양한 크기', '아이콘 조합', '상태별 스타일', '호버 효과']
+    },
+    {
+        name: 'Forms',
+        description: '폼 관련 컴포넌트들',
+        path: '/test/forms',
+        status: '🔴 미정',
+        features: ['입력 필드', '유효성 검사', '에러 메시지', '제출 버튼']
+    },
+    {
+        name: 'Navigation',
+        description: '네비게이션 관련 컴포넌트들',
+        path: '/test/navigation',
+        status: '🔴 미정',
+        features: ['메뉴', '브레드크럼', '페이지네이션', '탭']
+    }
 ];
 
-// BaseCard 테스트 데이터
-const baseCardTestData: CardData[] = [
-    {
-        serviceId: 1,
-        serviceName: 'ChatGPT',
-        description: 'AI 기반 대화형 챗봇 서비스로 다양한 질문에 대해 자연스러운 대화를 제공합니다.',
-        categoryName: 'AI 챗봇',
-        thumbnailUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
-    },
-    {
-        serviceId: 2,
-        serviceName: 'DALL-E 3',
-        description: '텍스트 설명을 통해 고품질 이미지를 생성하는 AI 이미지 생성 서비스입니다.',
-        categoryName: '이미지 생성',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
-    },
-    {
-        serviceId: 3,
-        serviceName: 'Midjourney',
-        description: '창의적이고 예술적인 AI 이미지 생성 플랫폼으로 독특한 스타일의 작품을 만들어냅니다.',
-        categoryName: '이미지 생성',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1686191128892-19d759e4f0a9?auto=format&fit=crop&w=400&q=80',
-        // logoUrl 없음 - fallback 테스트
-    },
-    {
-        serviceId: 4,
-        serviceName: 'ClovaX',
-        description: '네이버의 AI 언어모델로 한국어에 특화된 자연어 처리 서비스를 제공합니다.',
-        categoryName: 'AI 챗봇',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=400&q=80',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
-    },
-];
-
-export default function TestPage() {
-    const [selectedCard, setSelectedCard] = useState<number | null>(null);
-
-    const handleCardClick = (serviceId: number) => {
-        console.log('🔔 Card clicked!', { serviceId });
-        setSelectedCard(serviceId);
-        // 실제로는 여기서 API 호출 후 SelectedItem 모달을 열 예정
-        alert(`서비스 ID ${serviceId} 클릭됨!\n실제로는 상세 정보를 조회하여 모달을 열 예정입니다.`);
-    };
-
+export default function TestHubPage() {
     return (
         <div className="w-full min-h-screen bg-gray-50 py-12">
-            <div className="max-w-7xl mx-auto px-4">
+            <div className="max-w-6xl mx-auto px-4">
 
-                {/* BaseCard 테스트 섹션 */}
-                <section className="mb-16">
-                    <h1 className="text-3xl font-bold text-center mb-2 text-gray-900">
-                        🚀 BaseCard 컴포넌트 테스트
+                {/* 헤더 */}
+                <div className="text-center mb-12">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                        🧪 컴포넌트 테스트 허브
                     </h1>
-                    <p className="text-center text-gray-600 mb-8">
-                        새로 구현된 BaseCard의 다양한 기능들을 테스트해봅니다
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                        각 컴포넌트를 독립적으로 테스트하고 다양한 props 조합을 확인할 수 있는 테스트 환경입니다.
                     </p>
+                </div>
 
-                    {/* 메인페이지 스타일 (카테고리 포함) */}
-                    <div className="mb-12">
-                        <h2 className="text-xl font-semibold mb-4 text-gray-800">
-                            📌 메인페이지 스타일 (카테고리 포함)
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {baseCardTestData.map((cardData) => (
-                                <BaseCard
-                                    key={`main-${cardData.serviceId}`}
-                                    data={cardData}
-                                    sections={{
-                                        category: { show: true },
-                                        thumbnail: { show: true },
-                                        logo: { show: true },
-                                        serviceName: { show: true },
-                                        details: { show: true },
-                                    }}
-                                    onCardClick={handleCardClick}
-                                    badge={cardData.serviceId === 2 ? {
-                                        content: 'NEW',
-                                        position: 'top-right',
-                                        type: 'text',
-                                        size: 'sm',
-                                        show: true
-                                    } : undefined}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* 탐색페이지 스타일 (카테고리 제외) */}
-                    <div className="mb-12">
-                        <h2 className="text-xl font-semibold mb-4 text-gray-800">
-                            🔍 탐색페이지 스타일 (카테고리 제외)
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {baseCardTestData.slice(0, 3).map((cardData) => (
-                                <BaseCard
-                                    key={`explore-${cardData.serviceId}`}
-                                    data={cardData}
-                                    sections={{
-                                        category: { show: false }, // 탐색페이지에서는 카테고리 숨김
-                                        thumbnail: { show: true },
-                                        logo: { show: true },
-                                        serviceName: { show: true },
-                                        details: { show: true },
-                                    }}
-                                    onCardClick={handleCardClick}
-                                    badge={cardData.serviceId === 1 ? {
-                                        content: 'HOT',
-                                        position: 'top-left',
-                                        type: 'text',
-                                        size: 'md',
-                                        show: true
-                                    } : undefined}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* 다양한 크기 테스트 */}
-                    <div className="mb-12">
-                        <h2 className="text-xl font-semibold mb-4 text-gray-800">
-                            📏 다양한 크기 테스트
-                        </h2>
-                        <div className="flex flex-wrap gap-6 items-end">
-                            <BaseCard
-                                data={baseCardTestData[0]}
-                                size={{ width: 240, height: 280 }}
-                                sections={{
-                                    thumbnail: { show: true },
-                                    logo: { show: true },
-                                    serviceName: { show: true },
-                                    details: { show: true },
-                                }}
-                                onCardClick={handleCardClick}
-                                className="border-2 border-blue-200"
-                            />
-                            <BaseCard
-                                data={baseCardTestData[1]}
-                                size={{ width: 300, height: 350 }}
-                                sections={{
-                                    thumbnail: { show: true },
-                                    logo: { show: true },
-                                    serviceName: { show: true },
-                                    details: { show: true },
-                                }}
-                                onCardClick={handleCardClick}
-                                className="border-2 border-green-200"
-                            />
-                            <BaseCard
-                                data={baseCardTestData[2]}
-                                size={{ width: 400, height: 420 }}
-                                sections={{
-                                    thumbnail: { show: true },
-                                    logo: { show: true },
-                                    serviceName: { show: true },
-                                    details: { show: true },
-                                }}
-                                onCardClick={handleCardClick}
-                                className="border-2 border-purple-200"
-                            />
-                        </div>
-                        <p className="text-sm text-gray-500 mt-2">
-                            좌: 240x280, 중: 300x350, 우: 400x420 크기로 비율 자동 조정 테스트
-                        </p>
-                    </div>
-
-                    {/* 로딩 상태 테스트 */}
-                    <div className="mb-12">
-                        <h2 className="text-xl font-semibold mb-4 text-gray-800">
-                            ⏳ 로딩 상태 테스트
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {[1, 2, 3].map((i) => (
-                                <BaseCard
-                                    key={`loading-${i}`}
-                                    data={baseCardTestData[0]}
-                                    sections={{
-                                        category: { show: i === 1 },
-                                        thumbnail: { show: true },
-                                        logo: { show: true },
-                                        serviceName: { show: true },
-                                        details: { show: true },
-                                    }}
-                                    isLoading={true}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* 구분선 */}
-                <div className="border-t-2 border-gray-300 my-16"></div>
-
-                {/* 기존 Card 테스트 섹션 */}
-                <section>
-                    <h1 className="text-3xl font-bold text-center mb-2 text-gray-900">
-                        📝 기존 Card 컴포넌트 (비교용)
-                    </h1>
-                    <p className="text-center text-gray-600 mb-8">
-                        기존 Card와 새로운 BaseCard 비교
-                    </p>
-                    <div className="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {testCards.map((item, idx) => (
-                            <Card
-                                key={idx}
-                                size={{ width: 340, height: 320 }}
-                                items={item}
-                                thumbnailRowGap={8}
-                                detailRowGap={8}
-                                detailBottomGap={0}
-                                thumbnailHeight={180}
-                                thumbnailWidth={"100%"}
-                                logoSize={32}
-                                logoMinWidth={28}
-                                logoMinHeight={28}
-                                logoMaxWidth={40}
-                                logoMaxHeight={40}
-                                logoBackground="#f5f5f5"
-                                serviceNameFontSize={20}
-                                detailsFontSize={15}
-                                detailsMinHeight={32}
-                                detailsMaxHeight={52}
-                                detailsLineClamp={2}
-                            />
-                        ))}
-                    </div>
-                </section>
-
-                {/* 선택된 카드 정보 표시 */}
-                {selectedCard && (
-                    <div className="fixed bottom-4 right-4 bg-blue-500 text-white p-4 rounded-lg shadow-lg">
-                        <p className="font-semibold">마지막 클릭된 카드</p>
-                        <p>서비스 ID: {selectedCard}</p>
-                        <button
-                            onClick={() => setSelectedCard(null)}
-                            className="mt-2 bg-white text-blue-500 px-2 py-1 rounded text-sm"
+                {/* 테스트 아이템들 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {testItems.map((item) => (
+                        <div
+                            key={item.name}
+                            className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 overflow-hidden"
                         >
-                            닫기
-                        </button>
+                            <div className="p-6">
+                                {/* 헤더 */}
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-xl font-bold text-gray-900">
+                                        {item.name}
+                                    </h3>
+                                    <span className="text-sm">
+                                        {item.status}
+                                    </span>
+                                </div>
+
+                                {/* 설명 */}
+                                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                                    {item.description}
+                                </p>
+
+                                {/* 기능 목록 */}
+                                <div className="mb-6">
+                                    <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                                        주요 기능:
+                                    </h4>
+                                    <ul className="space-y-1">
+                                        {item.features.map((feature, index) => (
+                                            <li key={index} className="text-xs text-gray-500 flex items-center">
+                                                <span className="w-1 h-1 bg-gray-400 rounded-full mr-2 flex-shrink-0"></span>
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                {/* 테스트 버튼 */}
+                                <Link
+                                    href={item.path}
+                                    className={`
+                                        block w-full text-center py-3 px-4 rounded-lg font-medium transition-all duration-200
+                                        ${item.status.includes('완료')
+                                            ? 'bg-blue-500 text-white hover:bg-blue-600 hover:scale-105 shadow-sm'
+                                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                        }
+                                    `}
+                                    {...(item.status.includes('완료') ? {} : {
+                                        onClick: (e) => e.preventDefault(),
+                                        'aria-disabled': true
+                                    })}
+                                >
+                                    {item.status.includes('완료') ? '테스트 시작' : '준비중...'}
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* 추가 정보 */}
+                <div className="mt-16 bg-blue-50 rounded-xl p-8">
+                    <h2 className="text-2xl font-bold text-blue-900 mb-4">
+                        📋 테스트 가이드
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-blue-800">
+                        <div>
+                            <h3 className="font-semibold mb-2">🎯 테스트 목적</h3>
+                            <ul className="space-y-1">
+                                <li>• 컴포넌트별 독립적 테스트 환경 제공</li>
+                                <li>• 다양한 props 조합 및 시나리오 확인</li>
+                                <li>• 반응형 디자인 및 크기별 동작 검증</li>
+                                <li>• 에러 상황 및 fallback 동작 테스트</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="font-semibold mb-2">🔧 사용법</h3>
+                            <ul className="space-y-1">
+                                <li>• 각 컴포넌트 카드를 클릭하여 테스트 페이지 이동</li>
+                                <li>• 실시간으로 props 변경하며 결과 확인</li>
+                                <li>• 브라우저 개발자 도구로 상세 분석</li>
+                                <li>• 발견한 이슈는 즉시 수정 및 재테스트</li>
+                            </ul>
+                        </div>
                     </div>
-                )}
+                </div>
+
+                {/* 네비게이션 */}
+                <div className="mt-12 text-center">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                        ← 메인 페이지로 돌아가기
+                    </Link>
+                </div>
             </div>
         </div>
     );

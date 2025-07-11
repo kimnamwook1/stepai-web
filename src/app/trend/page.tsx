@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import MainBanner from "@/components/MainBanner";
-import Trend_card from '@/components/Card/TrendCard';
+import CardTrend from '@/components/Card/CardTrend';
 
 const TrendPage = () => {
     // SortSection 상태 관리
@@ -79,7 +79,7 @@ const TrendPage = () => {
         </svg>
     );
 
-    // Trend_card용 예시 데이터
+    // CardTrend용 예시 데이터
     const trendList = Array.from({ length: 10 }, (_, i) => ({
         rank: i,
         serviceName: `Service${i + 1}`,
@@ -196,7 +196,7 @@ const TrendPage = () => {
                                 <div className="flex-1 text-center text-xs gap-1 ml-10 text-gray-400 font-semibold">SNS</div>
                             </div>
                             {(tab === 'popular' ? trendList : trendList).map((item, idx) => (
-                                <Trend_card key={idx} {...item} />
+                                <CardTrend key={idx} {...item} />
                             ))}
                         </div>
                     </div>
