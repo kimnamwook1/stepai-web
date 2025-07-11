@@ -116,18 +116,18 @@ function Body_ContentsMainSection() {
         <div className="bg-white">
             <main className="pt-[0px]">
                 {/* Body_ContentsMain의 return 전체를 1:1로 복사 */}
-                <section className="px-80 pb-32 pt-0">
-                    <div className="flex gap-16 items-end">
+                <section className="pb-16 pt-0">
+                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-end">
                         {/* 대화창 - 좌측 */}
-                        <div className="w-2/5">
-                            <div className="bg-[#d9d9d9] rounded-[30px] p-8 border border-black">
+                        <div className="w-full lg:w-2/5">
+                            <div className="bg-[#d9d9d9] rounded-[30px] p-4 sm:p-6 lg:p-8 border border-black">
                                 <div className="relative">
                                     <textarea
                                         ref={textareaRef}
                                         value={inputText}
                                         onChange={(e) => setInputText(e.target.value)}
                                         placeholder="어떤 AI가 필요하세요?"
-                                        className="w-full bg-transparent text-black placeholder-[#8f8f8f] text-2xl font-semibold leading-[1.5] resize-none outline-none min-h-[60px]"
+                                        className="w-full bg-transparent text-black placeholder-[#8f8f8f] text-lg sm:text-xl lg:text-2xl font-semibold leading-[1.5] resize-none outline-none min-h-[60px]"
                                         style={{ overflow: 'hidden' }}
                                     />
                                     {/* 밑줄 */}
@@ -136,9 +136,9 @@ function Body_ContentsMainSection() {
                             </div>
                         </div>
                         {/* Carousel_cards_container - 우측 */}
-                        <div className="w-3/5 flex justify-center">
+                        <div className="w-full lg:w-3/5 flex justify-center">
                             <div
-                                className="Carousel_cards_container relative w-[600px] h-[400px] flex items-center justify-center"
+                                className="Carousel_cards_container relative w-full max-w-[600px] h-[300px] sm:h-[350px] lg:h-[400px] flex items-center justify-center"
                                 style={{ marginTop: '-50px' }}
                             >
                                 {/* 좌측 화살표 버튼 */}
@@ -152,7 +152,7 @@ function Body_ContentsMainSection() {
                                     </svg>
                                 </button>
                                 {/* 카드 전체 래퍼: 항상 중앙 고정 */}
-                                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[320px]">
+                                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[420px] h-[240px] sm:h-[280px] lg:h-[320px]">
                                     <div className="relative w-full h-full">
                                         {cardData.map((card, idx: number) => {
                                             let diff = idx - currentIndex;
@@ -219,25 +219,25 @@ function Body_ContentsMainSection() {
                                                     {/* 카드 본체 */}
                                                     <div className="p-6 h-full flex flex-col">
                                                         {/* 썸네일 이미지 */}
-                                                        <div className="w-[374px] h-[280px] mx-auto rounded-[32px] overflow-hidden mb-3 -mt-2">
+                                                        <div className="w-full h-[160px] sm:h-[200px] lg:h-[280px] mx-auto rounded-[16px] sm:rounded-[24px] lg:rounded-[32px] overflow-hidden mb-3 -mt-2">
                                                             <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                                                                <span className="text-gray-600">썸네일</span>
+                                                                <span className="text-gray-600 text-sm sm:text-base">썸네일</span>
                                                             </div>
                                                         </div>
                                                         {/* 하단 영역 */}
                                                         <div className="flex-1 flex flex-col justify-center">
                                                             {/* 로고+서비스명 수평 정렬 */}
-                                                            <div className="flex flex-row items-center mb-2" style={{ marginLeft: '23px' }}>
-                                                                <div className="w-[48px] h-[48px] bg-[#f5f04f] rounded-full flex items-center justify-center flex-shrink-0 mr-3">
+                                                            <div className="flex flex-row items-center mb-2 px-3 sm:px-4 lg:px-6">
+                                                                <div className="w-[32px] h-[32px] sm:w-[40px] sm:h-[40px] lg:w-[48px] lg:h-[48px] bg-[#f5f04f] rounded-full flex items-center justify-center flex-shrink-0 mr-2 sm:mr-3">
                                                                     <span className="text-xs">로고</span>
                                                                 </div>
-                                                                <h4 className="text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
+                                                                <h4 className="text-lg sm:text-xl lg:text-[28px] font-bold text-black" style={{ fontFamily: 'Inter', letterSpacing: '-1.104px' }}>
                                                                     {card.title}
                                                                 </h4>
                                                             </div>
                                                             {/* 해시태그 - 아래쪽에 고정 */}
-                                                            <div className="mt-auto" style={{ marginLeft: '23px' }}>
-                                                                <p className="text-[12px] font-medium text-black" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
+                                                            <div className="mt-auto px-3 sm:px-4 lg:px-6">
+                                                                <p className="text-[10px] sm:text-[11px] lg:text-[12px] font-medium text-black" style={{ fontFamily: 'Inter', letterSpacing: '-0.608px' }}>
                                                                     {card.hashtags}
                                                                 </p>
                                                             </div>
@@ -275,10 +275,10 @@ function Body_CategorySection() {
     function Carousel_Main_Category({ category, onClick }: { category: { name: string; icon: string | null }; onClick: () => void }) {
         return (
             <div
-                className="w-[120px] h-[130px] flex flex-col items-center cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+                className="w-[80px] h-[90px] sm:w-[100px] sm:h-[110px] lg:w-[120px] lg:h-[130px] flex flex-col items-center cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
                 onClick={onClick}
             >
-                <div className="w-[60px] h-[60px] bg-gray-200 flex items-center justify-center rounded-md mt-4 mb-2">
+                <div className="w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] lg:w-[60px] lg:h-[60px] bg-gray-200 flex items-center justify-center rounded-md mt-2 sm:mt-3 lg:mt-4 mb-1 sm:mb-2">
                     {category.icon ? (
                         <img
                             src={category.icon}
@@ -293,7 +293,7 @@ function Body_CategorySection() {
                     ) : null}
                     <span className="text-gray-400 text-xs font-semibold select-none">아이콘</span>
                 </div>
-                <span className="text-[13px] font-medium text-center text-gray-800 select-none tracking-tighter whitespace-nowrap">
+                <span className="text-[10px] sm:text-[11px] lg:text-[13px] font-medium text-center text-gray-800 select-none tracking-tighter whitespace-nowrap px-1">
                     {category.name.replace(/\s*·\s*/g, '·')}
                 </span>
             </div>
@@ -333,18 +333,18 @@ function Body_CategorySection() {
             setCategoryList((prev) => [...prev.slice(1), prev[0]]);
         };
         return (
-            <div className="w-full flex justify-center py-0 bg-transparent">
-                <div className="w-[1280px] max-w-full flex items-center justify-center">
+            <div className="w-full flex justify-center py-0 bg-transparent px-4 sm:px-6 lg:px-8">
+                <div className="w-full max-w-7xl flex items-center justify-center">
                     <button
                         onClick={handleLeft}
-                        className="w-8 h-8 flex items-center justify-center rounded-full bg-white border-2 border-gray-300 shadow-lg hover:bg-gray-50 transition-colors duration-300 mr-1"
+                        className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-white border-2 border-gray-300 shadow-lg hover:bg-gray-50 transition-colors duration-300 mr-1"
                         aria-label="왼쪽으로 이동"
                     >
-                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
-                    <div className="flex gap-[1px] tablet:gap-0 overflow-x-visible">
+                    <div className="flex gap-[1px] tablet:gap-0 overflow-x-visible flex-1 justify-center">
                         {categoryList.map((category, idx) => (
                             <Carousel_Main_Category
                                 key={idx}
@@ -355,10 +355,10 @@ function Body_CategorySection() {
                     </div>
                     <button
                         onClick={handleRight}
-                        className="w-8 h-8 flex items-center justify-center rounded-full bg-white border-2 border-gray-300 shadow-lg hover:bg-gray-50 transition-colors duration-300 ml-1"
+                        className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-white border-2 border-gray-300 shadow-lg hover:bg-gray-50 transition-colors duration-300 ml-1"
                         aria-label="오른쪽으로 이동"
                     >
-                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
@@ -369,7 +369,7 @@ function Body_CategorySection() {
 
     // Body_CategorySection의 반환 JSX
     return (
-        <section className="w-full px-80 py-0 pb-16 bg-white">
+        <section className="w-full py-0 pb-16 bg-white">
             <Merged_Carousel_Main_Category />
         </section>
     );
@@ -444,25 +444,20 @@ function Body_TopTrendsSection() {
 
     return (
         <section
+            className="flex flex-col justify-center py-12 lg:py-16"
             style={{
-                width: SECTION_WIDTH,
-                minHeight: SECTION_HEIGHT,
-                padding: `0 ${SIDE_PADDING}px ${BOTTOM_PADDING}px ${SIDE_PADDING}px`,
-                boxSizing: "border-box",
-                overflow: "hidden",
                 background: "#fff",
                 margin: '50px 0'
             }}
-            className="flex flex-col justify-center"
         >
             {/* 섹션 제목 */}
-            <div className="w-full flex justify-center mb-2">
-                <span className="text-[38px] font-bold text-black" style={{ fontFamily: 'Inter' }}>
+            <div className="w-full flex justify-center mb-8 lg:mb-12">
+                <span className="text-2xl sm:text-3xl lg:text-[38px] font-bold text-black" style={{ fontFamily: 'Inter' }}>
                     Top 인기
                 </span>
             </div>
             {/* 카드 캐러셀 */}
-            <div className="relative flex items-center w-full justify-center" style={{ minHeight: CARD_HEIGHT + 48 }}>
+            <div className="relative flex items-center w-full justify-center px-4 sm:px-6 lg:px-8" style={{ minHeight: '280px' }}>
                 {/* 좌측 화살표 */}
                 <button
                     onClick={handlePrev}
@@ -476,12 +471,8 @@ function Body_TopTrendsSection() {
                 </button>
                 {/* 세트 리스트 */}
                 <div
-                    className="flex transition-transform duration-500"
-                    style={{
-                        gap: `${CARD_GAP}px`,
-                        width: CARD_WIDTH * 4 + CARD_GAP * 3,
-                        justifyContent: 'center',
-                    }}
+                    className="flex transition-transform duration-500 gap-4 sm:gap-6 lg:gap-8 w-full max-w-7xl justify-center"
+                    style={{ overflow: 'hidden' }}
                 >
                     {getVisibleSets().map((set, index) => (
                         <div
@@ -829,13 +820,10 @@ function Body_NewsSection() {
 
 export default function Home() {
     return (
-        <div
-            className="bg-white min-h-screen w-full min-w-[1280px] max-w-[1920px] mx-auto overflow-x-auto"
-            style={{ width: '100vw', minWidth: 1280, maxWidth: 1920 }}
-        >
+        <div className="bg-white min-h-screen w-full overflow-x-hidden">
             <Header />
-            <main className="pt-[110px] w-full min-w-[1280px] max-w-[1920px] mx-auto">
-                <div className="w-full" style={{ width: 1920, minWidth: 1280, maxWidth: 1920, margin: '0 auto' }}>
+            <main className="pt-[110px] w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="w-full">
                     <Body_ContentsMainSection />
                     <Body_CategorySection />
                     <Body_TopTrendsSection />
