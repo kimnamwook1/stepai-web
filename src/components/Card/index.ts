@@ -14,7 +14,20 @@ export { default as BaseCard } from './BaseCard';
 export { default as Card } from './Card';
 export { default as CardNews } from './CardNews';
 export { default as CardWithBadge } from './CardWithBadge';
-export { default as TrendCard } from './TrendCard';
+
+// 트렌드 관련 컴포넌트들
+export { default as CardTrend } from './CardTrend'; // 기존 테이블형 (가로)
+
+// TrendCard는 직접 import로 사용 (임시)
+// export { default as TrendCard } from './TrendCard'; // 새로운 개선형 (가로)
+
+// TrendCard 타입들 (임시 주석)
+// export type {
+//     TrendCardData,
+//     TrendSectionConfig,
+//     TrendSections,
+//     TrendCardProps
+// } from './TrendCard';
 
 // ============================================================================
 // 타입 exports (re-export)

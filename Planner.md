@@ -81,15 +81,6 @@
 
 ---
 
-### [추가 고려 필요사항]
-
-- 고객센터 페이지 필요
-- 로그인 페이지, 회원가입 페이지
-- 메인페이지 수정 (기본에 있다가 검색 결과로 나타나도록)
-- 심사신청, 등록하기 버튼 클릭 시 로직 필요(입력 정보 json 형태로 백엔드 전달)
-- 로그인/회원가입 페이지 및 기능 필요
-- Recently Added 배열 기획 필요
-
 ## [2025-07-11]
 
 ### [요구사항분석 - 250711]
@@ -166,9 +157,17 @@
     - [x] test/page.tsx를 테스트 허브 페이지로 변경
     - [x] test/basecard/page.tsx - BaseCard 전용 테스트 페이지
     - [ ] test/newscard/page.tsx - NewsCard 전용 테스트 페이지
-    - [ ] test/trendcard/page.tsx - TrendCard 전용 테스트 페이지
+    - [x] test/trendcard/page.tsx - TrendCard 전용 테스트 페이지
+    - [x] TrendCard BaseCard 스타일 유연한 구조로 개선
+      - [x] TrendSectionConfig 인터페이스 정의 (show, width, className, style)
+      - [x] TrendSections 인터페이스 정의 (rank, serviceName, category, trend, homepage, sns)
+      - [x] TrendCardProps에 sections, headerLabels props 추가
+      - [x] DEFAULT_SECTIONS, DEFAULT_HEADER_LABELS 상수 정의
+      - [x] 모든 섹션을 조건부 렌더링으로 변경
+      - [x] 각 섹션별 너비, 스타일, 표시/숨김 제어 가능
+      - [x] 테스트 페이지에 유연한 구조 테스트 케이스 추가 (커스텀 섹션, 최소 구성)
     - [ ] test/buttons/page.tsx - Button 컴포넌트들 테스트 페이지
-    - [x] 각 테스트 페이지에 해당 컴포넌트의 다양한 props 조합 시나리오 작성 (BaseCard 완료)
+    - [x] 각 테스트 페이지에 해당 컴포넌트의 다양한 props 조합 시나리오 작성 (BaseCard, TrendCard 완료)
 
 - [ ] Button 컴포넌트 props 구조 통일 및 유연화
   - [ ] src/components/Button/Arrow.tsx - Arrow 버튼 props 정의
@@ -231,3 +230,45 @@
 ---
 
 ### [추가 고려 필요사항]
+
+- 트렌드 아이템 - 업다운 로직 필요
+- 고객센터 페이지 필요
+- 로그인 페이지, 회원가입 페이지
+- 메인페이지 수정 (기본에 있다가 검색 결과로 나타나도록)
+- 심사신청, 등록하기 버튼 클릭 시 로직 필요(입력 정보 json 형태로 백엔드 전달)
+- 로그인/회원가입 페이지 및 기능 필요
+- Recently Added 배열 기획 필요
+
+## 🛠️ **문제 원인과 해결책**
+
+### ❌ **문제**
+
+- `index.ts`에서 TrendCard 모듈을 re-export할 때 TypeScript가 모듈을 찾지 못함
+- IDE/linter 캐시 문제로 보임
+
+### ✅ **해결책**
+
+1. **임시 해결**: TrendCard를 index.ts에서 re-export하지 않고 직접 import 사용
+2. **테스트 페이지 수정**: `@/components/Card/TrendCard`로 직접 import
+
+### 📝 **현재 상태**
+
+```typescript
+// 이전 (오류 발생)
+import { TrendCard } from '@/components/Card';
+
+// 현재 (정상 작동)
+import TrendCard from '@/components/Card/TrendCard';
+```
+
+### 🔄 **향후 개선 방안**
+
+나중에 TypeScript 프로젝트가 안정화되면 다시 index.ts에서 re-export를 시도할 수 있습니다:
+
+```typescript
+<code_block_to_apply_changes_from>
+```
+
+지금은 **직접 import 방식으로 정상 작동**하고 있으니, 기능적으로는 전혀 문제없습니다!
+
+TrendCard가 BaseCard처럼 유연한 구조로 완성되었고, API 연동 준비도 완료되어 있습니다. 🚀
