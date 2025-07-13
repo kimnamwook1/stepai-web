@@ -120,18 +120,32 @@ function Body_ContentsMainSection() {
                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-end">
                         {/* 대화창 - 좌측 */}
                         <div className="w-full lg:w-2/5">
-                            <div className="bg-[#d9d9d9] rounded-[30px] p-4 sm:p-6 lg:p-8 border border-black">
-                                <div className="relative">
+                            <div className="material-input-wrapper">
+                                <div className="material-input-container">
                                     <textarea
                                         ref={textareaRef}
                                         value={inputText}
                                         onChange={(e) => setInputText(e.target.value)}
-                                        placeholder="어떤 AI가 필요하세요?"
-                                        className="w-full bg-transparent text-black placeholder-[#8f8f8f] text-lg sm:text-xl lg:text-2xl font-semibold leading-[1.5] resize-none outline-none min-h-[60px]"
+                                        placeholder=" "
+                                        className="material-input"
                                         style={{ overflow: 'hidden' }}
                                     />
-                                    {/* 밑줄 */}
-                                    <div className="w-full h-px bg-black mt-4"></div>
+                                    <label className="material-label">
+                                        어떤 AI가 필요하세요?
+                                    </label>
+
+                                    {/* 입력 버튼 - 오른쪽 아래 */}
+                                    {inputText.trim() && (
+                                        <button
+                                            onClick={() => {
+                                                console.log('입력된 텍스트:', inputText);
+                                                // 여기에 입력 처리 로직 추가
+                                            }}
+                                            className="material-button"
+                                        >
+                                            입력
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -423,14 +437,25 @@ function Body_TopTrendsSection() {
     }));
 
     // API 데이터를 트렌드 세트로 변환
-    const trendSets = aiServices && Array.isArray(aiServices) && aiServices.length > 0
-        ? aiServices.slice(0, 10).map((service: any) => ({
-            category: service.ai_type || 'AI 서비스',
-            title: service.ai_name,
-            thumbnail: '이미지',
-            logo: '로고',
-            hashtags: service.ai_description ? service.ai_description.slice(0, 20) + '...' : '해시태그'
-        }))
+    const trendSets = aiServices && (aiServices as any).data && Array.isArray((aiServices as any).data) && (aiServices as any).data.length > 0
+        ? (aiServices as any).data.slice(0, 10).map((service: any) => {
+            // contents에서 이미지와 아이콘 찾기
+            const imageContent = service.contents?.find((content: any) => content.content_type === 'image');
+            const iconContent = service.contents?.find((content: any) => content.content_type === 'icon');
+
+            // 태그들을 해시태그로 변환
+            const hashtags = service.tags && service.tags.length > 0
+                ? `#${service.tags.map((tag: any) => tag.tag_name).join(' #')}`
+                : service.ai_description ? service.ai_description.slice(0, 20) + '...' : '해시태그';
+
+            return {
+                category: service.ai_type || 'AI 서비스',
+                title: service.ai_name,
+                thumbnail: imageContent?.content_url || '이미지',
+                logo: iconContent?.content_url || '로고',
+                hashtags: hashtags
+            };
+        })
         : defaultTrendSets;
 
     const CARD_WIDTH = 278;
@@ -529,23 +554,59 @@ function Body_TopTrendsSection() {
                                     border: '1px solid #e5e7eb',
                                 }}
                             >
-                                {/* 썸네일 Placeholder */}
+                                {/* 썸네일 이미지 */}
                                 <div
-                                    className="w-full flex items-center justify-center"
+                                    className="w-full flex items-center justify-center relative"
                                     style={{ height: 185, background: '#e5e7eb', borderRadius: '22px 22px 0 0', overflow: 'hidden' }}
                                 >
-                                    <span className="text-gray-400 text-lg">이미지</span>
+                                    {set.thumbnail ? (
+                                        <img
+                                            src={set.thumbnail}
+                                            alt="썸네일"
+                                            className="w-full h-full object-cover"
+                                            style={{ display: 'block' }}
+                                            onError={e => {
+                                                e.currentTarget.style.display = 'none';
+                                                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                                                if (fallback) fallback.style.display = 'flex';
+                                            }}
+                                        />
+                                    ) : null}
+                                    <span
+                                        className="absolute inset-0 flex items-center justify-center text-gray-400 text-lg bg-[#e5e7eb]"
+                                        style={{ display: set.thumbnail ? 'none' : 'flex' }}
+                                    >
+                                        이미지
+                                    </span>
                                 </div>
-                                {/* 로고+서비스명 Placeholder */}
+                                {/* 로고+서비스명 */}
                                 <div className="flex items-center mt-4 mb-2 w-full px-6">
-                                    <div className="w-10 h-10 rounded-full bg-[#f5f04f] flex items-center justify-center mr-3 overflow-hidden">
-                                        <span className="text-xs text-gray-700">로고</span>
+                                    <div className="w-10 h-10 rounded-full bg-[#f5f04f] flex items-center justify-center mr-3 overflow-hidden relative">
+                                        {set.logo ? (
+                                            <img
+                                                src={set.logo}
+                                                alt="로고"
+                                                className="w-full h-full object-contain rounded-full"
+                                                style={{ display: 'block' }}
+                                                onError={e => {
+                                                    e.currentTarget.style.display = 'none';
+                                                    const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                                                    if (fallback) fallback.style.display = 'flex';
+                                                }}
+                                            />
+                                        ) : null}
+                                        <span
+                                            className="absolute inset-0 flex items-center justify-center text-xs text-gray-700 bg-[#f5f04f]"
+                                            style={{ display: set.logo ? 'none' : 'flex' }}
+                                        >
+                                            로고
+                                        </span>
                                     </div>
-                                    <span className="text-lg font-bold text-black" style={{ fontFamily: 'Inter' }}>서비스</span>
+                                    <span className="text-lg font-bold text-black" style={{ fontFamily: 'Inter' }}>{set.title}</span>
                                 </div>
-                                {/* 해시태그 Placeholder */}
+                                {/* 해시태그 */}
                                 <div className="w-full px-6 mt-auto mb-4">
-                                    <span className="text-xs text-gray-400 font-medium" style={{ fontFamily: 'Inter' }}>해시태그</span>
+                                    <span className="text-xs text-gray-400 font-medium" style={{ fontFamily: 'Inter' }}>{set.hashtags}</span>
                                 </div>
                             </div>
                         </div>

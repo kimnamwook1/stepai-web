@@ -35,6 +35,10 @@ export const categoryApi = {
             if (params?.ai_status) queryParams.append('ai_status', params.ai_status);
             if (params?.ai_type) queryParams.append('ai_type', params.ai_type);
             queryParams.append('category_id', categoryId.toString());
+            queryParams.append('include_contents', 'true');
+            queryParams.append('include_tags', 'true');
+            queryParams.append('include_categories', 'true');
+            queryParams.append('include_companies', 'true');
 
             const response = await apiClient.get(`/api/ai-services?${queryParams.toString()}`);
             return response.data;
@@ -97,7 +101,7 @@ export const categoryApi = {
     // 최신 AI 서비스 가져오기
     getLatestAIServices: async (limit = 10): Promise<ApiResponse<AIService[]>> => {
         try {
-            const response = await apiClient.get(`/api/ai-services?ai_status=active&limit=${limit}`);
+            const response = await apiClient.get(`/api/ai-services?page=1&limit=${limit}&include_contents=true&include_tags=true&include_categories=true&include_companies=true`);
             return response.data;
         } catch (error) {
             throw new Error('최신 AI 서비스를 가져오는데 실패했습니다.');

@@ -106,23 +106,26 @@ const CategoryPage = () => {
         price: false,
     });
     const [selectedCategory, setSelectedCategory] = useState(categoryOptions[0]);
-    const [displayedCards, setDisplayedCards] = useState(cardTestData.slice(0, 6));
     const [page, setPage] = useState(1);
     const observerRef = useRef<HTMLDivElement | null>(null);
     const [selectedItem, setSelectedItem] = useState<SelectedItemProps['data'] | null>(null);
 
     // API 데이터를 카드 데이터로 변환
-    const apiCardData = aiServices && Array.isArray(aiServices) && aiServices.length > 0
-        ? aiServices.map((service: any) => ({
+    const apiCardData = aiServices && (aiServices as any).data && Array.isArray((aiServices as any).data) && (aiServices as any).data.length > 0
+        ? (aiServices as any).data.map((service: any) => ({
             thumbnail: <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="썸네일" className="w-full h-full object-cover" />,
             logo: <span className="text-2xl">🤖</span>,
             serviceName: service.ai_name || 'AI 서비스',
-            details: service.ai_description ? `#${service.ai_description.split(' ').slice(0, 3).join(' #')}` : '#AI #서비스',
+            details: service.tags && service.tags.length > 0
+                ? `#${service.tags.map((tag: any) => tag.tag_name).join(' #')}`
+                : service.ai_description ? `#${service.ai_description.split(' ').slice(0, 3).join(' #')}` : '#AI #서비스',
         }))
         : cardTestData;
 
+    const [displayedCards, setDisplayedCards] = useState(apiCardData.slice(0, 6));
+
     const loadMore = useCallback(() => {
-        setDisplayedCards((prev) => [
+        setDisplayedCards((prev: any[]) => [
             ...prev,
             ...cardTestData.map((item) => ({ ...item })),
         ].slice(0, (page + 1) * 6));
@@ -209,7 +212,7 @@ const CategoryPage = () => {
                     <div className="flex-[8] flex flex-col p-6">
                         <div className="text-3xl font-bold mb-8">{selectedCategory}</div>
                         <div className="grid grid-cols-3 gap-5">
-                            {displayedCards.map((item, idx) => (
+                            {displayedCards.map((item: any, idx: number) => (
                                 <Card
                                     key={idx}
                                     size={{ width: 300, height: 300 }}
