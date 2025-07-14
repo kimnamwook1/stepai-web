@@ -285,6 +285,16 @@ function Body_CategorySection() {
     // 카테고리 데이터 가져오기
     const { data: categoriesData, loading: categoriesLoading, error: categoriesError } = useApi(aiCategoryApi.getAICategories);
 
+    // URL 처리 함수
+    const processUrl = (url: string) => {
+        if (!url) return '';
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            return url;
+        }
+        const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://web-production-e8790.up.railway.app';
+        return `${API_BASE_URL}${url.startsWith('/') ? url : `/${url}`}`;
+    };
+
     // Carousel_Main_Category 내부 함수
     function Carousel_Main_Category({ category, onClick }: { category: { name: string; icon: string | null }; onClick: () => void }) {
         return (
@@ -345,19 +355,19 @@ function Body_CategorySection() {
                 // PaginatedResponse 구조인 경우
                 return (categoriesData as any).data.map((category: any) => ({
                     name: category.category_name,
-                    icon: category.category_icon
+                    icon: processUrl(category.category_icon)
                 }));
             } else if (categoriesData && Array.isArray((categoriesData as any).categories)) {
                 // categories 배열이 직접 있는 경우
                 return (categoriesData as any).categories.map((category: any) => ({
                     name: category.category_name,
-                    icon: category.category_icon
+                    icon: processUrl(category.category_icon)
                 }));
             } else if (categoriesData && Array.isArray(categoriesData)) {
                 // 배열이 직접 반환되는 경우
                 return categoriesData.map((category: any) => ({
                     name: category.category_name,
-                    icon: category.category_icon
+                    icon: processUrl(category.category_icon)
                 }));
             }
 
@@ -427,6 +437,16 @@ function Body_TopTrendsSection() {
     // AI 서비스 데이터 가져오기
     const { data: aiServices, loading, error } = useApi(mainApi.getTrends);
 
+    // URL 처리 함수
+    const processUrl = (url: string) => {
+        if (!url) return '';
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            return url;
+        }
+        const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://web-production-e8790.up.railway.app';
+        return `${API_BASE_URL}${url.startsWith('/') ? url : `/${url}`}`;
+    };
+
     // 기본 데이터 (로딩 중이거나 에러일 때)
     const defaultTrendSets = Array(10).fill(0).map(() => ({
         category: '카테고리',
@@ -451,8 +471,8 @@ function Body_TopTrendsSection() {
             return {
                 category: service.ai_type || 'AI 서비스',
                 title: service.ai_name,
-                thumbnail: imageContent?.content_url || '이미지',
-                logo: iconContent?.content_url || '로고',
+                thumbnail: processUrl(imageContent?.content_url || ''),
+                logo: processUrl(iconContent?.content_url || ''),
                 hashtags: hashtags
             };
         })
@@ -564,6 +584,7 @@ function Body_TopTrendsSection() {
                                             src={set.thumbnail}
                                             alt="썸네일"
                                             className="w-full h-full object-cover"
+                                            crossOrigin="anonymous"
                                             style={{ display: 'block' }}
                                             onError={e => {
                                                 e.currentTarget.style.display = 'none';
@@ -587,6 +608,7 @@ function Body_TopTrendsSection() {
                                                 src={set.logo}
                                                 alt="로고"
                                                 className="w-full h-full object-contain rounded-full"
+                                                crossOrigin="anonymous"
                                                 style={{ display: 'block' }}
                                                 onError={e => {
                                                     e.currentTarget.style.display = 'none';

@@ -19,6 +19,11 @@ export const aiServiceContentApi = {
         }
     },
 
+    // createContent 별칭 (등록 페이지 호환성)
+    createContent: async (data: AIServiceContentCreateRequest): Promise<ApiResponse<AIServiceContent>> => {
+        return aiServiceContentApi.createAIServiceContent(data);
+    },
+
     // AI 서비스 콘텐츠 조회 (ID)
     getAIServiceContentById: async (id: number): Promise<ApiResponse<AIServiceContent>> => {
         try {

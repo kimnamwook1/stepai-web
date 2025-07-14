@@ -48,6 +48,7 @@ export interface AIServiceCreateRequest {
     ai_type: string;
     ai_status?: string;
     nationality?: string;
+    category_ids?: number[]; // 카테고리 ID 배열 추가
 }
 
 export interface AIServiceUpdateRequest {
