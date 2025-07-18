@@ -195,3 +195,39 @@
 - props로 데이터 받아 동적 렌더링, 오버레이/닫기/z-index 등 모달 기능 포함
 - 카드 클릭 시 팝업 오픈/닫기 예시 구현(더미 데이터)
 - DB 연동은 추후 API 연결 시점에 fetch만 추가 예정
+
+### [2025-07-04] API 연동 작업 계획
+- API 엔드포인트: https://web-production-e8790.up.railway.app/api-docs/#/
+- [x] useApi 훅 타입 에러 수정 (searchResults.data → searchResults)
+- [x] mainApi 응답 타입 수정 (ApiResponse<AIService[]> → AIService[])
+- [x] 카테고리 섹션 API 연동 (aiCategoryApi.getAICategories 사용)
+- [x] 무한 루프 문제 해결 (useMemo로 categories 메모이제이션)
+- [x] React key 중복 경고 해결 (고유한 key 생성)
+- [x] 카테고리 데이터 구조 개선 (name, icon 포함)
+- [x] API 응답 구조 수정 (categoriesData.categories 사용)
+- API 연동을 위한 기본 구조 설정 및 서비스 레이어 구현
+- 각 페이지별 API 연동 계획:
+  - [x] 메인페이지 API 연동 (AI 서비스, 카테고리 데이터)
+  - [ ] 기업등록 페이지 API 연동 (회원가입, 기업정보 등록)
+  - [ ] 전문가등록 페이지 API 연동 (회원가입, 프로필 등록)
+  - [ ] 트렌드 페이지 API 연동 (랭킹 데이터, 카테고리별 데이터)
+  - [ ] 뉴스 페이지 API 연동 (뉴스 목록, 상세)
+  - [x] 카테고리 페이지 API 연동 (카테고리별 서비스 목록)
+- [x] API 서비스 레이어 구현 (axios/fetch 기반)
+- [x] 에러 핸들링 및 로딩 상태 관리
+- [x] 환경변수 설정 (.env 파일)
+- [x] API 응답 타입 정의 (TypeScript 인터페이스)
+- [x] 커스텀 훅 구현 (useApi, useInfiniteApi)
+- [x] 실제 API 명세에 맞는 서비스 구현:
+  - [x] 사용자 관리 API (userApi)
+  - [x] AI 서비스 관리 API (aiServiceApi)
+  - [x] AI 서비스 콘텐츠 관리 API (aiServiceContentApi)
+  - [x] AI 서비스 태그 관리 API (aiServiceTagApi)
+  - [x] AI 카테고리 관리 API (aiCategoryApi)
+- [x] 페이지별 API 연동 구현:
+  - [x] 메인페이지 - AI 서비스 검색 및 트렌드 데이터 연동
+  - [x] 카테고리 페이지 - AI 서비스 목록 및 카테고리 데이터 연동
+
+---
+
+추가 고려 필요사항

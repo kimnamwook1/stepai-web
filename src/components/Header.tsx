@@ -13,6 +13,7 @@ const Header = () => {
     ];
 
     const actionMenuItems = [
+        { id: 'ai-service', label: 'AI서비스등록', hasDropdown: false },
         { id: 'company', label: '기업등록', hasDropdown: false },
         { id: 'expert', label: '전문가등록', hasDropdown: false },
         { id: 'login', label: '로그인', hasDropdown: false },
@@ -123,11 +124,13 @@ const Header = () => {
                                 key={item.id}
                                 className="text-black font-medium hover:text-gray-600 transition-colors duration-300 text-base whitespace-nowrap"
                                 onClick={
-                                    item.id === 'company'
-                                        ? () => window.location.href = '/corp'
-                                        : item.id === 'expert'
-                                            ? () => window.location.href = '/expert'
-                                            : undefined
+                                    item.id === 'ai-service'
+                                        ? () => window.location.href = '/ai-service-register'
+                                        : item.id === 'company'
+                                            ? () => window.location.href = '/corp'
+                                            : item.id === 'expert'
+                                                ? () => window.location.href = '/expert'
+                                                : undefined
                                 }
                             >
                                 {item.label}

@@ -3,10 +3,13 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Main_Banner from "@/components/Main_Banner";
+import { useApi, useInfiniteApi } from '@/hooks/useApi';
+import { categoryApi, aiCategoryApi } from '@/services';
 import { useState, useRef, useEffect, useCallback } from "react";
 import Card from '@/components/Card';
 import SelectedItem from '@/components/SelectedItem';
 import type { SelectedItemProps } from '@/components/SelectedItem';
+import type { ApiResponse } from '@/types/api';
 
 const categoryOptions = [
     "문서·글쓰기", "마케팅·디자인", "교육·학습", "미디어·엔터테인먼트", "IT·프로그래밍", "비즈니스·전문가", "커머스·세일즈", "번역·통역", "건강·웰니스", "에이전트·자동화"
@@ -92,121 +95,181 @@ const getDetailData = (item: { serviceName?: string }): SelectedItemProps['data'
 });
 
 const CategoryPage = () => {
-    const [open, setOpen] = useState({
-        category: true,
-        country: false,
-        price: false,
-    });
-    const [selectedCategory, setSelectedCategory] = useState(categoryOptions[0]);
-    const [displayedCards, setDisplayedCards] = useState(cardTestData.slice(0, 6));
-    const [page, setPage] = useState(1);
+    // 카테고리 목록 API
+    const { data } = useApi(aiCategoryApi.getAllCategories);
+
+    // 디버깅용 로그
+    console.log('카테고리 API 응답:', data);
+    console.log('카테고리 데이터 구조:', (data as any)?.categories);
+
+    // 아이콘 URL 확인
+    if ((data as any)?.categories) {
+        (data as any).categories.forEach((cat: any) => {
+            console.log(`카테고리: ${cat.category_name}, 아이콘: ${cat.category_icon}`);
+        });
+    }
+    // 선택된 카테고리 id 상태
+    const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+    // 선택된 카테고리명 상태
+    const [selectedCategoryName, setSelectedCategoryName] = useState<string>('');
+    // 카테고리별 서비스 API
+    const { data: aiServices, loading: servicesLoading, refetch } = useApi(
+        () => categoryApi.getServicesByCategory(selectedCategoryId!, { page: 1, limit: 12 }),
+        { enabled: !!selectedCategoryId }
+    );
+
+    // 디버깅용 로그
+    console.log('선택된 카테고리 ID:', selectedCategoryId);
+    console.log('AI 서비스 데이터:', aiServices);
+
+    // selectedCategoryId가 변경될 때마다 API 재호출
+    useEffect(() => {
+        if (selectedCategoryId) {
+            console.log('카테고리 변경으로 인한 API 재호출:', selectedCategoryId);
+            refetch();
+        }
+    }, [selectedCategoryId]);
+
+    // 머티리얼 스타일용 상태
+    const [open, setOpen] = useState({ category: true });
     const observerRef = useRef<HTMLDivElement | null>(null);
     const [selectedItem, setSelectedItem] = useState<SelectedItemProps['data'] | null>(null);
 
-    const loadMore = useCallback(() => {
-        setDisplayedCards((prev) => [
-            ...prev,
-            ...cardTestData.map((item) => ({ ...item })),
-        ].slice(0, (page + 1) * 6));
-        setPage((p) => p + 1);
-    }, [page]);
+    // 카테고리 클릭 핸들러
+    const handleCategoryClick = (cat: any) => {
+        console.log('카테고리 클릭됨:', cat);
+        setSelectedCategoryId(cat.id);
+        setSelectedCategoryName(cat.category_name);
+    };
 
-    useEffect(() => {
-        if (!observerRef.current) return;
-        const observer = new window.IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    loadMore();
-                }
-            },
-            { threshold: 1 }
-        );
-        observer.observe(observerRef.current);
-        return () => observer.disconnect();
-    }, [loadMore]);
+    // URL 처리 함수
+    const processUrl = (url: string) => {
+        if (!url) return '';
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            console.log('URL:', url);
+            return url;
+        }
+        const API_BASE_URL = 'https://web-production-e8790.up.railway.app';
+        console.log('API_BASE_URL:', API_BASE_URL);
+        console.log('Original URL:', url);
+        const processedUrl = `${API_BASE_URL}${url.startsWith('/') ? url : `/${url}`}`;
+        console.log('Processed URL:', processedUrl);
+        return processedUrl;
+    };
 
-    const toggle = (key: keyof typeof open) => setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
+    // 서비스 카드 데이터 변환
+    const serviceCards = aiServices && (aiServices as any).data && Array.isArray((aiServices as any).data)
+        ? (aiServices as any).data.map((service: any) => {
+            const imageContent = service.contents?.find((c: any) => c.content_type === 'image');
+            const iconContent = service.contents?.find((c: any) => c.content_type === 'icon');
+            return {
+                thumbnail: processUrl(imageContent?.content_url || ''),
+                logo: processUrl(iconContent?.content_url || ''),
+                serviceName: service.ai_name || 'AI 서비스',
+                details: service.tags && service.tags.length > 0
+                    ? `#${service.tags.map((tag: any) => tag.tag_name).join(' #')}`
+                    : service.ai_description ? `#${service.ai_description.split(' ').slice(0, 3).join(' #')}` : '#AI #서비스',
+            };
+        }) : [];
 
     return (
         <>
             <Header />
             <main className="w-full min-h-screen flex flex-col items-center justify-start pt-12 bg-white">
                 <Main_Banner Main_Title="Step by Step" Detail_Text="First step to AI" />
-                <div className="w-[1280px] mt-8 border border-dashed border-gray-300 rounded-lg min-h-[300px] flex flex-row items-stretch">
-                    {/* SortSection (좌측) */}
-                    <div className="flex-[2] min-w-[180px] border-r border-gray-200 bg-white flex flex-col p-6">
-                        {/* 카테고리별 */}
-                        <button className="flex items-center w-full justify-between text-lg font-semibold py-2" onClick={() => toggle('category')}>
-                            산업별
+                <div className="w-full max-w-7xl flex flex-row gap-6 mt-8">
+                    {/* 왼쪽 카테고리 메뉴 */}
+                    <aside className="flex-[2] min-w-[220px] bg-white rounded-xl shadow-md p-6 material-input-wrapper">
+                        <button className="flex items-center w-full justify-between text-lg font-semibold py-2 mb-2" onClick={() => setOpen(o => ({ ...o, category: !o.category }))}>
+                            카테고리별
                             <span className="ml-2"><ArrowIcon open={open.category} /></span>
                         </button>
                         {open.category && (
                             <ul className="pl-2 mb-2">
-                                {categoryOptions.map((opt) => (
-                                    <li
-                                        key={opt}
-                                        className={`py-1 text-base cursor-pointer hover:font-bold ${selectedCategory === opt ? 'font-bold text-black' : 'text-gray-700'}`}
-                                        onClick={() => setSelectedCategory(opt)}
-                                    >
-                                        {opt}
-                                        <span className="ml-2 text-gray-500">({categoryCounts[opt]})</span>
-                                    </li>
-                                ))}
+                                {(data as any)?.categories?.length > 0 ? (
+                                    (data as any).categories.map((cat: any) => (
+                                        <li
+                                            key={cat.id}
+                                            className={`py-2 px-3 rounded-lg cursor-pointer transition font-medium flex items-center gap-2 mb-1 material-category-card ${selectedCategoryId === cat.id ? 'bg-blue-50 border-blue-500 text-blue-700' : 'hover:bg-gray-100 text-gray-700'}`}
+                                            onClick={() => handleCategoryClick(cat)}
+                                        >
+                                            {cat.category_icon ? (
+                                                <img
+                                                    src={processUrl(cat.category_icon)}
+                                                    alt={cat.category_name}
+                                                    className="w-6 h-6 object-contain mr-2"
+                                                    crossOrigin="anonymous"
+                                                    onError={(e) => {
+                                                        console.log('아이콘 로딩 실패:', cat.category_icon);
+                                                        e.currentTarget.style.display = 'none';
+                                                    }}
+                                                />
+                                            ) : (
+                                                <div className="w-6 h-6 bg-gray-200 rounded mr-2 flex items-center justify-center">
+                                                    <span className="text-xs text-gray-500">📁</span>
+                                                </div>
+                                            )}
+                                            <span>{cat.category_name}</span>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li className="text-gray-400">카테고리가 없습니다.</li>
+                                )}
                             </ul>
                         )}
-                        {/* 가격별 */}
-                        <button className="flex items-center w-full justify-between text-lg font-semibold py-2" onClick={() => toggle('price')}>
-                            가격별
-                            <span className="ml-2"><ArrowIcon open={open.price} /></span>
-                        </button>
-                        {open.price && (
-                            <ul className="pl-2 mb-2">
-                                <li className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">
-                                    유료
-                                    <span className="ml-2 text-gray-500">(123)</span>
-                                </li>
-                                <li className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">
-                                    무료
-                                    <span className="ml-2 text-gray-500">(456)</span>
-                                </li>
-                            </ul>
-                        )}
-                        {/* 국가별 */}
-                        <button className="flex items-center w-full justify-between text-lg font-semibold py-2" onClick={() => toggle('country')}>
-                            국가별
-                            <span className="ml-2"><ArrowIcon open={open.country} /></span>
-                        </button>
-                        {open.country && (
-                            <ul className="pl-2 mb-2">
-                                {countryOptions.map((opt) => (
-                                    <li key={opt} className="py-1 text-base text-gray-700 cursor-pointer hover:font-bold">
-                                        {opt}
-                                        <span className="ml-2 text-gray-500">({countryCounts[opt]})</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                    {/* ResultSection (우측) */}
-                    <div className="flex-[8] flex flex-col p-6">
-                        <div className="text-3xl font-bold mb-8">{selectedCategory}</div>
-                        <div className="grid grid-cols-3 gap-5">
-                            {displayedCards.map((item, idx) => (
-                                <Card
-                                    key={idx}
-                                    size={{ width: 300, height: 300 }}
-                                    items={item}
-                                    serviceNameFontSize={18}
-                                    detailsFontSize={12}
-                                    detailsMinHeight={32}
-                                    detailsMaxHeight={50}
-                                    detailsLineClamp={3}
-                                    onClick={() => setSelectedItem(getDetailData(item))}
-                                />
+                    </aside>
+                    {/* 오른쪽 결과 영역 */}
+                    <section className="flex-[8] flex flex-col p-6 bg-white rounded-xl shadow-md material-input-wrapper">
+                        <div className="text-2xl font-bold mb-8 min-h-[32px]">{selectedCategoryName || '카테고리를 선택하세요'}</div>
+                        <div className="grid grid-cols-3 gap-6">
+                            {serviceCards.length === 0 && !servicesLoading && (
+                                <div className="col-span-3 text-center text-gray-400 py-12">서비스가 없습니다.</div>
+                            )}
+                            {serviceCards.map((item: any, idx: number) => (
+                                <div key={idx} className="material-category-card flex flex-col items-center p-4 rounded-xl shadow hover:shadow-lg transition">
+                                    {/* 썸네일 */}
+                                    <div className="w-full h-36 rounded-lg bg-gray-100 flex items-center justify-center mb-3 overflow-hidden relative">
+                                        {item.thumbnail ? (
+                                            <img
+                                                src={item.thumbnail}
+                                                alt="썸네일"
+                                                className="w-full h-full object-cover"
+                                                crossOrigin="anonymous"
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
+                                                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                                }}
+                                            />
+                                        ) : null}
+                                        <span className={`text-gray-400 ${item.thumbnail ? 'hidden' : ''}`}>이미지</span>
+                                    </div>
+                                    {/* 로고+서비스명 */}
+                                    <div className="flex items-center w-full mb-2">
+                                        <div className="w-10 h-10 rounded-full bg-[#f5f04f] flex items-center justify-center mr-3 overflow-hidden relative">
+                                            {item.logo ? (
+                                                <img
+                                                    src={item.logo}
+                                                    alt="로고"
+                                                    className="w-full h-full object-contain rounded-full"
+                                                    crossOrigin="anonymous"
+                                                    onError={(e) => {
+                                                        e.currentTarget.style.display = 'none';
+                                                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                                    }}
+                                                />
+                                            ) : null}
+                                            <span className={`text-xs text-gray-700 ${item.logo ? 'hidden' : ''}`}>로고</span>
+                                        </div>
+                                        <span className="text-lg font-bold text-black" style={{ fontFamily: 'Inter' }}>{item.serviceName}</span>
+                                    </div>
+                                    {/* 해시태그 */}
+                                    <div className="w-full min-h-[32px]">
+                                        <span className="text-xs text-gray-400 font-medium" style={{ fontFamily: 'Inter' }}>{item.details}</span>
+                                    </div>
+                                </div>
                             ))}
                         </div>
-                        <div ref={observerRef} style={{ height: 1 }} />
-                    </div>
+                    </section>
                 </div>
             </main>
             <Footer />
